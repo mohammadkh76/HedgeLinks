@@ -23,39 +23,81 @@
     <link href="~/content/ejthemes/responsive-css/ej.responsive.css" rel="stylesheet" />
     <link href="~/content/ejthemes/responsive-css/ejgrid.responsive.css" rel="stylesheet" />
 
+
     @RenderSection("Styles", required: false)
 
 </head>
 <body>
-    @*<nav class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">coderush</a>
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
+    <section id="large-menubar">
+        <div class="row">
+            <div class="main-menubar-container">
+                <div class="col-md-2 text-center">
+                    <img class="lg-logo" src="~/images/logo.png" alt="HedgeLinks.com" title="HedgeLinks" />
+                </div>
+                <div class="col-md-5 no-padding">
+                    <div class="menu-item-container">
+                        <div class="lg-menu-item theme-color">
+                            Home
+                        </div>
+                        <div class="lg-menu-item">
+                            Search for Jobs
+                        </div>
+                        <div class="lg-menu-item">
+                            Companies
+                        </div>
+                        <div class="lg-menu-item">
+                            Search for Resumes
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="lg-menu-right">
+                        <div class="lg-menu-sign-in lg-right-menu-item">
+                            <a class="sign-in-link" title="HedgeLinks Sign In">Sign In</a>
+                        </div>
+                        <div class="spacer"></div>
+                        <div class="lg-menu-employer lg-right-menu-item" title="Hedge Links Employer">
+                            <a class="employer-in-link" title="HedgeLinks Employers">Employers</a>
+                        </div>
+                        <div class="spacer"></div>
 
-                </ul>
-                @await Html.PartialAsync("_LoginPartial")
+                        <div class="lg-menu-post-job-btn lg-right-menu-item theme-color" title="Hedge Links Post Job">
+                            <a class="post-in-link theme-btn" title="HedgeLinks Post Job For Free">Post Job Free</a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-    </nav>*@
-    <div class="container body-content">
+    </section>
+    
+    @*<nav class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">coderush</a>
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
+                        <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
+                        <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
+
+                    </ul>
+                    @await Html.PartialAsync("_LoginPartial")
+                </div>
+            </div>
+        </nav>*@
         @RenderBody()
         <hr />
         <footer>
             <p>&copy;HedgeLinks</p>
         </footer>
-    </div>
+
 
     <environment include="Development">
         <script src="~/lib/jquery/dist/jquery.js"></script>
