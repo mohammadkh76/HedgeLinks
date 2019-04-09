@@ -1,16 +1,31 @@
 ﻿@font-face {
-    font-family: 'Frank';
+    font-family: 'Frank-medium,';
     src: url('../fonts/FrankRuhlLibre-Medium.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'Frank-light';
+    src: url('../fonts/FrankRuhlLibre-Light.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'Frank-regular';
+    src: url('../fonts/FrankRuhlLibre-Regular.ttf') format('truetype');
 }
 .theme-color {
     color: #7db323 !important;
 }
+input select :focus{
+    outline:none !important;   
+}
 * {
-    font-family: Frank;
+    font-family: Frank-light;
+}
+.row {
+    margin-left:0 !important;
+    margin-right:0 !important;
 }
 
 h1, h2, h3, j4 {
-    font-family: Frank;
+    font-family: Frank-light;
 }
 
 a {
@@ -70,9 +85,7 @@ body {
 
 .main-menubar-container {
     padding: 0 50px;
-    margin: 0 auto;
     position: relative;
-    width: 100%;
     height: 50px;
     background-color: #fff;
 }
@@ -114,7 +127,7 @@ body {
 }
 
 .no-padding {
-    padding: 0;
+    padding: 0 !important;
 }
 
 .lg-menu-right {
