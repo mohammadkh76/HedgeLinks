@@ -60,10 +60,6 @@
     width:65%;
 }
 
-.pad-t60{
-    padding-top:60px;
-
-}
 .text-input-box {
     display: block;
     width: 100%;
@@ -133,4 +129,48 @@
     -webkit-box-shadow: 2px 4px 20px -10px rgba(0,0,0,0.83);
     -moz-box-shadow: 2px 4px 20px -10px rgba(0,0,0,0.83);
     box-shadow: 2px 4px 20px -10px rgba(0,0,0,0.83);
+}
+.category-color {
+    background-color: #E7F1D7;
+}
+.category-dim {
+    height: 550px;
+}
+.advert-image {
+    height:350px;
+    width:100%;
+}
+.category-title {
+    font-weight:400;
+    font-size:24px;
+    margin-bottom:10px;
+    margin-top:0;
+}
+.category-text {
+    font-size:17px;
+    line-height:26px;
+}
+.hot-topic-item{
+
+}
+.hot-topic-title{
+    font-size:17px;
+    margin-top:10px;
+    font-weight:bold;
+    font-family:Frank-bold
+}
+.hot-topic-link {
+    font-size:19px;
+    color:#7db323 !important;
+    padding-bottom:7px;
+
+}
+
+.news-btn {
+    color: #7db323;
+    height: 40px;
+    padding: 5px 30px;
+}
+.hot-topic-section{
+    margin:20px 0;
 }

@@ -3,6 +3,7 @@
 @{
     ViewData["Title"] = "User Profile";
     UserProfile profile = Context.UserProfile.SingleOrDefault(x => x.ApplicationUserId.Equals(Model.Id));
+    Layout = "~/Views/Shared/_AdminLte.cshtml";
 }
 
 <!-- Content Wrapper. Contains page content -->

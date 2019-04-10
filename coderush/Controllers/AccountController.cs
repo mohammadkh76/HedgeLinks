@@ -64,8 +64,18 @@ namespace coderush.Controllers
                 var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, lockoutOnFailure: false);
                 if (result.Succeeded)
                 {
+                    if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                    {
+                        _logger.LogInformation("User logged in.");
+                        return RedirectToLocal(returnUrl);
+                    }
                     _logger.LogInformation("User logged in.");
                     return RedirectToLocal(returnUrl);
+
+                }
+                
+                {
+
                 }
                 if (result.RequiresTwoFactor)
                 {
