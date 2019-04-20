@@ -134,7 +134,7 @@
     background-color: #E7F1D7;
 }
 .category-dim {
-    height: 550px;
+    height: auto;
 }
 .advert-image {
     height:350px;
@@ -173,4 +173,35 @@
 }
 .hot-topic-section{
     margin:20px 0;
+}
+.main-content-middle {
+    width:1000px;
+    margin:auto auto;
+}
+.category-link-item {
+    color: #7db323;
+    font-size:16px; 
+
+}
+.job-cat{
+    font-size:16px;
+    
+    margin-bottom:3px;
+
+}
+.job-title{
+    color:#7db323;
+    font-size:16px;
+
+}
+.job-salary{
+    font-size:16px;
+
+}
+.trend-title{
+    margin-bottom:40px;
+}
+.margin-bt20{
+
+    margin-bottom:20px;
 }
