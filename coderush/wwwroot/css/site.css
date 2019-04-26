@@ -47,8 +47,12 @@ ol, ul {
 }
 
 a {
-    color: inherit !important;
-    text-decoration: none !important;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    font-size: 14px;
+    height: auto;
+    color: #666;
+    text-decoration: none;
 }
 
     a:active {
@@ -184,3 +188,33 @@ body {
         background-color: #7db323;
         color:#fff;
     }
+.footer-line {
+    width: 100%;
+    height: 75px;
+    background-color: #E7F1D7;
+}
+#site-footer {
+    padding:55px 30px 48px
+}
+.footer-logo{
+    background-image:url(../images/logo.png);
+    width:100%;
+    height:47px;
+    display:block;
+    background-size:cover;
+    margin-bottom:15px;
+}
+.footer-item{
+    width:100%;
+    display:block;
+    margin-bottom:10px;
+}
+.footer-column{
+    width:165px;
+    display:inline-block;
+    height:auto;
+    
+}
+.footer-bold{
+    font-weight:700;
+}

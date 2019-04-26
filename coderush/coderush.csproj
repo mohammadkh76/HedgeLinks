@@ -5,6 +5,74 @@
     <UserSecretsId>aspnet-coderush-090A0FD1-7DA3-4537-B736-EF0C0F063935</UserSecretsId>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Content Include="Controllers\AccountController.cs" />
+    <Content Include="Controllers\Api\BillController.cs" />
+    <Content Include="Controllers\Api\BillTypeController.cs" />
+    <Content Include="Controllers\Api\BranchController.cs" />
+    <Content Include="Controllers\Api\CashBankController.cs" />
+    <Content Include="Controllers\Api\ChangePasswordController.cs" />
+    <Content Include="Controllers\Api\CurrencyController.cs" />
+    <Content Include="Controllers\Api\CustomerController.cs" />
+    <Content Include="Controllers\Api\CustomerTypeController.cs" />
+    <Content Include="Controllers\Api\GoodsReceivedNoteController.cs" />
+    <Content Include="Controllers\Api\InvoiceController.cs" />
+    <Content Include="Controllers\Api\InvoiceTypeController.cs" />
+    <Content Include="Controllers\Api\NumberSequenceController.cs" />
+    <Content Include="Controllers\Api\PaymentReceiveController.cs" />
+    <Content Include="Controllers\Api\PaymentTypeController.cs" />
+    <Content Include="Controllers\Api\PaymentVoucherController.cs" />
+    <Content Include="Controllers\Api\ProductController.cs" />
+    <Content Include="Controllers\Api\ProductTypeController.cs" />
+    <Content Include="Controllers\Api\PurchaseOrderController.cs" />
+    <Content Include="Controllers\Api\PurchaseOrderLineController.cs" />
+    <Content Include="Controllers\Api\PurchaseTypeController.cs" />
+    <Content Include="Controllers\Api\RoleController.cs" />
+    <Content Include="Controllers\Api\SalesOrderController.cs" />
+    <Content Include="Controllers\Api\SalesOrderLineController.cs" />
+    <Content Include="Controllers\Api\SalesTypeController.cs" />
+    <Content Include="Controllers\Api\ShipmentController.cs" />
+    <Content Include="Controllers\Api\ShipmentTypeController.cs" />
+    <Content Include="Controllers\Api\UnitOfMeasureController.cs" />
+    <Content Include="Controllers\Api\UploadProfilePictureController.cs" />
+    <Content Include="Controllers\Api\UserController.cs" />
+    <Content Include="Controllers\Api\VendorController.cs" />
+    <Content Include="Controllers\Api\VendorTypeController.cs" />
+    <Content Include="Controllers\Api\WarehouseController.cs" />
+    <Content Include="Controllers\BillController.cs" />
+    <Content Include="Controllers\BillTypeController.cs" />
+    <Content Include="Controllers\BranchController.cs" />
+    <Content Include="Controllers\CashBankController.cs" />
+    <Content Include="Controllers\CurrencyController.cs" />
+    <Content Include="Controllers\CustomerController.cs" />
+    <Content Include="Controllers\CustomerTypeController.cs" />
+    <Content Include="Controllers\DashboardController.cs" />
+    <Content Include="Controllers\GoodsReceivedNoteController.cs" />
+    <Content Include="Controllers\HomeController.cs" />
+    <Content Include="Controllers\InvoiceController.cs" />
+    <Content Include="Controllers\InvoiceTypeController.cs" />
+    <Content Include="Controllers\ManageController.cs" />
+    <Content Include="Controllers\NumberSequenceController.cs" />
+    <Content Include="Controllers\PaymentReceiveController.cs" />
+    <Content Include="Controllers\PaymentTypeController.cs" />
+    <Content Include="Controllers\PaymentVoucherController.cs" />
+    <Content Include="Controllers\ProductController.cs" />
+    <Content Include="Controllers\ProductTypeController.cs" />
+    <Content Include="Controllers\PurchaseOrderController.cs" />
+    <Content Include="Controllers\PurchaseOrderLineController.cs" />
+    <Content Include="Controllers\PurchaseTypeController.cs" />
+    <Content Include="Controllers\SalesOrderController.cs" />
+    <Content Include="Controllers\SalesOrderLineController.cs" />
+    <Content Include="Controllers\SalesTypeController.cs" />
+    <Content Include="Controllers\ShipmentController.cs" />
+    <Content Include="Controllers\ShipmentTypeController.cs" />
+    <Content Include="Controllers\UnitOfMeasureController.cs" />
+    <Content Include="Controllers\UserRoleController.cs" />
+    <Content Include="Controllers\VendorController.cs" />
+    <Content Include="Controllers\VendorTypeController.cs" />
+    <Content Include="Controllers\WarehouseController.cs" />
+  </ItemGroup>
+
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.9" />

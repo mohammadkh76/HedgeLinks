@@ -174,12 +174,9 @@
 .hot-topic-section{
     margin:20px 0;
 }
-.main-content-middle {
-    width:1000px;
-    margin:auto auto;
-}
-.category-link-item {
-    color: #7db323;
+
+.category-link-item a {
+    color: #7db323 !important;
     font-size:16px; 
 
 }
