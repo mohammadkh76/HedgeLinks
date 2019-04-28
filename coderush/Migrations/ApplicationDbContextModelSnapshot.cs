@@ -276,6 +276,45 @@ namespace coderush.Migrations
                     b.ToTable("InvoiceType");
                 });
 
+            modelBuilder.Entity("coderush.Models.Menubar", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int?>("MenuPathId");
+
+                    b.Property<string>("Name")
+                        .IsRequired();
+
+                    b.Property<string>("Path");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("MenuPathId");
+
+                    b.ToTable("Menubar");
+                });
+
+            modelBuilder.Entity("coderush.Models.MenuPath", b =>
+                {
+                    b.Property<int?>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Description");
+
+                    b.Property<string>("FilePath");
+
+                    b.Property<string>("PageName")
+                        .IsRequired();
+
+                    b.Property<string>("Title")
+                        .IsRequired();
+
+                    b.HasKey("Id");
+
+                    b.ToTable("MenuPath");
+                });
+
             modelBuilder.Entity("coderush.Models.NumberSequence", b =>
                 {
                     b.Property<int>("NumberSequenceId")
@@ -621,6 +660,29 @@ namespace coderush.Migrations
                     b.ToTable("ShipmentType");
                 });
 
+            modelBuilder.Entity("coderush.Models.SubMenu", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int?>("MenuPathId");
+
+                    b.Property<int>("MenubarId");
+
+                    b.Property<string>("Name")
+                        .IsRequired();
+
+                    b.Property<string>("Path");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("MenuPathId");
+
+                    b.HasIndex("MenubarId");
+
+                    b.ToTable("Submenu");
+                });
+
             modelBuilder.Entity("coderush.Models.UnitOfMeasure", b =>
                 {
                     b.Property<int>("UnitOfMeasureId")
@@ -831,6 +893,13 @@ namespace coderush.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("coderush.Models.Menubar", b =>
+                {
+                    b.HasOne("coderush.Models.MenuPath", "MenuPath")
+                        .WithMany()
+                        .HasForeignKey("MenuPathId");
+                });
+
             modelBuilder.Entity("coderush.Models.PurchaseOrderLine", b =>
                 {
                     b.HasOne("coderush.Models.PurchaseOrder", "PurchaseOrder")
@@ -844,6 +913,18 @@ namespace coderush.Migrations
                     b.HasOne("coderush.Models.SalesOrder", "SalesOrder")
                         .WithMany("SalesOrderLines")
                         .HasForeignKey("SalesOrderId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("coderush.Models.SubMenu", b =>
+                {
+                    b.HasOne("coderush.Models.MenuPath", "MenuPath")
+                        .WithMany()
+                        .HasForeignKey("MenuPathId");
+
+                    b.HasOne("coderush.Models.Menubar", "Menubar")
+                        .WithMany("SubMenus")
+                        .HasForeignKey("MenubarId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 

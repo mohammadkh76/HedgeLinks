@@ -6,24 +6,20 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
-namespace FinalHospital.Models
+namespace coderush.Models
 {
     public class SubMenu
     {
         public int Id { get; set; }
-        [DisplayName(" نام ")]
-        [Required(ErrorMessage ="وارد کردن نام الزامی می باشد.")]
+        [DisplayName(" Name ")]
+        [Required(ErrorMessage ="*This Field is Required")]
         public string Name { get; set; }
-        [DisplayName(" نام عربی")]
-        public string Name_ar { get; set; }
-        [DisplayName(" نام انگلیسی")]
-        public string Name_eng { get; set; }
-        [DisplayName("آدرس به")]
+        [DisplayName("Link To")]
 
         public string Path { get; set; }
         [NotMapped]
         public int  SelectedPage { get; set; }
-        [DisplayName("آدرس")]
+        [DisplayName("Page Name")]
         [ForeignKey("MenuPathId")]
         public MenuPath MenuPath { get; set; }
         public int? MenuPathId { get; set; }

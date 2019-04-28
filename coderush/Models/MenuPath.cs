@@ -5,33 +5,20 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
-namespace FinalHospital.Models
+namespace coderush.Models
 {
     public class MenuPath
     {
         public int? Id { get; set; }
-        [DisplayName("عنوان فارسی")]
-        [Required(ErrorMessage = "وارد کردن عنوان صفحه الزامی می باشد.")]
+        [DisplayName("Title")]
+        [Required(ErrorMessage = "*This Field is Required")]
         public string Title { get; set; }
-        [DisplayName("عنوان عربی")]
-
-        public string  Title_ar { get; set; }
-        [DisplayName("عنوان انگلیسی")]
-
-        public string Title_eng { get; set; }
-        [DisplayName("شرح فارسی")]
-
+        [DisplayName("Description")]
         public string  Description{ get; set; }
-        [DisplayName("شرح عربی")]
+      
 
-        public string  Description_ar { get; set; }
-        [DisplayName("شرح انگلیسی")]
-
-        public string Description_eng { get; set; }
-        public string FilePath { get; set; }
-
-        [DisplayName("نام صفحه")]
-        [Required(ErrorMessage ="وارد کردن این قسمت الزامی است.")]
+        [DisplayName("Page Name")]
+        [Required(ErrorMessage ="*This field is Required.")]
         public string  PageName{ get; set; }
     }
 }

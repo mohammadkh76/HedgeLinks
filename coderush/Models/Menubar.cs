@@ -12,7 +12,7 @@ namespace coderush.Models
     {
         public int Id { get; set; }
         [DisplayName("Name")]
-        [Required(ErrorMessage ="وارد کردن نام الزامی است.")]
+        [Required(ErrorMessage ="*This Field is Required")]
         public string Name { get; set; }
 
         public string  Path{ get; set; }

@@ -82,5 +82,8 @@ namespace coderush.Data
         public DbSet<coderush.Models.Warehouse> Warehouse { get; set; }
 
         public DbSet<coderush.Models.UserProfile> UserProfile { get; set; }
+        public DbSet<coderush.Models.Menubar> Menubar{ get; set; }
+        public DbSet<coderush.Models.MenuPath> MenuPath{ get; set; }
+        public DbSet<coderush.Models.SubMenu> Submenu{ get; set; }
     }
 }
