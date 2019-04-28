@@ -15,6 +15,14 @@ namespace coderush.Pages
             public const string ControllerName = "Customer";
             public const string ActionName = "Index";
         }
+        public static class Menubar
+        {
+            public const string PageName = "Menubar";
+            public const string RoleName = "Menubar";
+            public const string Path = "/Menubar/Index";
+            public const string ControllerName = "Menubar";
+            public const string ActionName = "Index";
+        }
 
         public static class Vendor
         {
