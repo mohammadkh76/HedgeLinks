@@ -1,1 +1,0 @@
-var angModule=angular.module('angModule',['ngFileUpload','vcRecaptcha','ui.bootstrap','ngAnimate','ngSanitize','toaster']);
