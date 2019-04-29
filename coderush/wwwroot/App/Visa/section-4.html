@@ -1,0 +1,36 @@
+<h4>Document</h4>
+
+<div class="row">
+	<div class="form-group">
+		<span class="control-label col-md-4">Passport Picture: </span>
+		<div class="col-md-8">
+			<div class="custom-file-upload">
+				<!--<label for="file">File: </label>-->
+				<input type="file" ngf-select  ng-model="data.PassportFile" />
+			</div>
+		</div>
+	</div>
+	<div class="form-group">
+		<span class="control-label col-md-4"> Picture: </span>
+		<div class="col-md-8">
+			<div class="custom-file-upload">
+				<!--<label for="file">File: </label>-->
+				<input type="file" ngf-select  ng-model="data.PictureFile"/>
+			</div>
+		</div>
+	</div>
+	<div class="form-group">
+		<span class="control-label col-md-12"> </span>
+		<div class="col-md-4 ">
+			<a class="custom-button" href="#/section3"  ng-click="prevStep(current)">Prev</a>
+		
+		</div>
+		<div class="col-md-4 text-right ">
+			<a class="custom-button" href="#/section5"  ng-click="nextStep(current)">Next</a>
+		</div>
+		
+		<div class="col-md-4 ">
+		</div>
+	</div>
+	
+		</div>

@@ -4,7 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using coderush.Data;
 using coderush.Models;
-using Microsoft.AspNetCore.Http;
+using System.Web;
+//using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HedgeLinks.Controllers.Api
@@ -23,14 +24,18 @@ namespace HedgeLinks.Controllers.Api
 
         public IActionResult GetMenuPath()
         {
+            var q=HttpContext.Request.QueryString;
+           var top = HttpContext.Request.Query["$top"].ToString();
+           var filter = HttpContext.Request.Query["$filter"].ToString();
+           var sort = HttpContext.Request.Query["$orderby"].ToString();
             List<MenuPath> Items = new List<MenuPath>();
-            if (_context.MenuPath!=null)
+            if (_context.MenuPath != null)
             {
-              Items  = _context.MenuPath.ToList();
+                Items = _context.MenuPath.ToList();
             }
             int Count = Items.Count();
-
             return Ok(new { Items, Count });
+
         }
 
     }

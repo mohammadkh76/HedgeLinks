@@ -1,0 +1,63 @@
+<div class="row">
+	<p class="date-label">{{ngLabel}}</p>
+	<div class="col-md-4">
+		<div class="input-holder sec-inpt">
+			<label>{{dayText || 'Day'}}</label>
+			<select class="md-inpt" ng-model="selectedDay" ng-change="setDate()" ng-disabled="ngDisabled"
+					 ng-required="isRequired" tabindex="{{ngTabIndex}}">
+			<option ng-repeat="day in getDays(selectedMonth) track by $index" value="{{$index + 1}}"
+					ng-disabled="(selectedYear === minYear && selectedMonth === minMonth && ($index + 1) < minDay) || (selectedYear === maxYear && selectedMonth === maxMonth && ($index + 1) > maxDay)">
+				{{$index + 1}}
+			</option>
+		</select>
+		</div>
+	
+	</div>
+	<div class="col-md-4">
+		<div class="input-holder sec-inpt">
+			<label>{{monthText || 'Month'}}</label>
+			<select class="md-inpt" ng-model="selectedMonth" ng-change="onMonthChange(selectedMonth)"
+					ng-disabled="ngDisabled" ng-required="isRequired" tabindex="{{ngTabIndex}}">
+				<option ng-repeat="month in months" value="{{month.value}}"
+						ng-disabled="(selectedYear === minYear && month.value < minMonth) || (selectedYear === maxYear && month.value > maxMonth)">
+					{{month.name}}
+				</option>
+			</select>
+		</div>
+	</div>
+	<div class="col-md-4">
+		<div class="input-holder sec-inpt">
+			<label>{{yearText || 'Year'}}</label>
+			<select class="md-inpt" ng-model="selectedYear" ng-change="onYearChange(selectedYear)"
+					ng-disabled="ngDisabled" ng-required="isRequired" tabindex="{{ngTabIndex}}">
+				<option ng-repeat="year in years track by $index" value="{{$index + 1900}}"
+						ng-disabled="($index + 1900) < minYear || ($index + 1900) > maxYear">
+					{{$index + 1900}}
+				</option>
+			</select>
+		</div>
+	</div>
+	<button ng-if="showClear" class="md-btn-fab md-mini prim-btn" ng-click="clear()">
+		<i class="fa fa-remove"></i>
+		<!--<md-tooltip md-direction="bottom">{{::rsrc('clear')}}</md-tooltip>-->
+	</button>
+	<br ng-if="!linear">
+	<div class="input-holder sec-inpt" ng-show="timeInclude">
+		<label>{{hourText || 'Hour'}}</label>
+		<select class="md-inpt" ng-model="selectedHour" ng-change="setDate()" ng-disabled="ngDisabled"
+				ng-required="isRequired" tabindex="{{ngTabIndex}}">
+			<option ng-repeat="hour in hours track by $index" value="{{$index}}">
+				{{$index < 10 ? '0' : ''}}{{$index}}
+			</option>
+		</select>
+	</div>
+	<div class="input-holder sec-inpt" ng-show="timeInclude">
+		<label>{{minuteText || 'Minute'}}</label>
+		<select class="md-inpt" ng-model="selectedMinute" ng-change="setDate()" ng-disabled="ngDisabled"
+				ng-required="isRequired" tabindex="{{ngTabIndex}}">
+			<option ng-repeat="minute in minutes track by $index" value="{{$index}}">{{$index < 10 ? '0' :
+				''}}{{$index}}
+			</option>
+		</select>
+	</div>
+</div>

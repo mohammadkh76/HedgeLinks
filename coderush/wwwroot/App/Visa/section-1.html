@@ -1,0 +1,113 @@
+<h4>Personal Information</h4>
+<div ng-form="subForm">
+		<div class="row">
+			<div class="form-group">
+				<span class="control-label col-md-6">Name: </span>
+				<div class="col-md-8">
+					<input type="text" name="Name" ng-model="data.Name" class="form-control" required/>
+				</div>
+				<div class="text-danger col-md-8" ng-show="subForm.Name.$touched && subForm.Name.$invalid && subForm.Name.$error.required">
+					This Field is Required!
+				</div>
+			</div>
+			<div class="form-group" >
+				<span class="control-label col-md-6">Date of Birth: </span>
+				<div class="col-md-8">
+					<date-picker ng-model="data.BirthDate" date-format="YYYY/MM/DD"></date-picker>
+					{{data.BirthDate}}
+					
+				</div>
+			</div>
+			<div>
+			<div class="form-group">
+				<span class="control-label col-md-6">Gender:  </span>
+				<div class="col-md-8">
+					<select class="form-control" ng-model="data.SelectedGender">
+						<option value="0">Female</option>
+						<option value="1">Male</option>
+					</select>
+				</div>
+			</div>
+			<div class="form-group">
+				<span class="control-label col-md-6" >Martial Status: </span>
+				<div class="col-md-8">
+					<select class="form-control" ng-model="data.SelectedMartial">
+						<option value="0">Single</option>
+						<option value="1">Married</option>
+					</select>
+				</div>
+			</div>
+			<div class="form-group">
+				<span class="control-label col-md-6">Father's Name: </span>
+				<div class="col-md-8">
+					<input type="text" name="FatherName" ng-model="data.FatherName" class="form-control" required />
+				</div>
+				<div class="text-danger col-md-8" ng-show="subForm.FatherName.$touched && subForm.FatherName.$invalid && subForm.FatherName.$error.required">
+					This Field is Required!
+				</div>
+			
+			</div>
+				
+			<div class="form-group">
+				<span class="control-label col-md-6">Grand Father's Name: </span>
+				<div class="col-md-8">
+					<input type="text" ng-model="data.GrandFatherName" class="form-control" placeholder="(For Arab Nationalities)"/>
+				</div>
+			</div>
+			<div class="form-group">
+				<span class="control-label col-md-6">Spouse Name: </span>
+				<div class="col-md-8">
+					<input type="text" ng-model="data.SpouseName" placeholder="(If you are married)" class="form-control"/>
+				</div>
+			</div>
+				<div class="form-group">
+					<span class="control-label col-md-6">Nationality: </span>
+					<div class="col-md-8">
+						<select class="form-control" ng-model="data.SelectedNationality">
+							<option value="{{nat.Id}}" ng-repeat="nat in nationality">{{nat.Name}}</option>
+						</select>
+					</div>
+				</div>
+			<div class="form-group">
+				<span class="control-label col-md-6">Country of birth: </span>
+				<div class="col-md-8">
+					<select class="form-control" ng-model="data.SelectedCountry">
+						<option value="{{coun.Id}}" ng-repeat="coun in country">{{coun.Name}}</option>
+					</select>
+				</div>
+			</div>
+				
+			<div class="form-group">
+				<span class="control-label col-md-6">City of birth: </span>
+				<div class="col-md-8">
+					<input type="text" name="CityBirth" ng-model="data.CityBirth" class="form-control" required/>
+				</div>
+				<div class="text-danger col-md-8" ng-show="subForm.CityBirth.$touched && subForm.CityBirth.$invalid && subForm.CityBirth.$error.required">
+					This Field is Required!
+				</div>
+			</div>
+		
+			<div class="form-group">
+				<span class="control-label col-md-6">Email: </span>
+				<div class="col-md-8">
+					<input type="text" name="Email" ng-model="data.Email" class="form-control" required/>
+				</div>
+				<div class="text-danger col-md-8" ng-show="subForm.Email.$touched && subForm.Email.$invalid && subForm.Email.$error.required">
+					This Field is Required!
+				</div>
+			</div>
+				
+				<div class="form-group">
+					<span class="control-label col-md-12"> </span>
+					<div class="col-md-4 ">
+					</div>
+					<div class="col-md-4 text-right">
+						<a class="custom-button" href="" ng-click="validateSection1(data)" >Next</a>
+					</div>
+					
+					<div class="col-md-4 ">
+					</div>
+				</div>
+		</div>
+</div>
+</div>

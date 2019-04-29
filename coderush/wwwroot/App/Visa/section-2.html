@@ -1,0 +1,62 @@
+<h4>Passport Information</h4>
+<div ng-form="subForm">
+<div class="row">
+	<div class="form-group">
+		<span class="control-label col-md-6">Passport Number: </span>
+		<div class="col-md-8">
+			<input type="text" name="PassportNumber" ng-model="data.PassportNumber" class="form-control" required/>
+		</div>
+		<div class="text-danger col-md-8" ng-show="subForm.PassportNumber.$touched && subForm.PassportNumber.$invalid && subForm.PassportNumber.$error.required">
+			This Field is Required!
+		</div>
+	</div>
+	<div class="form-group">
+		<span class="control-label col-md-6">Type of Passport: </span>
+		<div class="col-md-8 ">
+			<input type="text" name="PassportType" ng-model="data.PassportType" class="form-control" required/>
+		</div>
+		<div class="text-danger col-md-8" ng-show="subForm.PassportType.$touched && subForm.PassportType.$invalid && subForm.PassportType.$error.required">
+			This Field is Required!
+		</div>
+	</div>
+	<div>
+		<div class="form-group">
+			<span class="control-label col-md-6">Date Of Issue:  </span>
+			<div class="col-md-8">
+				<date-picker ng-model="data.DateOfIssue" date-format="YYYY/MM/DD"></date-picker>
+				{{data.DateOfIssue}}
+			
+			</div>
+		</div>
+		<div class="form-group">
+			<span class="control-label col-md-6">Date of Place: </span>
+			<div class="col-md-8">
+				<date-picker ng-model="data.DateOfPlace" date-format="YYYY/MM/DD"></date-picker>
+				{{data.DateOfPlace}}
+			
+			</div>
+		</div>
+		<div class="form-group">
+			<span class="control-label col-md-6">Expiration Date: </span>
+			<div class="col-md-8">
+				<date-picker ng-model="data.ExpirationDate" date-format="YYYY/MM/DD"></date-picker>
+				{{data.ExpirationDate}}
+			</div>
+		</div>
+		
+		<div class="form-group">
+			<span class="control-label col-md-12"> </span>
+			<div class="col-md-4 ">
+				<a class="custom-button" href="#/"  ng-click="prevStep(current)">Prev</a>
+			
+			</div>
+			<div class="col-md-4 text-right ">
+				<a class="custom-button" ng-click="validateSection2(data)">Next</a>
+			</div>
+			
+			<div class="col-md-4 ">
+			</div>
+		</div>
+	</div>
+</div>
+</div>

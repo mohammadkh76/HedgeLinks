@@ -1,0 +1,19 @@
+<div>
+  <div class="step-wizard-holder">
+    <div class="line-div">
+      <!--<md-progress-linear value="{{((currentStep-1) * (100 / steps.length)) + ((currentStep) * ((100 / steps.length) / steps.length))}}"></md-progress-linear>-->
+    </div>
+    <div class="step-box-holder" ng-repeat="step in steps">
+      <div class="step-box" ng-class="stepBoxClass($index)">
+        <p class="step-inner">
+          <span ng-if="currentStep <= ($index + 1)">{{$index + 1}}</span>
+          <i ng-if="currentStep > ($index + 1)" class="fa fa-check"></i>
+          <!--<i ng-if="currentStep === ($index + 1)" class="fa fa-circle"></i>-->
+        </p>
+      </div>
+      <p class="step-title">
+        {{step.title}}
+      </p>
+    </div>
+  </div>
+</div>

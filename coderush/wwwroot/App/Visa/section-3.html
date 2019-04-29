@@ -1,0 +1,69 @@
+<h4>Job Information</h4>
+<div ng-form="subForm">
+<div class="row">
+	<div class="form-group">
+		<span class="control-label col-md-6">Occupation: </span>
+		<div class="col-md-8">
+			<input name="Occupation" type="text" ng-model="data.Occupation" class="form-control" required/>
+		</div>
+		<div class="text-danger col-md-8" ng-show="subForm.Occupation.$touched && subForm.Occupation.$invalid && subForm.Occupation.$error.required">
+			This Field is Required!
+		</div>
+	</div>
+	<div class="form-group">
+		<span class="control-label col-md-6">Workplace Name: </span>
+		<div class="col-md-8">
+			<input name="WorkplaceName" type="text" ng-model="data.WorkplaceName" class="form-control" required/>
+		</div>
+		<div class="text-danger col-md-8" ng-show="subForm.WorkplaceName.$touched && subForm.WorkplaceName.$invalid && subForm.WorkplaceName.$error.required">
+			This Field is Required!
+		</div>
+	</div>
+	<div>
+		<div class="form-group">
+			<span class="control-label col-md-6">Position:  </span>
+			<div class="col-md-8">
+				<input name="Position" type="text" ng-model="data.Position" class="form-control" required/>
+			
+			</div>
+			<div class="text-danger col-md-8" ng-show="subForm.Position.$touched && subForm.Position.$invalid && subForm.Position.$error.required">
+				This Field is Required!
+			</div>
+		</div>
+		<div class="form-group">
+			<span class="control-label col-md-6">Field of Activity: </span>
+			<div class="col-md-8">
+				<input type="text" name="FieldOfActivity" ng-model="data.FieldOfActivity" class="form-control" required/>
+			
+			</div>
+			<div class="text-danger col-md-8" ng-show="subForm.FieldOfActivity.$touched && subForm.FieldOfActivity.$invalid && subForm.FieldOfActivity.$error.required">
+				This Field is Required!
+			</div>
+		</div>
+		<div class="form-group">
+			<span class="control-label col-md-6">Workspace Address: </span>
+			<div class="col-md-8">
+				<textarea cols="2" name="WorkplaceAddress" rows="3" ng-model="data.WorkplaceAddress" class="form-control" required></textarea>
+			</div>
+			<div class="text-danger col-md-8" ng-show="subForm.WorkplaceAddress.$touched && subForm.WorkplaceAddress.$invalid && subForm.WorkplaceAddress.$error.required">
+				This Field is Required!
+			</div>
+		</div>
+		
+		<div class="form-group">
+			<span class="control-label col-md-12"> </span>
+			<div class="col-md-4 ">
+				<a class="custom-button" href="#/section2"  ng-click="prevStep(current)">Prev</a>
+			
+			</div>
+			
+			<div class="col-md-4 text-right ">
+				<a class="custom-button"  ng-click="validateSection3(data)">Next</a>
+			</div>
+			
+			<div class="col-md-4 ">
+			</div>
+		</div>
+	</div>
+</div>
+</div>
