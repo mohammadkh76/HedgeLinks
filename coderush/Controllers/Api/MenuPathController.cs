@@ -19,17 +19,18 @@ namespace HedgeLinks.Controllers.Api
             _context = context;
         }
         [HttpGet]
+        [Produces("application/json")]
 
         public IActionResult GetMenuPath()
         {
-            List<MenuPath> menuPaths = new List<MenuPath>();
+            List<MenuPath> Items = new List<MenuPath>();
             if (_context.MenuPath!=null)
             {
-              menuPaths  = _context.MenuPath.ToList();
+              Items  = _context.MenuPath.ToList();
             }
-            int count = menuPaths.Count();
+            int Count = Items.Count();
 
-            return Ok(new { menuPaths,count });
+            return Ok(new { Items, Count });
         }
 
     }

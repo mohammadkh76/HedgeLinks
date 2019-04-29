@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using coderush.Data;
 using coderush.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace coderush.Controllers
 {
@@ -20,6 +21,7 @@ namespace coderush.Controllers
         }
 
         // GET: MenuPaths
+        [Authorize]
         public async Task<IActionResult> Index()
         {
             return View(await _context.MenuPath.ToListAsync());
