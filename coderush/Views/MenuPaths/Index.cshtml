@@ -25,12 +25,11 @@
                     </div>
                 </div>
                 <div class="box-body">
-                    <div id="Grid" ej-grid e-datasource="data"  e-allowpaging="true" e-editsettings="editSettings" e-toolbarsettings="toolbarItems">
+                    <div  ej-grid e-datasource="items"  e-allowpaging="true" e-editsettings="editSettings" e-toolbarsettings="toolbarItems">
                         <div e-columns>
-                            <div e-column e-field="Id" e-isprimarykey="true"></div>
-                            <div e-column e-field="Title"></div>
-                            <div e-column e-field="Description"></div>
-                            <div e-column e-field="PageName"></div>
+                            <div e-column e-field="items.FirstName"></div>
+                            <div e-column e-field="items.LastName"></div>
+                            <div e-column e-field="items.Email"></div>
                         </div>
                     </div>
                 </div>

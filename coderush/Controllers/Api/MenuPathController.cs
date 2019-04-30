@@ -7,52 +7,121 @@ using coderush.Models;
 using System.Web;
 //using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using HedgeLinks.Models.ManageViewModels;
+using coderush.Models.SyncfusionViewModels;
+using Microsoft.AspNetCore.Identity;
 
 namespace HedgeLinks.Controllers.Api
 {
     [Produces("application/json")]
+    [Route("api/MenuPath")]
+
     public class MenuPathController : Controller
     {
         private readonly ApplicationDbContext _context;
-        public MenuPathController(ApplicationDbContext context)
+        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly RoleManager<IdentityRole> _roleManager;
+
+        public MenuPathController(ApplicationDbContext context,
+                        UserManager<ApplicationUser> userManager,
+                        RoleManager<IdentityRole> roleManager)
         {
             _context = context;
+            _userManager = userManager;
+            _roleManager = roleManager;
         }
-        [HttpGet]
-        [Produces("application/json")]
-        [Route("/api/MenuPath/Get")]
 
+        // GET: api/User
+        [HttpGet]
         public IActionResult GetMenuPath()
         {
-            var q=HttpContext.Request.QueryString;
-           var top = HttpContext.Request.Query["$top"].ToString();
-           var filter = HttpContext.Request.Query["$filter"].ToString();
-           var sort = HttpContext.Request.Query["$orderby"].ToString();
-            List<MenuPath> Items = new List<MenuPath>();
-            if (_context.MenuPath != null)
+            List<UserProfile> Items = new List<UserProfile>();
+            Items = _context.UserProfile.ToList();
+            int Count = Items.Count();
+            return Ok(new {Items= Items,Count= Count });
+        }
+
+        [HttpGet("[action]/{id}")]
+        public IActionResult GetByApplicationMenuPathId([FromRoute]string id)
+        {
+            UserProfile userProfile = _context.UserProfile.SingleOrDefault(x => x.ApplicationUserId.Equals(id));
+            List<UserProfile> Items = new List<UserProfile>();
+            if (userProfile != null)
             {
-                Items = _context.MenuPath.ToList();
+                Items.Add(userProfile);
             }
             int Count = Items.Count();
-
             return Ok(new { Items, Count });
-
         }
-        [HttpPost]
-        public IActionResult Insert() {
-            return Ok();
-        }
-        [HttpPost]
 
-        public IActionResult Update(int key)
+        [HttpPost("[action]")]
+        public async Task<IActionResult> Insert([FromBody]CrudViewModel<UserProfile> payload)
         {
-            return Ok();
-        }
-        [HttpPost]
+            UserProfile register = payload.value;
+            if (register.Password.Equals(register.ConfirmPassword))
+            {
+                ApplicationUser user = new ApplicationUser() { Email = register.Email, UserName = register.Email, EmailConfirmed = true };
+                var result = await _userManager.CreateAsync(user, register.Password);
+                if (result.Succeeded)
+                {
+                    register.Password = user.PasswordHash;
+                    register.ConfirmPassword = user.PasswordHash;
+                    register.ApplicationUserId = user.Id;
+                    _context.UserProfile.Add(register);
+                    await _context.SaveChangesAsync();
+                }
 
-        public IActionResult Remove(int key)
+            }
+            return Ok(register);
+        }
+
+        [HttpPost("[action]")]
+        public async Task<IActionResult> Update([FromBody]CrudViewModel<UserProfile> payload)
         {
+            UserProfile profile = payload.value;
+            _context.UserProfile.Update(profile);
+            await _context.SaveChangesAsync();
+            return Ok(profile);
+        }
+
+        [HttpPost("[action]")]
+        public async Task<IActionResult> ChangePassword([FromBody]CrudViewModel<UserProfile> payload)
+        {
+            UserProfile profile = payload.value;
+            if (profile.Password.Equals(profile.ConfirmPassword))
+            {
+                var user = await _userManager.FindByIdAsync(profile.ApplicationUserId);
+                var result = await _userManager.ChangePasswordAsync(user, profile.OldPassword, profile.Password);
+            }
+            profile = _context.UserProfile.SingleOrDefault(x => x.ApplicationUserId.Equals(profile.ApplicationUserId));
+            return Ok(profile);
+        }
+
+        [HttpPost("[action]")]
+        public IActionResult ChangeRole([FromBody]CrudViewModel<UserProfile> payload)
+        {
+            UserProfile profile = payload.value;
+            return Ok(profile);
+        }
+
+        [HttpPost("[action]")]
+        public async Task<IActionResult> Remove([FromBody]CrudViewModel<UserProfile> payload)
+        {
+            var userProfile = _context.UserProfile.SingleOrDefault(x => x.UserProfileId.Equals((int)payload.key));
+            if (userProfile != null)
+            {
+                var user = _context.Users.Where(x => x.Id.Equals(userProfile.ApplicationUserId)).FirstOrDefault();
+                var result = await _userManager.DeleteAsync(user);
+                if (result.Succeeded)
+                {
+                    _context.Remove(userProfile);
+                    await _context.SaveChangesAsync();
+                }
+
+            }
+
             return Ok();
+
         }
 
 

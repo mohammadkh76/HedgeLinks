@@ -126,6 +126,7 @@ namespace coderush
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
+
         }
     }
 }
