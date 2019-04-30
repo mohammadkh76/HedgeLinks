@@ -11,7 +11,6 @@ using Microsoft.AspNetCore.Mvc;
 namespace HedgeLinks.Controllers.Api
 {
     [Produces("application/json")]
-    [Route("api/MenuPath")]
     public class MenuPathController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -21,6 +20,7 @@ namespace HedgeLinks.Controllers.Api
         }
         [HttpGet]
         [Produces("application/json")]
+        [Route("/api/MenuPath/Get")]
 
         public IActionResult GetMenuPath()
         {
@@ -34,9 +34,27 @@ namespace HedgeLinks.Controllers.Api
                 Items = _context.MenuPath.ToList();
             }
             int Count = Items.Count();
+
             return Ok(new { Items, Count });
 
         }
+        [HttpPost]
+        public IActionResult Insert() {
+            return Ok();
+        }
+        [HttpPost]
+
+        public IActionResult Update(int key)
+        {
+            return Ok();
+        }
+        [HttpPost]
+
+        public IActionResult Remove(int key)
+        {
+            return Ok();
+        }
+
 
     }
 }

@@ -54,7 +54,7 @@
                     Title
                 </td>
                 <td colspan="3">
-                    <input id="Title" name="Title" value="{{:Title}}" />
+                    <input id="Title" name="Title" ng-model="data.Title" />
                 </td>
             </tr>
             <tr>
@@ -62,13 +62,13 @@
                     Description
                 </td>
                 <td>
-                    <textarea rows="3" cols="12" id="myTextArea" name="Description" value="{{:Description}}"></textarea>
+                    <textarea rows="3" cols="12" id="myTextArea" name="Description" ng-model="data.Description"></textarea>
                 </td>
                 <td>
                     Page Name
                 </td>
                 <td>
-                    <input id="PageName" name="PageName" value="{{:PageName}}" />
+                    <input id="PageName" name="PageName" ng-model="data.PageName" />
                 </td>
             </tr>
 
