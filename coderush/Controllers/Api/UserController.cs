@@ -15,7 +15,7 @@ namespace coderush.Controllers.Api
 {
     [Authorize]
     [Produces("application/json")]
-    [Route("api/User")]
+    [Route("api/")]
     public class UserController : Controller
     {
         private readonly ApplicationDbContext _context;
