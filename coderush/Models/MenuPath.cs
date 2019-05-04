@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HedgeLinks.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
@@ -7,7 +8,7 @@ using System.Web;
 
 namespace coderush.Models
 {
-    public class MenuPath
+    public class MenuPath:ModelSecurity
     {
         public int? Id { get; set; }
         [DisplayName("Title")]
