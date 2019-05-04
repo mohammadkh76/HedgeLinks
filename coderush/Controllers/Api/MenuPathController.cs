@@ -14,7 +14,6 @@ using Microsoft.AspNetCore.Identity;
 namespace HedgeLinks.Controllers.Api
 {
     [Produces("application/json")]
-    [Route("api/MenuPath")]
 
     public class MenuPathController : Controller
     {
@@ -32,14 +31,25 @@ namespace HedgeLinks.Controllers.Api
         }
 
         // GET: api/User
-        [HttpGet]
+        [HttpGet("api/MenuPath")]
         public IActionResult GetMenuPath()
         {
-            List<UserProfile> Items = new List<UserProfile>();
-            Items = _context.UserProfile.ToList();
+            List<MenuPath> Items = new List<MenuPath>();
+            Items = _context.MenuPath.ToList();
             int Count = Items.Count();
             return Ok(new {Items= Items,Count= Count });
         }
+        [HttpGet("api/MenuPath/Delete")]
+
+        public IActionResult DelMenuPath(int id)
+        {
+            var rec = _context.MenuPath.FirstOrDefault(x => x.Id == id);
+            _context.MenuPath.Remove(rec);
+            _context.SaveChanges();
+            return Ok();
+        }
+        
+
 
         [HttpGet("[action]/{id}")]
         public IActionResult GetByApplicationMenuPathId([FromRoute]string id)

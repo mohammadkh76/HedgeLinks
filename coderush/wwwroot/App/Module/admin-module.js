@@ -1,1 +1,1 @@
-var adminModule = angular.module("adminModule", ['ejangular']);
+var adminModule = angular.module("adminModule", ['ui.bootstrap']);

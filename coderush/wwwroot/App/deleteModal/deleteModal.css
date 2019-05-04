@@ -1,0 +1,102 @@
+﻿@font-face {
+  font-family: Vazir;
+  src: url('../../../fonts/Vazir.eot');
+  src: url('Vazir.eot?#iefix') format('embedded-opentype'),
+       url('../../../fonts/Vazir.woff') format('woff'),
+       url('../../../fonts/Vazir.ttf') format('truetype');
+  font-weight: normal;
+}
+* {
+    font-family:Vazir;
+}
+
+
+.main-modal{
+    width:100%;
+    height:auto;
+    border-radius:10px;
+    background-color:#f1f1f1;
+
+}
+
+.close{
+
+    height:50px;
+    width:50px;
+}
+.modal-title{
+    font-size:20px;
+    padding:20px;
+}
+.direction{
+    direction:rtl;
+}
+
+.red{
+    color:red;
+}
+.green {
+    color:green;
+}
+.scroll {
+    height: 200px;
+    overflow: hidden;
+    overflow-y: auto;
+}
+
+.float-left {
+    float:left;
+
+}
+   .modal-dialog {
+        width: 70%;
+    }
+
+    .resturant-modal {
+        width: 100%;
+    }
+    .main-text{
+    padding:40px;
+    width:100%;
+    height:auto;
+    background-color:#E3DFE8;
+    border-radius:5px;
+    margin-bottom:50px;
+}
+    .section-title{
+        font-size:24px;
+        font-weight:bolder;
+        margin:20px;
+        color:#ff4600;
+    }
+    .modal-logo-img{
+        height:100px;
+        margin-left:20px;
+        
+    }
+    .modal-logo{
+        text-align:left;
+    }
+.logo-img-p {
+    display:inline;
+}
+.detail-title{
+    font-weight:bolder;
+    font-size:20px;
+}
+.detail-subtitle {
+
+}
+.seprator {
+    margin-bottom:20px;
+}
+.empty{color:red}
+.switch-subtitle{
+ text-align:right;
+}
+.custom-btn2{
+    margin-left:30px;
+}
+
+
+
