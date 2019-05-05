@@ -1,0 +1,10 @@
+﻿.insert-editor {
+    width:100%;
+    display:block;
+    border-radius:5px;
+
+}
+.insert-editor:focus {
+    border:1px solid #0094ff;
+}
+

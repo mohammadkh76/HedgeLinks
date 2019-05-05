@@ -218,3 +218,8 @@ body {
 .footer-bold{
     font-weight:700;
 }
+.create-button{
+    font-size:20px;
+    color:black;
+
+}

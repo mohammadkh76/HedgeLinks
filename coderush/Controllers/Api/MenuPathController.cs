@@ -31,13 +31,13 @@ namespace HedgeLinks.Controllers.Api
         }
 
         // GET: api/User
-        [HttpGet("api/MenuPath")]
+        [HttpGet("api/MenuPath/GetAll")]
         public IActionResult GetMenuPath()
         {
             List<MenuPath> Items = new List<MenuPath>();
             Items = _context.MenuPath.ToList();
-            int Count = Items.Count();
-            return Ok(new {Items= Items,Count= Count });
+            int count = Items.Count();
+            return Ok(new {Status="success",Data=Items,Count=count});
         }
         [HttpGet("api/MenuPath/Delete")]
 
@@ -48,8 +48,17 @@ namespace HedgeLinks.Controllers.Api
             _context.SaveChanges();
             return Ok();
         }
-        
 
+
+        [HttpGet("api/MenuPath/Insert")]
+
+        public IActionResult InsertMenuPath(MenuPathVM menupath)
+        {
+            //var rec = _context.MenuPath.FirstOrDefault(x => x.Id == id);
+            //_context.MenuPath.Remove(rec);
+            //_context.SaveChanges();
+            return Ok();
+        }
 
         [HttpGet("[action]/{id}")]
         public IActionResult GetByApplicationMenuPathId([FromRoute]string id)

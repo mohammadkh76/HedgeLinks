@@ -57,10 +57,10 @@
         }
     ];
 
-    dataService.get('/api/Menupath').then(function (res) {
+    dataService.get('/api/Menupath/GetAll').then(function (res) {
         console.log(res.data);
         if (res.data.items.length>0) {
-            $scope.data = res.data;
+            $scope.data = res.data.data;
         }
     })
     $scope.totalItems = 64;
@@ -83,7 +83,7 @@
         $scope.href = '/Menupaths/index';
         var modalInstance = $uibModal.open({
             animation: true,
-            templateUrl: '/App/DeleteModal/deleteModal.html',
+            templateUrl: '/App/DeleteModal/delete-modal.html',
             controller: 'deleteModalController',
             scope: $scope,
             size: 'lg',
@@ -91,5 +91,34 @@
             appendTo: $('body')
         })
     }
+
+    $scope.openInsertModal = function () {
+        $scope.url = '/api/Menupath/Insert/';
+        $scope.href = '/Menupaths/index';
+        var modalInstance = $uibModal.open({
+            animation: true,
+            templateUrl: '/App/Menupath/insert-menupath.html',
+            controller: 'InsertMenupathController',
+            scope: $scope,
+            size: 'lg',
+            windowClass: 'insert-modal',
+            appendTo: $('body')
+        })
+    }
+    $scope.openEditModal = function (id) {
+        $scope.selectedId = id;
+        $scope.url = '/api/Menupath/Edit/' + id;
+        $scope.href = '/Menupaths/index';
+        var modalInstance = $uibModal.open({
+            animation: true,
+            templateUrl: '/App/Menupath/EditModal.html',
+            controller: 'EditMenupathModalController',
+            scope: $scope,
+            size: 'lg',
+            windowClass: 'delete-modal',
+            appendTo: $('body')
+        })
+    }
+    
 
 }]);
