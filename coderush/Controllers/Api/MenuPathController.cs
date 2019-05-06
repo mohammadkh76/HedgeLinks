@@ -52,7 +52,6 @@ namespace HedgeLinks.Controllers.Api
 
 
         [HttpPost("api/MenuPath/Insert")]
-
         public IActionResult InsertMenuPath([FromBody] MenuPathVM toSendData)
         {
             List<string> messages = new List<string>();
