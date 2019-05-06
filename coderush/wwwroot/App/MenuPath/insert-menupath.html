@@ -1,6 +1,6 @@
 ﻿<link href="/App/MenuPath/insert-menupath.css" rel="stylesheet" />
 <script>
-       
+
 </script>
 <div class="modal-header">
     <h3 class="modal-title" id="modal-title">Insert Menupath</h3>
@@ -13,15 +13,15 @@
                     <input type="text" name="Name" value="" ng-model="insert.Name" class="insert-editor" placeholder="Name" />
                 </div>
             </div>
-            <div class="form-group">
+            <div class="form-group" >
                 <div class="col-md-10  col-md-offset-1">
-                    <textarea rows="5" cols="10" type="text" name="Description" class="myTextArea" value="" ng-model="insert.Description" placeholder="Description" />
+                    <input type="text" ui-tinymce="tinymceOptions" ng-model="tinymceModel" name="Description" class="myTextArea" value="" placeholder="Description" />
 
                 </div>
             </div>
             <div class="form-group">
                 <div class="col-md-10 col-md-offset-1">
-                    <input type="text" name="PageName" value="" ng-model="insert.PageName" class="insert-editor" placeholder="Page Name" />
+                    <input type="text" name="PageName" value="" ng-model="insert.PageName" class="insert-editor"  placeholder="Page Name"  style="margin-top:20px;" />
                 </div>
             </div>
 
