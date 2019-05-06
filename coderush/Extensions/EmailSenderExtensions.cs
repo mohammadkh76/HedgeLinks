@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
-using coderush.Services;
+using HedgeLinks.Services;
 
-namespace coderush.Services
+namespace HedgeLinks.Services
 {
     public static class EmailSenderExtensions
     {

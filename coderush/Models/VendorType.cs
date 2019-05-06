@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace coderush.Models
+namespace HedgeLinks.Models
 {
     public class VendorType
     {

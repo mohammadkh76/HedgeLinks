@@ -5,11 +5,11 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using coderush.Data;
-using coderush.Models;
+using HedgeLinks.Data;
+using HedgeLinks.Models;
 using Microsoft.AspNetCore.Authorization;
 
-namespace coderush.Controllers.Api
+namespace HedgeLinks.Controllers.Api
 {
     [Authorize]
     [Produces("application/json")]

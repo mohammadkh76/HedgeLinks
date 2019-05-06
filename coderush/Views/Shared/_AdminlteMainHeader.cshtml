@@ -1,5 +1,5 @@
-﻿@model coderush.Models.ApplicationUser
-@inject coderush.Data.ApplicationDbContext Context
+﻿@model HedgeLinks.Models.ApplicationUser
+@inject HedgeLinks.Data.ApplicationDbContext Context
 
 @{
     UserProfile profile = Context.UserProfile.SingleOrDefault(x => x.ApplicationUserId.Equals(Model.Id));

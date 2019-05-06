@@ -1,6 +1,6 @@
 using System;
 
-namespace coderush.Models
+namespace HedgeLinks.Models
 {
     public class ErrorViewModel
     {

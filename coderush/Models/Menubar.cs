@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
-namespace coderush.Models
+namespace HedgeLinks.Models
 {
     public class Menubar
     {

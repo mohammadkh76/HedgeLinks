@@ -7,8 +7,8 @@ namespace HedgeLinks.Models.ManageViewModels
 {
     public class MenuPathVM
     {
-        public string Title{ get; set; }
-        public string Description{ get; set; }
+        public string Name{ get; set; }
+        public string Description { get; set; }
         public string PageName{ get; set; }
     }
 }

@@ -1,4 +1,4 @@
-﻿@model IEnumerable<coderush.Models.MenuPath>
+﻿@model IEnumerable<HedgeLinks.Models.MenuPath>
 
 @{
     ViewData["Title"] = "Menupath";
@@ -49,10 +49,10 @@
 
                                     <td>{{item.Description}}</td>
                                     <td>{{item.PageName}}</td>
-                                    <td>{{item.Createdby}}</td>
-                                    <td>{{item.EditedBy}}</td>
-                                    <td>{{item.CreatedDate}}</td>
-                                    <td>{{item.EditedDate}}</td>
+                                    <td>{{item.CreatedUser.UserName}}</td>
+                                    <td>{{item.EditedUserId}}</td>
+                                    <td>{{item.CreateDate}}</td>
+                                    <td>{{item.EditeDate}}</td>
 
                                     <td>
                                         <div class="table-data-feature">
@@ -72,6 +72,9 @@
 
                             </tbody>
                         </table>
+                        <div class="text-center">
+                            <ul uib-pagination total-items="bigTotalItems" ng-model="bigCurrentPage" max-size="maxSize" class="pagination-sm" boundary-links="true" force-ellipses="true"></ul>
+                        </div>
                     </div>
                 </div>
                 <!-- /.box-body -->
@@ -89,84 +92,17 @@
 
 </div>
 @section Scripts{
+    <script src="~/App/Lib/Editor/js/tinymce/tinymce.min.js"></script>
+    
+
     <script src="~/App/MenuPath/menu-path-controller.js"></script>
     <script src="~/App/deleteModal/delete-modal-controller.js"></script>
+    <script src="~/App/MenuPath/edit-menupath-controller.js"></script>
+    <script src="~/App/MenuPath/insert-menupath-controller.js"></script>
     <script>
 
-        var tinymce = function () {
-
-
-        }
 
     </script>
-    <script>
-                //jQuery(document).ready(checkContainer);
 
-                //function checkContainer() {
-                //    if ($('#divIDer').is(':visible'))) { //if the container is visible on the page
-                //        createGrid();  //Adds a grid to the html
-                //    } else {
-                //        setTimeout(checkContainer, 50); //wait 50 ms, then try again
-                //    }
-                //}
-    </script>
-    @*<script>
-            $(function () {
-
-                var dataManager = ej.DataManager({
-                    url: "/api/MenuPath",
-                    adaptor: new ej.WebApiAdaptor(),
-                    offline: true
-                });
-
-                dataManager.ready.done(function (e) {
-                    $("#Grid").ejGrid({
-                        dataSource: ej.DataManager({
-                            json: e.result,
-                            adaptor: new ej.remoteSaveAdaptor(),
-                            insertUrl: "/api/MenuPath/Insert",
-                            removeUrl: "/api/MenuPath/Remove",
-                            updateUrl: "/api/MenuPath/Update"
-                        }),
-                        toolbarSettings: {
-                            showToolbar: true,
-                            toolbarItems: ["add", "edit", "delete", "update", "cancel", "search", "printGrid"]
-                        },
-                        editSettings: {
-                            allowEditing: true,
-                            allowAdding: true,
-                            allowDeleting: true,
-                            showDeleteConfirmDialog: true,
-                            editMode: "dialogtemplate",
-                            dialogEditorTemplateID: "#templateForm",
-                        },
-                        isResponsive: true,
-                        enableResponsiveRow: true,
-                        allowSorting: true,
-                        allowSearching: true,
-                        allowFiltering: true,
-                        filterSettings: {
-                            filterType: "excel",
-                            maxFilterChoices: 100,
-                            enableCaseSensitivity: false
-                        },
-                        allowPaging: true,
-                        pageSettings: { pageSize: 10, printMode: ej.Grid.PrintMode.CurrentPage },
-                        columns: [
-                            { field: "Id", headerText: 'Id', isPrimaryKey: true, isIdentity: true, visible: false },
-                            { field: "Title", headerText: 'Title', validationRules: { required: true } },
-                            { field: "Description", headerText: 'Description', validationRules: { required: true } },
-                            { field: "PageName", headerText: 'Page Name', validationRules: { required: true } },
-                        ],
-                        actionComplete: "complete",
-                        actionBegin: "begin",
-                    });
-
-                });
-
-            });
-
-
-        </script>*@
 
 }

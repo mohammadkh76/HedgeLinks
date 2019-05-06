@@ -8,12 +8,12 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using coderush.Data;
-using coderush.Models;
-using coderush.Services;
+using HedgeLinks.Data;
+using HedgeLinks.Models;
+using HedgeLinks.Services;
 using Newtonsoft.Json.Serialization;
 
-namespace coderush
+namespace HedgeLinks
 {
     public class Startup
     {

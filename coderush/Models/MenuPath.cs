@@ -6,14 +6,13 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
-namespace coderush.Models
+namespace HedgeLinks.Models
 {
     public class MenuPath:Detail
     {
-        public int? Id { get; set; }
-        [DisplayName("Title")]
+        [DisplayName("Name")]
         [Required(ErrorMessage = "*This Field is Required")]
-        public string Title { get; set; }
+        public string Name { get; set; }
         [DisplayName("Description")]
         public string  Description{ get; set; }
       

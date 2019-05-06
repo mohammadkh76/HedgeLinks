@@ -1,10 +1,10 @@
-﻿using coderush.Services;
+﻿using HedgeLinks.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace coderush.Data
+namespace HedgeLinks.Data
 {
     public static class DbInitializer
     {
