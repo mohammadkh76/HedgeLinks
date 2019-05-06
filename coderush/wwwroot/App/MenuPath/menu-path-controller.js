@@ -21,46 +21,11 @@
 
     //});
     //})
-    $scope.data = [{
-        Id: "1",
-        Name: "About",
-        Description: "This is the page",
-        PageName: "About",
-        Createdby: "Super@hedge.com",
-        EditedBy: "",
-        CreatedDate:"12/02/2019",
-        EditedDate:"12/02/2019"
-    }, {
-            Name: "Services",
-            Description: "This is the page",
-            PageName: "About",
-            Createdby: "Super@hedge.com",
-            EditedBy: "",
-            CreatedDate: "12/02/2019",
-            EditedDate: "12/02/2019"
-        }, {
-            Name: "Contact",
-            Description: "This is the page",
-            PageName: "About",
-            Createdby: "Super@hedge.com",
-            EditedBy: "",
-            CreatedDate: "12/02/2019",
-            EditedDate: "12/02/2019"
-        }, {
-            Name: "Home",
-            Description: "This is the page",
-            PageName: "About",
-            Createdby: "Super@hedge.com",
-            EditedBy: "",
-            CreatedDate: "12/02/2019",
-            EditedDate: "12/02/2019"
-        }
-    ];
 
     dataService.get('/api/Menupath/GetAll').then(function (res) {
         console.log(res.data);
-        if (res.data.items.length>0) {
-            $scope.data = res.data.data;
+        if (res.data.Data.length>0) {
+            $scope.data = res.data.Data;
         }
     })
     $scope.totalItems = 64;

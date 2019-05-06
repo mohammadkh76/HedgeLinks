@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace coderush.Controllers
+namespace HedgeLinks.Controllers
 {
     [Authorize(Roles = Pages.MainMenu.SalesType.RoleName)]
     public class SalesTypeController : Controller

@@ -10,11 +10,11 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using coderush.Models;
-using coderush.Models.ManageViewModels;
-using coderush.Services;
+using HedgeLinks.Models;
+using HedgeLinks.Models.ManageViewModels;
+using HedgeLinks.Services;
 
-namespace coderush.Controllers
+namespace HedgeLinks.Controllers
 {
     [Authorize]
     [Route("[controller]/[action]")]
@@ -522,7 +522,7 @@ namespace coderush.Controllers
         {
             return string.Format(
                 AuthenticatorUriFormat,
-                _urlEncoder.Encode("coderush"),
+                _urlEncoder.Encode("HedgeLinks"),
                 _urlEncoder.Encode(email),
                 unformattedKey);
         }

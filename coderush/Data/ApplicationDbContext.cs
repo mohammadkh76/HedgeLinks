@@ -4,9 +4,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using coderush.Models;
+using HedgeLinks.Models;
 
-namespace coderush.Data
+namespace HedgeLinks.Data
 {
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
@@ -23,67 +23,67 @@ namespace coderush.Data
             // Add your customizations after calling base.OnModelCreating(builder);
         }
 
-        public DbSet<coderush.Models.ApplicationUser> ApplicationUser { get; set; }
+        public DbSet<HedgeLinks.Models.ApplicationUser> ApplicationUser { get; set; }
 
-        public DbSet<coderush.Models.Bill> Bill { get; set; }
+        public DbSet<HedgeLinks.Models.Bill> Bill { get; set; }
 
-        public DbSet<coderush.Models.BillType> BillType { get; set; }
+        public DbSet<HedgeLinks.Models.BillType> BillType { get; set; }
 
-        public DbSet<coderush.Models.Branch> Branch { get; set; }
+        public DbSet<HedgeLinks.Models.Branch> Branch { get; set; }
 
-        public DbSet<coderush.Models.CashBank> CashBank { get; set; }
+        public DbSet<HedgeLinks.Models.CashBank> CashBank { get; set; }
 
-        public DbSet<coderush.Models.Currency> Currency { get; set; }
+        public DbSet<HedgeLinks.Models.Currency> Currency { get; set; }
 
-        public DbSet<coderush.Models.Customer> Customer { get; set; }
+        public DbSet<HedgeLinks.Models.Customer> Customer { get; set; }
 
-        public DbSet<coderush.Models.CustomerType> CustomerType { get; set; }
+        public DbSet<HedgeLinks.Models.CustomerType> CustomerType { get; set; }
 
-        public DbSet<coderush.Models.GoodsReceivedNote> GoodsReceivedNote { get; set; }
+        public DbSet<HedgeLinks.Models.GoodsReceivedNote> GoodsReceivedNote { get; set; }
 
-        public DbSet<coderush.Models.Invoice> Invoice { get; set; }
+        public DbSet<HedgeLinks.Models.Invoice> Invoice { get; set; }
 
-        public DbSet<coderush.Models.InvoiceType> InvoiceType { get; set; }
+        public DbSet<HedgeLinks.Models.InvoiceType> InvoiceType { get; set; }
 
-        public DbSet<coderush.Models.NumberSequence> NumberSequence { get; set; }
+        public DbSet<HedgeLinks.Models.NumberSequence> NumberSequence { get; set; }
 
-        public DbSet<coderush.Models.PaymentReceive> PaymentReceive { get; set; }
+        public DbSet<HedgeLinks.Models.PaymentReceive> PaymentReceive { get; set; }
 
-        public DbSet<coderush.Models.PaymentType> PaymentType { get; set; }
+        public DbSet<HedgeLinks.Models.PaymentType> PaymentType { get; set; }
 
-        public DbSet<coderush.Models.PaymentVoucher> PaymentVoucher { get; set; }
+        public DbSet<HedgeLinks.Models.PaymentVoucher> PaymentVoucher { get; set; }
 
-        public DbSet<coderush.Models.Product> Product { get; set; }
+        public DbSet<HedgeLinks.Models.Product> Product { get; set; }
 
-        public DbSet<coderush.Models.ProductType> ProductType { get; set; }
+        public DbSet<ProductType> ProductType { get; set; }
 
-        public DbSet<coderush.Models.PurchaseOrder> PurchaseOrder { get; set; }
+        public DbSet<PurchaseOrder> PurchaseOrder { get; set; }
 
-        public DbSet<coderush.Models.PurchaseOrderLine> PurchaseOrderLine { get; set; }
+        public DbSet<PurchaseOrderLine> PurchaseOrderLine { get; set; }
 
-        public DbSet<coderush.Models.PurchaseType> PurchaseType { get; set; }
+        public DbSet<PurchaseType> PurchaseType { get; set; }
 
-        public DbSet<coderush.Models.SalesOrder> SalesOrder { get; set; }
+        public DbSet<SalesOrder> SalesOrder { get; set; }
 
-        public DbSet<coderush.Models.SalesOrderLine> SalesOrderLine { get; set; }
+        public DbSet<SalesOrderLine> SalesOrderLine { get; set; }
 
-        public DbSet<coderush.Models.SalesType> SalesType { get; set; }
+        public DbSet<SalesType> SalesType { get; set; }
 
-        public DbSet<coderush.Models.Shipment> Shipment { get; set; }
+        public DbSet<Shipment> Shipment { get; set; }
 
-        public DbSet<coderush.Models.ShipmentType> ShipmentType { get; set; }
+        public DbSet<ShipmentType> ShipmentType { get; set; }
 
-        public DbSet<coderush.Models.UnitOfMeasure> UnitOfMeasure { get; set; }
+        public DbSet<UnitOfMeasure> UnitOfMeasure { get; set; }
 
-        public DbSet<coderush.Models.Vendor> Vendor { get; set; }
+        public DbSet<Vendor> Vendor { get; set; }
 
-        public DbSet<coderush.Models.VendorType> VendorType { get; set; }
+        public DbSet<VendorType> VendorType { get; set; }
 
-        public DbSet<coderush.Models.Warehouse> Warehouse { get; set; }
+        public DbSet<Warehouse> Warehouse { get; set; }
 
-        public DbSet<coderush.Models.UserProfile> UserProfile { get; set; }
-        public DbSet<coderush.Models.Menubar> Menubar{ get; set; }
-        public DbSet<coderush.Models.MenuPath> MenuPath{ get; set; }
-        public DbSet<coderush.Models.SubMenu> Submenu{ get; set; }
+        public DbSet<UserProfile> UserProfile { get; set; }
+        public DbSet<Menubar> Menubar{ get; set; }
+        public DbSet<MenuPath> MenuPath{ get; set; }
+        public DbSet<SubMenu> Submenu{ get; set; }
     }
 }

@@ -1,5 +1,5 @@
-﻿using coderush.Data;
-using coderush.Models;
+﻿using HedgeLinks.Data;
+using HedgeLinks.Models;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
@@ -14,7 +14,7 @@ using System.Net;
 using System.Net.Mail;
 using System.Threading.Tasks;
 
-namespace coderush.Services
+namespace HedgeLinks.Services
 {
     public class Functional : IFunctional
     {

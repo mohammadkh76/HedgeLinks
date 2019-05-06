@@ -2,14 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using coderush.Data;
-using coderush.Models;
+using HedgeLinks.Data;
+using HedgeLinks.Models;
 using System.Web;
 //using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using HedgeLinks.Models.ManageViewModels;
-using coderush.Models.SyncfusionViewModels;
+using HedgeLinks.Models.SyncfusionViewModels;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 
 namespace HedgeLinks.Controllers.Api
 {
@@ -35,7 +36,7 @@ namespace HedgeLinks.Controllers.Api
         public IActionResult GetMenuPath()
         {
             List<MenuPath> Items = new List<MenuPath>();
-            Items = _context.MenuPath.ToList();
+            Items = _context.MenuPath.Include(x=>x.CreatedUser).ToList();
             int count = Items.Count();
             return Ok(new {Status="success",Data=Items,Count=count});
         }
@@ -50,14 +51,41 @@ namespace HedgeLinks.Controllers.Api
         }
 
 
-        [HttpGet("api/MenuPath/Insert")]
+        [HttpPost("api/MenuPath/Insert")]
 
-        public IActionResult InsertMenuPath(MenuPathVM menupath)
+        public IActionResult InsertMenuPath([FromBody] MenuPathVM toSendData)
         {
+            List<string> messages = new List<string>();
+            var _currentUserId = "";
+            if (HttpContext.User.Identity.IsAuthenticated)
+            {
+                var _currentUser = HttpContext.User.Identity.Name;
+                _currentUserId = _context.ApplicationUser.FirstOrDefault(x => x.UserName == _currentUser).Id;
+            }
+            try
+            {
+                _context.MenuPath.Add(new MenuPath
+                {
+                    Name = toSendData.Name,
+                    Description = toSendData.Description,
+                    PageName = toSendData.PageName,
+                    ApplicationUserId = _currentUserId,
+                    CreateDate = DateTime.Now.ToString(),
+                });
+                _context.SaveChanges();
+
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+
+
             //var rec = _context.MenuPath.FirstOrDefault(x => x.Id == id);
             //_context.MenuPath.Remove(rec);
             //_context.SaveChanges();
-            return Ok();
+            return Ok(new { Status = "success",Messages=messages });
         }
 
         [HttpGet("[action]/{id}")]

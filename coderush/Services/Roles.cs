@@ -1,5 +1,5 @@
-﻿using coderush.Models;
-using coderush.Pages;
+﻿using HedgeLinks.Models;
+using HedgeLinks.Pages;
 using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
@@ -7,7 +7,7 @@ using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 
-namespace coderush.Services
+namespace HedgeLinks.Services
 {
     public class Roles : IRoles
     {

@@ -1,8 +1,8 @@
-﻿using coderush.Models;
+﻿using HedgeLinks.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
-namespace coderush.Controllers
+namespace HedgeLinks.Controllers
 {
     public class HomeController : Controller
     {

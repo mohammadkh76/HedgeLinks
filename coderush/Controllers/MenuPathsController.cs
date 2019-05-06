@@ -5,11 +5,11 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using coderush.Data;
-using coderush.Models;
+using HedgeLinks.Data;
+using HedgeLinks.Models;
 using Microsoft.AspNetCore.Authorization;
 
-namespace coderush.Controllers
+namespace HedgeLinks.Controllers
 {
     public class MenuPathsController : Controller
     {
