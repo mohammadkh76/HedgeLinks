@@ -13,15 +13,16 @@
                     <input type="text" name="Name" value="" ng-model="insert.Name" class="insert-editor" placeholder="Name" />
                 </div>
             </div>
-            <div class="form-group" >
+            <div class="form-group">
                 <div class="col-md-10  col-md-offset-1">
-                    <input type="text" ui-tinymce="tinymceOptions" ng-model="tinymceModel" name="Description" class="myTextArea" value="" placeholder="Description" />
+                    })
+                    <input type="text" ui-tinymce="tinymceOptions" ng-model="Description" name="Description" value="" placeholder="Description" />
 
                 </div>
             </div>
             <div class="form-group">
                 <div class="col-md-10 col-md-offset-1">
-                    <input type="text" name="PageName" value="" ng-model="insert.PageName" class="insert-editor"  placeholder="Page Name"  style="margin-top:20px;" />
+                    <input type="text" name="PageName" value="" ng-model="insert.PageName" class="insert-editor" placeholder="Page Name" style="margin-top:20px;" />
                 </div>
             </div>
 
@@ -29,8 +30,12 @@
         </div>
 
     </form>
+    <div class="table-loading" ng-if="insertLoading">
+        <div class="loading-overlay"></div>
+        <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+    </div>
 </div>
 <div class="modal-footer">
-    <button class="btn btn-success" type="button" ng-click="confirmInsert()">Confirm</button>
-    <button class="btn btn-danger float-left" type="button" ng-click="cancel()">Cancel</button>
+    <button class="btn success-btn" type="button" ng-click="confirmInsert()">Confirm</button>
+    <button class="btn cancel-btn float-left" type="button" ng-click="cancel()">Cancel</button>
 </div>

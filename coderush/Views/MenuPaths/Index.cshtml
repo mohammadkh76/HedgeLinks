@@ -47,7 +47,7 @@
                                     <td>{{item.Id}}</td>
                                     <td>{{item.Name}}</td>
 
-                                    <td>{{item.Description}}</td>
+                                    <td><a href="#" class="desc-modal" ng-click="openDescriptionModal(item.Id)">Click to show discription</a></td>
                                     <td>{{item.PageName}}</td>
                                     <td>{{item.CreatedUser.UserName}}</td>
                                     <td>{{item.EditedUserId}}</td>
@@ -72,8 +72,13 @@
 
                             </tbody>
                         </table>
+                        <div class="table-loading" ng-if="tableLoading">
+                            <div class="loading-overlay"></div>
+                            <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+                        </div>
+
                         <div class="text-center">
-                            <ul uib-pagination total-items="bigTotalItems" ng-model="bigCurrentPage" max-size="maxSize" class="pagination-sm" boundary-links="true" force-ellipses="true"></ul>
+                            <ul uib-pagination total-items="totalItems" ng-model="bigCurrentPage" max-size="maxSize" class="pagination-sm" boundary-links="true" force-ellipses="true"></ul>
                         </div>
                     </div>
                 </div>
@@ -98,6 +103,7 @@
     <script src="~/App/deleteModal/delete-modal-controller.js"></script>
     <script src="~/App/MenuPath/edit-menupath-controller.js"></script>
     <script src="~/App/MenuPath/insert-menupath-controller.js"></script>
+    <script src="~/App/MenuPath/description-menupath.js"></script>
     <script>
 
 

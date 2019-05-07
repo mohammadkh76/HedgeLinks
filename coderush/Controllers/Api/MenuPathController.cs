@@ -87,6 +87,15 @@ namespace HedgeLinks.Controllers.Api
             return Ok(new { Status = "success",Messages=messages });
         }
 
+
+
+        [HttpGet("api/Menupath/DescriptionDetail/{id}")]
+        public IActionResult ShowDescription(int id) {
+            List<string> messages = new List<string>();
+            string desc = _context.MenuPath.FirstOrDefault(x => x.Id == id).Description.ToString() ;
+            messages.Add("Your Page will show like this...");
+            return Ok(new { Status = "success", Data = desc, Messages = messages });
+        }
         [HttpGet("[action]/{id}")]
         public IActionResult GetByApplicationMenuPathId([FromRoute]string id)
         {
