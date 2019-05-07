@@ -1,35 +1,19 @@
 ﻿adminModule.controller("menuPathController", ["$scope", "dataService", "$window", "$uibModal", function ($scope, dataService, $window, $uibModal) {
+    $scope.currentPage = 1;
+    $scope.tableLoading = true;
+    $scope.page={
+        current: $scope.current,
+        itemInPage: 10,
+    }
 
-
-//    var dataManager = ej.DataManager({
-//        url: "/api/MenuPath",
-//        adaptor: new ej.WebApiAdaptor(),
-//        offline: true,
-     
-
-//    });
-
-//    dataManager.ready.done(function (e) {
-//        $scope.items = e.result;
-//        $scope.$apply();
-//})    //        dataSource: ej.DataManager({
-    //            json: e.result,
-    //            adaptor: new ej.remoteSaveAdaptor(),
-    //            insertUrl: "/api/User/Insert",
-    //            removeUrl: "/api/User/Remove",
-    //            updateUrl: "/api/User/Update"
-
-    //});
-    //})
-
-    dataService.get('/api/Menupath/GetAll').then(function (res) {
+    dataService.post('/api/Menupath/GetAll').then(function (res) {
+        $scope.tableLoading = false;
         console.log(res.data);
         if (res.data.Data.length>0) {
             $scope.data = res.data.Data;
+            $scope.totalItems = res.data.Count;
         }
     })
-    $scope.totalItems = 64;
-    $scope.currentPage = 4;
 
     $scope.setPage = function (pageNo) {
         $scope.currentPage = pageNo;
@@ -39,9 +23,19 @@
         $log.log('Page changed to: ' + $scope.currentPage);
     };
     $scope.maxSize = 5;
-    $scope.bigTotalItems = 175;
-    $scope.bigCurrentPage = 1;
-
+    $scope.openDescriptionModal = function (id) {
+        $scope.selectedId = id;
+        $scope.url = '/api/Menupath/DescriptionDetail/' + id;
+        var modalInstance = $uibModal.open({
+            animation: true,
+            templateUrl: '/App/MenuPath/description-menupath.html',
+            controller: 'descriptionMenupathModalController',
+            scope: $scope,
+            size: 'lg',
+            windowClass: 'delete-modal',
+            appendTo: $('body')
+        })
+    }
     $scope.openDeleteModal = function (id) {
         $scope.selectedId = id;
         $scope.url = '/api/Menupath/Delete/' + id;
