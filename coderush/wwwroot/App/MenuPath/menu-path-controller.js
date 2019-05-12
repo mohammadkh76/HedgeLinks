@@ -2,11 +2,11 @@
     $scope.currentPage = 1;
     $scope.tableLoading = true;
     $scope.page={
-        current: $scope.current,
-        itemInPage: 10,
+        Current: $scope.currentPage,
+        ItemInPage: 10
     }
 
-    dataService.post('/api/Menupath/GetAll').then(function (res) {
+    dataService.post('/api/Menupath/GetAll/',$scope.page).then(function (res) {
         $scope.tableLoading = false;
         console.log(res.data);
         if (res.data.Data.length>0) {
@@ -20,7 +20,14 @@
     };
 
     $scope.pageChanged = function () {
-        $log.log('Page changed to: ' + $scope.currentPage);
+        dataService.post('/api/Menupath/GetAll/',$scope.page).then(function (res) {
+            $scope.tableLoading = false;
+            console.log(res.data);
+            if (res.data.Data.length > 0) {
+                $scope.data = res.data.Data;
+                $scope.totalItems = res.data.Count;
+            }
+        })
     };
     $scope.maxSize = 5;
     $scope.openDescriptionModal = function (id) {

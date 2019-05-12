@@ -11,12 +11,14 @@ using HedgeLinks.Models.ManageViewModels;
 using HedgeLinks.Models.SyncfusionViewModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using HedgeLinks.Models.RESTViewModel;
 
 namespace HedgeLinks.Controllers.Api
 {
     [Produces("application/json")]
-
-    public class MenuPathController : Controller
+    
+    //[ApiController]
+    public class MenuPathController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
         private readonly UserManager<ApplicationUser> _userManager;
@@ -32,11 +34,14 @@ namespace HedgeLinks.Controllers.Api
         }
 
         // GET: api/User
-        [HttpGet("api/MenuPath/GetAll")]
-        public IActionResult GetMenuPath()
+        [HttpPost]
+        [Route("api/MenuPath/GetAll/")]
+        public IActionResult PostMenuPath([FromBody]PageVM pages)
         {
+            int skip = (pages.Current - 1) * pages.ItemInPage;
+
             List<MenuPath> Items = new List<MenuPath>();
-            Items = _context.MenuPath.Include(x=>x.CreatedUser).ToList();
+            Items = _context.MenuPath.Include(x => x.CreatedUser).Skip(skip).Take(pages.ItemInPage).ToList();
             int count = Items.Count();
             return Ok(new {Status="success",Data=Items,Count=count});
         }
