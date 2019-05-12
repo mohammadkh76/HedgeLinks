@@ -1,6 +1,8 @@
 ﻿adminModule.controller('InsertMenupathController', ['$scope', '$uibModalInstance', 'dataService', '$window', function ($scope, $uibModalInstance, dataService, $window) {
-    $scope.insertLoading = true;
-   
+    $scope.page = {
+        Current: $scope.currentPage,
+        ItemInPage: 10
+    }
     
 
     $scope.tinymceOptions = {
@@ -40,11 +42,10 @@
 
         }
         dataService.post($scope.url, $scope.toSendData).then(function (res) {
-            debugger;
             if (res.data.Status == "success") {
-                debugger
-                dataService.get('/api/Menupath/GetAll').then(function (res) {
+                dataService.post('/api/Menupath/GetAll',$scope.page).then(function (res) {
                     $scope.data = res.data.Data
+                    $scope.totalItems = res.data.Count;
                     $uibModalInstance.close();
 
                 })
@@ -56,11 +57,5 @@
         $uibModalInstance.close();
 
     }
-    $scope.loadingOff = function () {
-
-    }
-    angular.element($scope.Description).ready(function () {
-        $scope.insertLoading = false;
-
-    });
+   
 }]);
