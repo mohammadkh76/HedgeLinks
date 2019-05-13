@@ -38,21 +38,28 @@ namespace HedgeLinks.Controllers.Api
         [Route("api/MenuPath/GetAll/")]
         public IActionResult PostMenuPath([FromBody]PageVM pages)
         {
-            int skip = (pages.Current - 1) * pages.ItemInPage;
-
+            int skip =((pages.Current-1)  * pages.ItemInPage);
             List<MenuPath> Items = new List<MenuPath>();
-            Items = _context.MenuPath.Include(x => x.CreatedUser).Skip(skip).Take(pages.ItemInPage).ToList();
+            Items = _context.MenuPath.Include(x => x.CreatedUser).ToList();
             int count = Items.Count();
+
+            Items = _context.MenuPath.Include(x => x.CreatedUser).Skip(skip).Take(pages.ItemInPage).ToList();
             return Ok(new {Status="success",Data=Items,Count=count});
         }
-        [HttpGet("api/MenuPath/Delete")]
+        [HttpGet("api/MenuPath/Delete/{id}")]
 
         public IActionResult DelMenuPath(int id)
         {
+            List<string> messages = new List<string>();
+
             var rec = _context.MenuPath.FirstOrDefault(x => x.Id == id);
             _context.MenuPath.Remove(rec);
+            var count = _context.MenuPath.Count() ;
             _context.SaveChanges();
-            return Ok();
+            messages.Add("your data deleted successfully.");
+
+            return Ok(new { Status = "success", Count = count });
+
         }
 
 
@@ -77,10 +84,13 @@ namespace HedgeLinks.Controllers.Api
                     CreateDate = DateTime.Now.ToString(),
                 });
                 _context.SaveChanges();
+                messages.Add("your data submited successfully.");
 
             }
             catch (Exception ex)
             {
+                messages.Add("there was problem in adding data.");
+
 
                 throw;
             }
