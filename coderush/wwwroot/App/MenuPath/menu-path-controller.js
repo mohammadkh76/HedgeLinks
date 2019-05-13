@@ -1,4 +1,4 @@
-﻿adminModule.controller("menuPathController", ["$scope", "dataService", "$window", "$uibModal", function ($scope, dataService, $window, $uibModal) {
+﻿adminModule.controller("menuPathController", ["$scope", "dataService", "$window", "$uibModal", "toaster", function ($scope, dataService, $window, $uibModal, toaster) {
     $scope.currentPage = 1;
     $scope.tableLoading = true;
     $scope.page={
@@ -12,6 +12,7 @@
         if (res.data.Data.length>0) {
             $scope.data = res.data.Data;
             $scope.totalItems = res.data.Count;
+            toaster.pop('info', "title", "text");
         }
     })
 
@@ -19,8 +20,13 @@
         $scope.currentPage = pageNo;
     };
 
-    $scope.pageChanged = function () {
-        dataService.post('/api/Menupath/GetAll/',$scope.page).then(function (res) {
+    $scope.pageChanged = function (current) {
+        $scope.tableLoading = true;
+        $scope.page2 = {
+            Current: $scope.currentPage,
+            ItemInPage: 10
+        }
+        dataService.post('/api/Menupath/GetAll/',$scope.page2).then(function (res) {
             $scope.tableLoading = false;
             console.log(res.data);
             if (res.data.Data.length > 0) {
