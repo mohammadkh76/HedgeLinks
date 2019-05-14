@@ -1,4 +1,4 @@
-﻿adminModule.controller('InsertMenupathController', ['$scope', '$uibModalInstance', 'dataService', '$window', function ($scope, $uibModalInstance, dataService, $window) {
+﻿adminModule.controller('InsertMenupathController', ['$scope', '$uibModalInstance', 'dataService', '$window', 'toaster', function ($scope, $uibModalInstance, dataService, $window, toaster) {
     $scope.page = {
         Current: $scope.currentPage,
         ItemInPage: 10
@@ -44,14 +44,28 @@
         dataService.post($scope.url, $scope.toSendData).then(function (res) {
             if (res.data.Status == "success") {
                
-                window.location.href = $scope.href;
+                //window.location.href = $scope.href;
+                $scope.cancel();
+
 
 
             }
         })
     }
     
+    $uibModalInstance.result.then(function () {
+        $scope.tableLoading = true;
+        $scope.getAll({
+            successFunc() {
+                $scope.tableLoading = false;
+            },
+            messages() {
+                toaster.pop('success', 'Success', 'Your Record inserted successfully');
+                 
+            }
+        });
 
+    });
     $scope.cancel = function () {
         $uibModalInstance.close();
 

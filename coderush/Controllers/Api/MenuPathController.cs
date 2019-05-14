@@ -39,12 +39,12 @@ namespace HedgeLinks.Controllers.Api
         public IActionResult PostMenuPath([FromBody]PageVM pages)
         {
             int skip =((pages.Current-1)  * pages.ItemInPage);
-            List<MenuPath> Items = new List<MenuPath>();
-            Items = _context.MenuPath.Include(x => x.CreatedUser).ToList();
+            
+           var Items = _context.MenuPath.Include(x => x.CreatedUser).Include(x=>x.EditedUser).OrderByDescending(x => x.Id);
             int count = Items.Count();
 
-            Items = _context.MenuPath.Include(x => x.CreatedUser).Skip(skip).Take(pages.ItemInPage).ToList();
-            return Ok(new {Status="success",Data=Items,Count=count});
+             Items = Items.Skip(skip).Take(pages.ItemInPage).OrderByDescending(x => x.Id);
+            return Ok(new {Status="success",Data= Items.ToList(), Count=count});
         }
         [HttpGet("api/MenuPath/Delete/{id}")]
 
@@ -53,7 +53,11 @@ namespace HedgeLinks.Controllers.Api
             List<string> messages = new List<string>();
 
             var rec = _context.MenuPath.FirstOrDefault(x => x.Id == id);
-            _context.MenuPath.Remove(rec);
+            if (rec!=null)
+            {
+                _context.MenuPath.Remove(rec);
+
+            }
             var count = _context.MenuPath.Count() ;
             _context.SaveChanges();
             messages.Add("your data deleted successfully.");

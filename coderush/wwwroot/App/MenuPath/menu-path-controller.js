@@ -1,39 +1,51 @@
 ﻿adminModule.controller("menuPathController", ["$scope", "dataService", "$window", "$uibModal", "toaster", function ($scope, dataService, $window, $uibModal, toaster) {
     $scope.currentPage = 1;
     $scope.tableLoading = true;
-    $scope.page={
+    $scope.page = {
         Current: $scope.currentPage,
         ItemInPage: 10
     }
-    dataService.post('/api/Menupath/GetAll/',$scope.page).then(function (res) {
-        $scope.tableLoading = false;
-        console.log(res.data);
-        if (res.data.Data.length>0) {
-            $scope.data = res.data.Data;
-            
-            $scope.totalItems = res.data.Count;
-            toaster.pop('info', "title", "text");
-        }
-    })
-
-    $scope.setPage = function (pageNo) {
-        $scope.currentPage = pageNo;
-    };
-
-    $scope.pageChanged = function (current) {
-        $scope.tableLoading = true;
-        $scope.page2 = {
-            Current: $scope.currentPage,
-            ItemInPage: 10
-        }
-        dataService.post('/api/Menupath/GetAll/',$scope.page2).then(function (res) {
-            $scope.tableLoading = false;
+    $scope.getAll = function ({successFunc,messages}) {
+        dataService.post('/api/Menupath/GetAll/', $scope.page).then(function (res) {
             console.log(res.data);
             if (res.data.Data.length > 0) {
                 $scope.data = res.data.Data;
                 $scope.totalItems = res.data.Count;
             }
+            successFunc && successFunc();
+            messages && messages();
+
         })
+
+    }
+    $scope.getAll({
+        successFunc() {
+            $scope.tableLoading = false;
+        }
+    });
+   
+
+    $scope.setPage = function (pageNo) {
+        $scope.currentPage = pageNo;
+    };
+
+
+    $scope.pageChanged = function (current) {
+        $scope.tableLoading = true;
+        $scope.page.Current = $scope.currentPage;
+        //dataService.post('/api/Menupath/GetAll/', $scope.page2).then(function (res) {
+        //    $scope.tableLoading = false;
+        //    console.log(res.data);
+        //    if (res.data.Data.length > 0) {
+        //        $scope.data = res.data.Data;
+        //        $scope.totalItems = res.data.Count;
+        //    }
+        //})
+        $scope.getAll({
+            successFunc() {
+                $scope.tableLoading = false;
+            }
+        });
     };
     $scope.maxSize = 5;
     $scope.openDescriptionModal = function (id) {
@@ -75,9 +87,9 @@
             size: 'lg',
             windowClass: 'insert-modal',
             appendTo: $('body')
-            
+
         }).then(function (res) {
-            
+
 
         })
     }
@@ -95,6 +107,6 @@
             appendTo: $('body')
         })
     }
-    
+
 
 }]);
