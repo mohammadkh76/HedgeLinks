@@ -6,17 +6,16 @@ using System.Threading.Tasks;
 
 namespace HedgeLinks.Models
 {
-    public class Article:Detail
+    public class Job:Detail
     {
         public int Id { get; set; }
-        public string AuthorName { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
-        public string keyword { get; set; }
-        public MenuPath Menupath{ get; set; }
-        public int MenuPathId{ get; set; }
-        public string ExternalLink{ get; set; }
-        public bool isShow { get; set; }
-
+        public string Compensation { get; set; }
+        public string DatePlaced { get; set; }
+        public string Position { get; set; }
+        [ForeignKey("JobCategoryId")]
+        public JobCategory JobCategry { get; set; }
+        public int JobCategoryId { get; set; }
     }
 }
