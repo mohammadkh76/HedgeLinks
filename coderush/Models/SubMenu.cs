@@ -8,7 +8,7 @@ using System.Web;
 
 namespace HedgeLinks.Models
 {
-    public class SubMenu
+    public class SubMenu:Detail
     {
         public int Id { get; set; }
         [DisplayName(" Name ")]

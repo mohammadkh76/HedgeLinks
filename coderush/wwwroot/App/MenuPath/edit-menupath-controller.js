@@ -1,4 +1,4 @@
-﻿adminModule.controller('EditMenupathModalController', ['$scope', '$uibModalInstance', 'dataService', '$window', function ($scope, $uibModalInstance, dataService, $window) {
+﻿adminModule.controller('EditMenupathModalController', ['$scope', '$uibModalInstance', 'dataService', '$window', 'toaster', function ($scope, $uibModalInstance, dataService, $window, toaster) {
     console.log("in edit modal conroller")
     $scope.editDataLoading = true;
     $scope.page = {
@@ -56,11 +56,28 @@
         }
         dataService.post('/api/MenuPath/Edit/', $scope.editData).then(function (res) {
             if (res.data.Status == 'success') {
-                window.location.href = '/Menupaths/index';
+                $scope.cancel();
             
             }
 
         })
+        $uibModalInstance.result.then(function () {
+            $scope.tableLoading = true;
+            $scope.getAll({
+                successFunc() {
+                    $scope.tableLoading = false;
+                },
+                messages() {
+                    toaster.pop('success', 'Success', 'Your Record edited successfully');
+
+                }
+            });
+
+        });
+        $scope.cancel = function () {
+            $uibModalInstance.close();
+
+        }
 
     }
 }])
