@@ -5,12 +5,12 @@
         Current: $scope.currentPage,
         ItemInPage: 10
     }
-
     dataService.post('/api/Menupath/GetAll/',$scope.page).then(function (res) {
         $scope.tableLoading = false;
         console.log(res.data);
         if (res.data.Data.length>0) {
             $scope.data = res.data.Data;
+            
             $scope.totalItems = res.data.Count;
             toaster.pop('info', "title", "text");
         }
@@ -75,15 +75,19 @@
             size: 'lg',
             windowClass: 'insert-modal',
             appendTo: $('body')
+            
+        }).then(function (res) {
+            
+
         })
     }
     $scope.openEditModal = function (id) {
         $scope.selectedId = id;
-        $scope.url = '/api/Menupath/Edit/' + id;
+        $scope.url = '/api/Menupath/GetEditData/' + id;
         $scope.href = '/Menupaths/index';
         var modalInstance = $uibModal.open({
             animation: true,
-            templateUrl: '/App/Menupath/EditModal.html',
+            templateUrl: '/App/Menupath/edit-menupath.html',
             controller: 'EditMenupathModalController',
             scope: $scope,
             size: 'lg',

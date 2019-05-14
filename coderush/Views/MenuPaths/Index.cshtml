@@ -30,7 +30,7 @@
                         <table class="table table-data2">
                             <thead>
                                 <tr>
-                                    <th>Id</th>
+                                    <th>Index</th>
                                     <th>Name</th>
                                     <th>Description</th>
                                     <th>Page Name</th>
@@ -50,21 +50,19 @@
                                     <td><a href="#" class="desc-modal" ng-click="openDescriptionModal(item.Id)">Click to show discription</a></td>
                                     <td>{{item.PageName}}</td>
                                     <td>{{item.CreatedUser.UserName}}</td>
-                                    <td>{{item.EditedUserId}}</td>
+                                    <td>{{item.EditedUser.UserName}}</td>
                                     <td>{{item.CreateDate}}</td>
-                                    <td>{{item.EditeDate}}</td>
+                                    <td>{{item.EditDate}}</td>
 
                                     <td>
                                         <div class="table-data-feature">
-                                            <button class="item" title="Edit">
+                                            <button class="item" title="Edit" ng-click="openEditModal(item.Id)">
                                                 <i class="zmdi zmdi-edit"></i>
                                             </button>
                                             <button class="item" title="Delete" ng-click="openDeleteModal(item.Id);">
                                                 <i class="zmdi zmdi-delete"></i>
                                             </button>
-                                            <button class="item" title="More">
-                                                <i class="zmdi zmdi-more"></i>
-                                            </button>
+                                           
                                         </div>
                                     </td>
                                 </tr>

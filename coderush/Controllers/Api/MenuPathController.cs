@@ -111,6 +111,35 @@ namespace HedgeLinks.Controllers.Api
             messages.Add("Your Page will show like this...");
             return Ok(new { Status = "success", Data = desc, Messages = messages });
         }
+
+        [HttpGet("api/Menupath/GetEditData/{id}")]
+        public IActionResult GetEditData(int id)
+        {
+            List<string> messages = new List<string>();
+            var item = _context.MenuPath.FirstOrDefault(x => x.Id == id);
+
+            return Ok(new { Status = "success",Data=item});
+        }
+        [HttpPost("api/MenuPath/Edit/")]
+        public IActionResult Edit([FromBody] MenuPathEditVM menupath)
+        {
+            List<string> messages = new List<string>();
+            var item = _context.MenuPath.Include(x=>x.CreatedUser).Include(x=>x.EditedUser).FirstOrDefault(x => x.Id == menupath.Id);
+
+            var _currentUser = HttpContext.User.Identity.Name;
+            var _currentUserId = _context.ApplicationUser.FirstOrDefault(x => x.UserName == _currentUser).Id;
+            if (item!=null)
+            {
+                item.Name = menupath.Name;
+                item.PageName = menupath.PageName;
+                item.EditUserId = _currentUserId;
+                item.EditDate = DateTime.Now.ToString();
+                item.Description = menupath.Description;
+                _context.SaveChanges();
+            }
+            return Ok(new { Status = "success", Data = item, Messages = messages });
+        }
+
         [HttpGet("[action]/{id}")]
         public IActionResult GetByApplicationMenuPathId([FromRoute]string id)
         {

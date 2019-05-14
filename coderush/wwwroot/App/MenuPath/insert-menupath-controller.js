@@ -43,16 +43,15 @@
         }
         dataService.post($scope.url, $scope.toSendData).then(function (res) {
             if (res.data.Status == "success") {
-                dataService.post('/api/Menupath/GetAll',$scope.page).then(function (res) {
-                    $scope.data = res.data.Data
-                    $scope.totalItems = res.data.Count;
-                    $uibModalInstance.close();
+               
+                window.location.href = $scope.href;
 
-                })
 
             }
         })
     }
+    
+
     $scope.cancel = function () {
         $uibModalInstance.close();
 
