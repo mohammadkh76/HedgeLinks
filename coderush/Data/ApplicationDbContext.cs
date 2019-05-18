@@ -85,5 +85,9 @@ namespace HedgeLinks.Data
         public DbSet<Menubar> Menubar{ get; set; }
         public DbSet<MenuPath> MenuPath{ get; set; }
         public DbSet<SubMenu> Submenu{ get; set; }
+        public DbSet<Article> Article { get; set; }
+        public DbSet<ArticleTopic> ArticleTopic { get; set; }
+        public DbSet<ComercialTips> ComercialTips { get; set; }
+        public DbSet<ThirdSection> ThirdSection { get; set; }
     }
 }

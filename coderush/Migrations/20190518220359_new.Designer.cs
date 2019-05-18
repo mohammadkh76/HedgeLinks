@@ -11,8 +11,8 @@ using System;
 namespace HedgeLinks.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20190505204004_jkk")]
-    partial class jkk
+    [Migration("20190518220359_new")]
+    partial class @new
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -70,6 +70,64 @@ namespace HedgeLinks.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers");
+                });
+
+            modelBuilder.Entity("HedgeLinks.Models.Article", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("ApplicationUserId");
+
+                    b.Property<int>("ArticleTopicId");
+
+                    b.Property<string>("AuthorName");
+
+                    b.Property<string>("CreateDate");
+
+                    b.Property<string>("Date");
+
+                    b.Property<string>("Description");
+
+                    b.Property<string>("EditDate");
+
+                    b.Property<string>("EditUserId");
+
+                    b.Property<string>("ExternalLink");
+
+                    b.Property<int>("MenuPathId");
+
+                    b.Property<string>("Title");
+
+                    b.Property<bool>("isShow");
+
+                    b.Property<string>("keyword");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ApplicationUserId");
+
+                    b.HasIndex("ArticleTopicId");
+
+                    b.HasIndex("EditUserId");
+
+                    b.HasIndex("MenuPathId");
+
+                    b.ToTable("Article");
+                });
+
+            modelBuilder.Entity("HedgeLinks.Models.ArticleTopic", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Description");
+
+                    b.Property<string>("Title");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ArticleTopic");
                 });
 
             modelBuilder.Entity("HedgeLinks.Models.Bill", b =>
@@ -154,6 +212,36 @@ namespace HedgeLinks.Migrations
                     b.HasKey("CashBankId");
 
                     b.ToTable("CashBank");
+                });
+
+            modelBuilder.Entity("HedgeLinks.Models.ComercialTips", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("ApplicationUserId");
+
+                    b.Property<string>("CreateDate");
+
+                    b.Property<string>("EditDate");
+
+                    b.Property<string>("EditUserId");
+
+                    b.Property<string>("FilePath");
+
+                    b.Property<string>("Keyword");
+
+                    b.Property<string>("Subtitle");
+
+                    b.Property<string>("Title");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ApplicationUserId");
+
+                    b.HasIndex("EditUserId");
+
+                    b.ToTable("ComercialTips");
                 });
 
             modelBuilder.Entity("HedgeLinks.Models.Currency", b =>
@@ -282,6 +370,14 @@ namespace HedgeLinks.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<string>("ApplicationUserId");
+
+                    b.Property<string>("CreateDate");
+
+                    b.Property<string>("EditDate");
+
+                    b.Property<string>("EditUserId");
+
                     b.Property<int?>("MenuPathId");
 
                     b.Property<string>("Name")
@@ -290,6 +386,10 @@ namespace HedgeLinks.Migrations
                     b.Property<string>("Path");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ApplicationUserId");
+
+                    b.HasIndex("EditUserId");
 
                     b.HasIndex("MenuPathId");
 
@@ -676,6 +776,14 @@ namespace HedgeLinks.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<string>("ApplicationUserId");
+
+                    b.Property<string>("CreateDate");
+
+                    b.Property<string>("EditDate");
+
+                    b.Property<string>("EditUserId");
+
                     b.Property<int?>("MenuPathId");
 
                     b.Property<int>("MenubarId");
@@ -687,11 +795,31 @@ namespace HedgeLinks.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("ApplicationUserId");
+
+                    b.HasIndex("EditUserId");
+
                     b.HasIndex("MenuPathId");
 
                     b.HasIndex("MenubarId");
 
                     b.ToTable("Submenu");
+                });
+
+            modelBuilder.Entity("HedgeLinks.Models.ThirdSection", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("FilePath");
+
+                    b.Property<string>("Subtitle");
+
+                    b.Property<string>("Title");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ThirdSection");
                 });
 
             modelBuilder.Entity("HedgeLinks.Models.UnitOfMeasure", b =>
@@ -904,8 +1032,48 @@ namespace HedgeLinks.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("HedgeLinks.Models.Article", b =>
+                {
+                    b.HasOne("HedgeLinks.Models.ApplicationUser", "CreatedUser")
+                        .WithMany()
+                        .HasForeignKey("ApplicationUserId");
+
+                    b.HasOne("HedgeLinks.Models.ArticleTopic", "ArticleTopic")
+                        .WithMany()
+                        .HasForeignKey("ArticleTopicId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("HedgeLinks.Models.ApplicationUser", "EditedUser")
+                        .WithMany()
+                        .HasForeignKey("EditUserId");
+
+                    b.HasOne("HedgeLinks.Models.MenuPath", "Menupath")
+                        .WithMany()
+                        .HasForeignKey("MenuPathId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("HedgeLinks.Models.ComercialTips", b =>
+                {
+                    b.HasOne("HedgeLinks.Models.ApplicationUser", "CreatedUser")
+                        .WithMany()
+                        .HasForeignKey("ApplicationUserId");
+
+                    b.HasOne("HedgeLinks.Models.ApplicationUser", "EditedUser")
+                        .WithMany()
+                        .HasForeignKey("EditUserId");
+                });
+
             modelBuilder.Entity("HedgeLinks.Models.Menubar", b =>
                 {
+                    b.HasOne("HedgeLinks.Models.ApplicationUser", "CreatedUser")
+                        .WithMany()
+                        .HasForeignKey("ApplicationUserId");
+
+                    b.HasOne("HedgeLinks.Models.ApplicationUser", "EditedUser")
+                        .WithMany()
+                        .HasForeignKey("EditUserId");
+
                     b.HasOne("HedgeLinks.Models.MenuPath", "MenuPath")
                         .WithMany()
                         .HasForeignKey("MenuPathId");
@@ -940,6 +1108,14 @@ namespace HedgeLinks.Migrations
 
             modelBuilder.Entity("HedgeLinks.Models.SubMenu", b =>
                 {
+                    b.HasOne("HedgeLinks.Models.ApplicationUser", "CreatedUser")
+                        .WithMany()
+                        .HasForeignKey("ApplicationUserId");
+
+                    b.HasOne("HedgeLinks.Models.ApplicationUser", "EditedUser")
+                        .WithMany()
+                        .HasForeignKey("EditUserId");
+
                     b.HasOne("HedgeLinks.Models.MenuPath", "MenuPath")
                         .WithMany()
                         .HasForeignKey("MenuPathId");
