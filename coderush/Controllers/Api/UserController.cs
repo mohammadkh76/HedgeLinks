@@ -10,12 +10,13 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
+using HedgeLinks.Models.RESTViewModel;
+using Microsoft.EntityFrameworkCore;
 
 namespace HedgeLinks.Controllers.Api
 {
     [Authorize]
     [Produces("application/json")]
-    [Route("api/")]
     public class UserController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -32,13 +33,15 @@ namespace HedgeLinks.Controllers.Api
         }
 
         // GET: api/User
-        [HttpGet]
-        public IActionResult GetUser()
+        [HttpPost]
+        [Route("api/User/GetAll/")]
+        public IActionResult GetUser([FromBody]PageVM pages)
         {
-            List<UserProfile> Items = new List<UserProfile>();
-            Items = _context.UserProfile.ToList();
-            int Count = Items.Count();
-            return Ok(new { Items, Count });
+            int skip = ((pages.Current - 1) * pages.ItemInPage);
+            var Items = _context.UserProfile.Include(x=>x.ApplicationUser).OrderByDescending(x => x.UserProfileId);
+            int count = Items.Count();
+            Items = Items.Skip(skip).Take(pages.ItemInPage).OrderByDescending(x => x.UserProfileId);
+            return Ok(new { Status = "success", Data = Items.ToList(), Count = count });
         }
 
         [HttpGet("[action]/{id}")]

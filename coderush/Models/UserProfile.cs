@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -15,6 +16,8 @@ namespace HedgeLinks.Models
         public string ConfirmPassword { get; set; }
         public string OldPassword { get; set; }
         public string ProfilePicture { get; set; } = "/upload/blank-person.png";
+        [ForeignKey("ApplicationUserId")]
+        public ApplicationUser ApplicationUser { get; set; }
 
         public string ApplicationUserId { get; set; }
     }

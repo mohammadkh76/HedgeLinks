@@ -1,0 +1,31 @@
+﻿.insert-editor {
+    width: 100%;
+    display: block;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    border: 1px solid #d1d1d1;
+    padding: 5px;
+}
+
+    .insert-editor:focus {
+        border: 1px solid #0094ff;
+    }
+
+.float-left {
+    float: left;
+}
+
+.upload-button {
+    background-color: #3c8dbc;
+    width:50px;
+}
+.upload-box {
+    background-color: #3c8dbc;
+    width: 233px;
+    margin-top: 50px;
+    color:white;
+}
+    .upload-box:hover {
+        background-color:#3c8dbc;
+        opacity:0.5;
+    }
