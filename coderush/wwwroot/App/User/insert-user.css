@@ -16,16 +16,18 @@
 }
 
 .upload-button {
-    background-color: #3c8dbc;
-    width:50px;
+    background-color: #2276ea;
+    margin-top:20px;
+    /*width:50px;*/
 }
 .upload-box {
-    background-color: #3c8dbc;
-    width: 233px;
+    background-color: #f0f0f0;
+    /* width: 233px; */
+    padding: 30px;
     margin-top: 50px;
-    color:white;
+    color: white;
 }
-    .upload-box:hover {
+    .upload-button:hover {
         background-color:#3c8dbc;
-        opacity:0.5;
+        opacity:0.9;
     }

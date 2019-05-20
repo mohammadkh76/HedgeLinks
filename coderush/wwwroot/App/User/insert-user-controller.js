@@ -1,5 +1,16 @@
-﻿adminModule.controller('InsertUserController', ['$scope', '$uibModalInstance', 'dataService', '$window', 'toaster', 'Upload', function ($scope, $uibModalInstance, dataService, $window, toaster, Upload) {
+﻿adminModule.controller('InsertUserController', ['$scope', '$uibModalInstance', 'dataService', '$window', 'toaster', 'Upload', 'convertorService', function ($scope, $uibModalInstance, dataService, $window, toaster, Upload, convertorService) {
     console.log("user insert modal")
+    $scope.changeUpload = function (file) {
+        debugger;
+        $scope.uploadLoading = true;
+        convertorService.toBase64(file).then(function (res) {
+            $scope.uploadPreview = res.base64;
+            $scope.uploadLoading= false;
+            $scope.$apply();
+        });
+
+    }
+   
     $scope.upload = function (file) {
         Upload.upload({
             url: 'upload/url',

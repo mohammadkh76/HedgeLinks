@@ -1,4 +1,4 @@
-﻿adminModule.controller("userController", ["$scope", "dataService", "$window", "$uibModal", "toaster", function ($scope, dataService, $window, $uibModal, toaster) {
+﻿adminModule.controller("userController", ["$scope", "dataService", "$window", "$uibModal", "toaster", "convertorService", function ($scope, dataService, $window, $uibModal, toaster, convertorService) {
     $scope.currentPage = 1;
     $scope.tableLoading = true;
     $scope.page = {

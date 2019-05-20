@@ -33,10 +33,16 @@
             <div class="col-md-10 upload-box col-md-offset-1">
 
                 <div class="text-center upload-image">
-                    <img class="img-thumbnail" ngf-thumbnail="file || '/images/upload-image.png'">
+                    <img class="img-thumbnail" src='/images/upload-image.png' ng-model="uploadPreview" />
+                    <div class="table-loading" ng-if="uploadLoading">
+                        <div class="loading-overlay"></div>
+                        <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+                    </div>
                 </div>
-                <div class="text-center"><div class="btn upload-button" ng-model="file" ngf-select="upload(file)">Upload <span class="fa fa-upload btn-right"></span></div></div>
-    
+                <div class="text-center">
+                    <button class="btn upload-button" ng-model="File" ngf-select="upload(file)" ngf-change="changeUpload(File)">Upload <span class="fa fa-upload btn-right"></span></button>
+                </div>
+
             </div>
         </div>
     </form>
@@ -46,3 +52,5 @@
     <button class="btn success-btn" type="button" ng-click="confirmInsert()">Confirm</button>
     <button class="btn cancel-btn float-left" type="button" ng-click="cancel()">Cancel</button>
 </div>
+<script src="~/App/Services/convertorService.js"></script>
+
