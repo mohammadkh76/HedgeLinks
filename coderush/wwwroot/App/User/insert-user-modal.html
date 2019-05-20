@@ -1,0 +1,48 @@
+﻿<link href="/App/User/insert-user.css" rel="stylesheet" />
+<script>
+
+</script>
+<div class="modal-header">
+    <h3 class="modal-title" id="modal-title">Insert User</h3>
+</div>
+<div class="modal-body">
+    <form name="insertForm" class="text-center" ng-submit="confirmInsert(insert)">
+        <div class="row">
+            <div class="form-group">
+                <div class="col-md-10 col-md-offset-1">
+                    <input type="text" name="FirstName" value="" ng-model="insert.FirstName" class="insert-editor" placeholder="First Name" />
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-10  col-md-offset-1">
+
+                    <input type="text" ng-model="insert.LastName" name="LastName" value="" class="insert-editor" placeholder="Last Name" />
+
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-10 col-md-offset-1">
+                    <input type="text" name="Email" value="" ng-model="insert.Email" class="insert-editor" placeholder="Email" />
+                </div>
+            </div>
+
+
+
+        </div>
+        <div class="row">
+            <div class="col-md-10 upload-box col-md-offset-1">
+
+                <div class="text-center upload-image">
+                    <img class="img-thumbnail" ngf-thumbnail="file || '/images/upload-image.png'">
+                </div>
+                <div class="text-center"><div class="btn upload-button" ng-model="file" ngf-select="upload(file)">Upload <span class="fa fa-upload btn-right"></span></div></div>
+    
+            </div>
+        </div>
+    </form>
+
+</div>
+<div class="modal-footer">
+    <button class="btn success-btn" type="button" ng-click="confirmInsert()">Confirm</button>
+    <button class="btn cancel-btn float-left" type="button" ng-click="cancel()">Cancel</button>
+</div>
