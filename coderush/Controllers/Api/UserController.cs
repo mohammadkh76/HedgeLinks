@@ -1,17 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using HedgeLinks.Data;
+﻿using HedgeLinks.Data;
 using HedgeLinks.Models;
-using HedgeLinks.Models.AccountViewModels;
+using HedgeLinks.Models.RESTViewModel;
 using HedgeLinks.Models.SyncfusionViewModels;
-using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Authorization;
-using HedgeLinks.Models.RESTViewModel;
 using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace HedgeLinks.Controllers.Api
 {
@@ -22,14 +22,17 @@ namespace HedgeLinks.Controllers.Api
         private readonly ApplicationDbContext _context;
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
-
+        private readonly IHostingEnvironment hostingEnvironment;
+     
         public UserController(ApplicationDbContext context,
                         UserManager<ApplicationUser> userManager,
-                        RoleManager<IdentityRole> roleManager)
+                        RoleManager<IdentityRole> roleManager, IHostingEnvironment environment)
         {
             _context = context;
             _userManager = userManager;
             _roleManager = roleManager;
+            hostingEnvironment = environment;
+
         }
 
         // GET: api/User
@@ -38,7 +41,7 @@ namespace HedgeLinks.Controllers.Api
         public IActionResult GetUser([FromBody]PageVM pages)
         {
             int skip = ((pages.Current - 1) * pages.ItemInPage);
-            var Items = _context.UserProfile.Include(x=>x.ApplicationUser).OrderByDescending(x => x.UserProfileId);
+            var Items = _context.UserProfile.Include(x => x.ApplicationUser).OrderByDescending(x => x.UserProfileId);
             int count = Items.Count();
             Items = Items.Skip(skip).Take(pages.ItemInPage).OrderByDescending(x => x.UserProfileId);
             return Ok(new { Status = "success", Data = Items.ToList(), Count = count });
@@ -57,25 +60,53 @@ namespace HedgeLinks.Controllers.Api
             return Ok(new { Items, Count });
         }
 
-        [HttpPost("[action]")]
-        public async Task<IActionResult> Insert([FromBody]CrudViewModel<UserProfile> payload)
+        [HttpPost("api/User/Insert")]
+        public async Task<IActionResult> Insert()
         {
-            UserProfile register = payload.value;
-            if (register.Password.Equals(register.ConfirmPassword))
+            List<string> messages = new List<string>();
+            var form = Request.Form;
+            var rnd = new Random();
+            var guid = rnd.Next(999);
+            string firstName = String.IsNullOrEmpty(form["FirstName"]) ? "" : form["FirstName"].ToString();
+            string lastName = String.IsNullOrEmpty(form["LastName"]) ? "" : form["LastName"].ToString();
+            string email = String.IsNullOrEmpty(form["Email"]) ? "" : form["Email"].ToString();
+            string password = String.IsNullOrEmpty(form["Password"]) ? "" : form["Password"].ToString();
+            string confirmPassword = String.IsNullOrEmpty(form["ConfirmPassword"]) ? "" : form["ConfirmPassword"].ToString();
+            string profilePic = "";
+            if (form.Files[0] != null)
             {
-                ApplicationUser user = new ApplicationUser() { Email = register.Email, UserName = register.Email, EmailConfirmed = true };
-                var result = await _userManager.CreateAsync(user, register.Password);
+                var file = form.Files[0];
+                var rootPath = hostingEnvironment.WebRootPath.ToString();
+                var serverPath = rootPath + "\\Images\\ProfilePics\\" + guid + file.FileName;
+                using (var stream = new FileStream(serverPath, FileMode.Create))
+                {
+                    await file.CopyToAsync(stream);
+                }
+                profilePic = "/Images/ProfilePics/" + guid + file.FileName;
+
+
+            }
+            UserProfile register = new UserProfile();
+            if (password.Equals(confirmPassword))
+            {
+                ApplicationUser user = new ApplicationUser() { Email = email, UserName = email, EmailConfirmed = true };
+                var result = await _userManager.CreateAsync(user, password);
                 if (result.Succeeded)
                 {
                     register.Password = user.PasswordHash;
                     register.ConfirmPassword = user.PasswordHash;
                     register.ApplicationUserId = user.Id;
+                    register.ProfilePicture = profilePic;
                     _context.UserProfile.Add(register);
                     await _context.SaveChangesAsync();
                 }
-                
+
             }
-            return Ok(register);
+            else
+            {
+                return BadRequest(new { Status = "Failed", Messages = messages });
+            }
+            return Ok(new{ Status = "Success", Messages = messages});
         }
 
         [HttpPost("[action]")]
@@ -99,7 +130,7 @@ namespace HedgeLinks.Controllers.Api
             profile = _context.UserProfile.SingleOrDefault(x => x.ApplicationUserId.Equals(profile.ApplicationUserId));
             return Ok(profile);
         }
-        
+
         [HttpPost("[action]")]
         public IActionResult ChangeRole([FromBody]CrudViewModel<UserProfile> payload)
         {
@@ -120,13 +151,13 @@ namespace HedgeLinks.Controllers.Api
                     _context.Remove(userProfile);
                     await _context.SaveChangesAsync();
                 }
-                
+
             }
-            
+
             return Ok();
 
         }
-        
-        
+
+
     }
 }
