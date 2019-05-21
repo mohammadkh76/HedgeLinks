@@ -41,9 +41,9 @@ namespace HedgeLinks.Controllers.Api
         public IActionResult GetUser([FromBody]PageVM pages)
         {
             int skip = ((pages.Current - 1) * pages.ItemInPage);
-            var Items = _context.UserProfile.Include(x => x.ApplicationUser).OrderByDescending(x => x.UserProfileId);
+            var Items = _context.UserProfile.Include(x => x.ApplicationUser).OrderByDescending(x => x.Id);
             int count = Items.Count();
-            Items = Items.Skip(skip).Take(pages.ItemInPage).OrderByDescending(x => x.UserProfileId);
+            Items = Items.Skip(skip).Take(pages.ItemInPage).OrderByDescending(x => x.Id);
             return Ok(new { Status = "success", Data = Items.ToList(), Count = count });
         }
 
@@ -73,6 +73,10 @@ namespace HedgeLinks.Controllers.Api
             string password = String.IsNullOrEmpty(form["Password"]) ? "" : form["Password"].ToString();
             string confirmPassword = String.IsNullOrEmpty(form["ConfirmPassword"]) ? "" : form["ConfirmPassword"].ToString();
             string profilePic = "";
+            if (form.Files[0]==null) {
+                 profilePic = "/upload/blank-person.png";
+
+            }
             if (form.Files[0] != null)
             {
                 var file = form.Files[0];
@@ -89,23 +93,46 @@ namespace HedgeLinks.Controllers.Api
             UserProfile register = new UserProfile();
             if (password.Equals(confirmPassword))
             {
+                var _currentUserId = "";
+
+                if (HttpContext.User.Identity.IsAuthenticated)
+                {
+                    var _currentUser = HttpContext.User.Identity.Name;
+                    _currentUserId = _context.ApplicationUser.FirstOrDefault(x => x.UserName == _currentUser).Id;
+                }
                 ApplicationUser user = new ApplicationUser() { Email = email, UserName = email, EmailConfirmed = true };
                 var result = await _userManager.CreateAsync(user, password);
                 if (result.Succeeded)
                 {
+                    
+                    register.CreatedUserId = _currentUserId;
+                    register.CreateDate = DateTime.Now.ToString();
                     register.Password = user.PasswordHash;
+                    register.FirstName = firstName;
+                    register.LastName = lastName;
+                    register.Email = email;
                     register.ConfirmPassword = user.PasswordHash;
                     register.ApplicationUserId = user.Id;
                     register.ProfilePicture = profilePic;
                     _context.UserProfile.Add(register);
                     await _context.SaveChangesAsync();
                 }
+                else
+                {
+                    messages.Add(result.Errors.First().Description);
+                    return BadRequest(new { Status = "Failed", Messages = messages });
+                }
+
+
 
             }
             else
             {
+                messages.Add("you password didn't Match");
                 return BadRequest(new { Status = "Failed", Messages = messages });
             }
+            messages.Add("your data Submitted successfully");
+
             return Ok(new{ Status = "Success", Messages = messages});
         }
 

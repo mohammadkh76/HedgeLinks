@@ -11,9 +11,9 @@ namespace HedgeLinks.Models
     {
         public int Id { get; set; }
 
-        [ForeignKey("ApplicationUserId")]
+        [ForeignKey("CreatedUserId")]
         public ApplicationUser CreatedUser{ get; set; }
-        public string ApplicationUserId { get; set; }
+        public string CreatedUserId { get; set; }
         [ForeignKey("EditUserId")]
         public ApplicationUser EditedUser{ get; set; }
         public string EditUserId { get; set; }

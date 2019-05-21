@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace HedgeLinks.Models
 {
-    public class UserProfile
+    public class UserProfile:Detail
     {
         public int UserProfileId { get; set; }
         public string FirstName { get; set; }

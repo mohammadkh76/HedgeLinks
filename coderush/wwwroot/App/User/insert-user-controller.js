@@ -14,6 +14,7 @@
         });
     }
     $scope.confirmInsert = function (res) {
+        $scope.userInsertLoading = true;
         $scope.data = {
            
         }
@@ -28,17 +29,23 @@
                 File: $scope.File
             }
         }).then(function (resp) {
-            if (resp.data.Status == "success") {
+            if (resp.data.Status == "Success") {
+                $scope.userInsertLoading = false;
+
                 $uibModalInstance.close();
 
             }
-        }, function (resp) {
+        }, function (err) {
+            toaster.pop("error", "Error", err.data.Messages);
+            $scope.userInsertLoading = false;
 
-            console.log('Error status: ' + resp);
+            console.log('Error status: ' + err);
         }, function (evt) {
 
             var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
-            console.log('progress: ' + progressPercentage + '% ' + evt.config.data.File.name);
+            $scope.progress = progressPercentage;
+            $scope.userInsertLoading = true;
+
         });
 
     }

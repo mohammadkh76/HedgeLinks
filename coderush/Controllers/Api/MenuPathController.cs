@@ -84,7 +84,7 @@ namespace HedgeLinks.Controllers.Api
                     Name = toSendData.Name,
                     Description = toSendData.Description,
                     PageName = toSendData.PageName,
-                    ApplicationUserId = _currentUserId,
+                   CreatedUserId = _currentUserId,
                     CreateDate = DateTime.Now.ToString(),
                 });
                 _context.SaveChanges();
