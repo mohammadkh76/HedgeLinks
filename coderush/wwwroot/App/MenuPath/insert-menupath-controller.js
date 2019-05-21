@@ -3,8 +3,8 @@
         Current: $scope.currentPage,
         ItemInPage: 10
     }
-    
 
+    $scope.isCanceled = false;
     $scope.tinymceOptions = {
         plugins: 'fullpage powerpaste searchreplace autolink directionality visualblocks visualchars fullscreen image link media template codesample table charmap hr pagebreak nonbreaking anchor toc insertdatetime advlist lists textcolor wordcount imagetools media link contextmenu colorpicker textpattern',
         toolbar1: 'formatselect | bold italic strikethrough forecolor backcolor | link | alignleft aligncenter alignright alignjustify  | numlist bullist outdent indent  | removeformat imageupload',
@@ -34,7 +34,7 @@
             });
         },
     };
-  $scope.confirmInsert = function () {
+    $scope.confirmInsert = function () {
         $scope.toSendData = {
             Name: $scope.insert.Name,
             Description: $scope.Description,
@@ -43,32 +43,37 @@
         }
         dataService.post($scope.url, $scope.toSendData).then(function (res) {
             if (res.data.Status == "success") {
-               
+
                 //window.location.href = $scope.href;
-                $scope.cancel();
+                $uibModalInstance.close();
 
 
 
             }
         })
     }
-    
+
     $uibModalInstance.result.then(function () {
-        $scope.tableLoading = true;
-        $scope.getAll({
-            successFunc() {
-                $scope.tableLoading = false;
-            },
-            messages() {
-                toaster.pop('success', 'Success', 'Your Record inserted successfully');
-                 
-            }
-        });
+        if (!$scope.isCanceled) {
+
+            $scope.tableLoading = true;
+            $scope.getAll({
+                successFunc() {
+                    $scope.tableLoading = false;
+                },
+                messages() {
+                    toaster.pop('success', 'Success', 'Your Record inserted successfully');
+
+                }
+            });
+        }
 
     });
+
     $scope.cancel = function () {
+        $scope.isCanceled = true;
         $uibModalInstance.close();
 
     }
-   
+
 }]);
