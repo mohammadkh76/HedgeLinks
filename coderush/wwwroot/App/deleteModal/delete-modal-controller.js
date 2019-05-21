@@ -6,22 +6,26 @@
              $scope.cancel();
         })
    }
-   $scope.cancel=function () {
+    $scope.cancel = function () {
+        $scope.isCanceled = true;
        $uibModalInstance.close();
        
     }
     $uibModalInstance.result.then(function () {
-        $scope.tableLoading = true;
-        $scope.getAll({
-            successFunc() {
-                $scope.tableLoading = false;
-            },
-            messages() {
-                toaster.pop('success', 'Success', 'Your Record deleted successfully');
+        if (!$scope.isCanceled) {
+            $scope.tableLoading = true;
+            $scope.getAll({
+                successFunc() {
+                    $scope.tableLoading = false;
+                },
+                messages() {
+                    toaster.pop('success', 'Success', 'Your Record deleted successfully');
 
-            }
-        });
+                }
+            });
 
+
+        }
     });
    
 }]);

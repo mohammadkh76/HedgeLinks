@@ -76,13 +76,13 @@ namespace HedgeLinks.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("ApplicationUserId");
-
                     b.Property<int>("ArticleTopicId");
 
                     b.Property<string>("AuthorName");
 
                     b.Property<string>("CreateDate");
+
+                    b.Property<string>("CreatedUserId");
 
                     b.Property<string>("Date");
 
@@ -104,9 +104,9 @@ namespace HedgeLinks.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ApplicationUserId");
-
                     b.HasIndex("ArticleTopicId");
+
+                    b.HasIndex("CreatedUserId");
 
                     b.HasIndex("EditUserId");
 
@@ -218,9 +218,9 @@ namespace HedgeLinks.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("ApplicationUserId");
-
                     b.Property<string>("CreateDate");
+
+                    b.Property<string>("CreatedUserId");
 
                     b.Property<string>("EditDate");
 
@@ -236,7 +236,7 @@ namespace HedgeLinks.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ApplicationUserId");
+                    b.HasIndex("CreatedUserId");
 
                     b.HasIndex("EditUserId");
 
@@ -369,9 +369,9 @@ namespace HedgeLinks.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("ApplicationUserId");
-
                     b.Property<string>("CreateDate");
+
+                    b.Property<string>("CreatedUserId");
 
                     b.Property<string>("EditDate");
 
@@ -386,7 +386,7 @@ namespace HedgeLinks.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ApplicationUserId");
+                    b.HasIndex("CreatedUserId");
 
                     b.HasIndex("EditUserId");
 
@@ -400,9 +400,9 @@ namespace HedgeLinks.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("ApplicationUserId");
-
                     b.Property<string>("CreateDate");
+
+                    b.Property<string>("CreatedUserId");
 
                     b.Property<string>("Description");
 
@@ -418,7 +418,7 @@ namespace HedgeLinks.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ApplicationUserId");
+                    b.HasIndex("CreatedUserId");
 
                     b.HasIndex("EditUserId");
 
@@ -775,9 +775,9 @@ namespace HedgeLinks.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("ApplicationUserId");
-
                     b.Property<string>("CreateDate");
+
+                    b.Property<string>("CreatedUserId");
 
                     b.Property<string>("EditDate");
 
@@ -794,7 +794,7 @@ namespace HedgeLinks.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ApplicationUserId");
+                    b.HasIndex("CreatedUserId");
 
                     b.HasIndex("EditUserId");
 
@@ -838,12 +838,20 @@ namespace HedgeLinks.Migrations
 
             modelBuilder.Entity("HedgeLinks.Models.UserProfile", b =>
                 {
-                    b.Property<int>("UserProfileId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("ApplicationUserId");
 
                     b.Property<string>("ConfirmPassword");
+
+                    b.Property<string>("CreateDate");
+
+                    b.Property<string>("CreatedUserId");
+
+                    b.Property<string>("EditDate");
+
+                    b.Property<string>("EditUserId");
 
                     b.Property<string>("Email");
 
@@ -857,7 +865,15 @@ namespace HedgeLinks.Migrations
 
                     b.Property<string>("ProfilePicture");
 
-                    b.HasKey("UserProfileId");
+                    b.Property<int>("UserProfileId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ApplicationUserId");
+
+                    b.HasIndex("CreatedUserId");
+
+                    b.HasIndex("EditUserId");
 
                     b.ToTable("UserProfile");
                 });
@@ -1033,14 +1049,14 @@ namespace HedgeLinks.Migrations
 
             modelBuilder.Entity("HedgeLinks.Models.Article", b =>
                 {
-                    b.HasOne("HedgeLinks.Models.ApplicationUser", "CreatedUser")
-                        .WithMany()
-                        .HasForeignKey("ApplicationUserId");
-
                     b.HasOne("HedgeLinks.Models.ArticleTopic", "ArticleTopic")
                         .WithMany()
                         .HasForeignKey("ArticleTopicId")
                         .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("HedgeLinks.Models.ApplicationUser", "CreatedUser")
+                        .WithMany()
+                        .HasForeignKey("CreatedUserId");
 
                     b.HasOne("HedgeLinks.Models.ApplicationUser", "EditedUser")
                         .WithMany()
@@ -1056,7 +1072,7 @@ namespace HedgeLinks.Migrations
                 {
                     b.HasOne("HedgeLinks.Models.ApplicationUser", "CreatedUser")
                         .WithMany()
-                        .HasForeignKey("ApplicationUserId");
+                        .HasForeignKey("CreatedUserId");
 
                     b.HasOne("HedgeLinks.Models.ApplicationUser", "EditedUser")
                         .WithMany()
@@ -1067,7 +1083,7 @@ namespace HedgeLinks.Migrations
                 {
                     b.HasOne("HedgeLinks.Models.ApplicationUser", "CreatedUser")
                         .WithMany()
-                        .HasForeignKey("ApplicationUserId");
+                        .HasForeignKey("CreatedUserId");
 
                     b.HasOne("HedgeLinks.Models.ApplicationUser", "EditedUser")
                         .WithMany()
@@ -1082,7 +1098,7 @@ namespace HedgeLinks.Migrations
                 {
                     b.HasOne("HedgeLinks.Models.ApplicationUser", "CreatedUser")
                         .WithMany()
-                        .HasForeignKey("ApplicationUserId");
+                        .HasForeignKey("CreatedUserId");
 
                     b.HasOne("HedgeLinks.Models.ApplicationUser", "EditedUser")
                         .WithMany()
@@ -1109,7 +1125,7 @@ namespace HedgeLinks.Migrations
                 {
                     b.HasOne("HedgeLinks.Models.ApplicationUser", "CreatedUser")
                         .WithMany()
-                        .HasForeignKey("ApplicationUserId");
+                        .HasForeignKey("CreatedUserId");
 
                     b.HasOne("HedgeLinks.Models.ApplicationUser", "EditedUser")
                         .WithMany()
@@ -1123,6 +1139,21 @@ namespace HedgeLinks.Migrations
                         .WithMany("SubMenus")
                         .HasForeignKey("MenubarId")
                         .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("HedgeLinks.Models.UserProfile", b =>
+                {
+                    b.HasOne("HedgeLinks.Models.ApplicationUser", "ApplicationUser")
+                        .WithMany()
+                        .HasForeignKey("ApplicationUserId");
+
+                    b.HasOne("HedgeLinks.Models.ApplicationUser", "CreatedUser")
+                        .WithMany()
+                        .HasForeignKey("CreatedUserId");
+
+                    b.HasOne("HedgeLinks.Models.ApplicationUser", "EditedUser")
+                        .WithMany()
+                        .HasForeignKey("EditUserId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
