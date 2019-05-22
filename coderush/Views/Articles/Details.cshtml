@@ -1,0 +1,97 @@
+﻿@model HedgeLinks.Models.Article
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Adminlte.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Article</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.AuthorName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.AuthorName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Date)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Date)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.keyword)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.keyword)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ExternalLink)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ExternalLink)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.isShow)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.isShow)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CreateDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CreateDate)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.EditDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.EditDate)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ArticleTopic)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ArticleTopic.Id)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CreatedUser)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CreatedUser.Id)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.EditedUser)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.EditedUser.Id)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Menupath)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Menupath.Name)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

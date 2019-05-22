@@ -1,0 +1,62 @@
+﻿<link href="/App/CommercialTips/edit-commercial-tips.css" rel="stylesheet" />
+<script>
+
+</script>
+<div class="modal-header">
+    <h3 class="modal-title" id="modal-title">Edit TopImage</h3>
+</div>
+<div class="modal-body">
+    <form name="insertForm" class="text-center" enctype="multipart/form-data">
+        <div class="row">
+            <div class="form-group">
+                <div class="col-md-10 col-md-offset-1">
+                    <input type="text" name="Title" value="" ng-model="Title" class="insert-editor" placeholder="Title" required />
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-10  col-md-offset-1">
+
+                    <input type="text" ng-model="Subtitle" name="Subtitle" value="" class="insert-editor" placeholder="Subtitle" required />
+
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-10 col-md-offset-1">
+                    <input type="text" name="Keyword" value="" ng-model="Keyword" class="insert-editor" placeholder="Keyword" required />
+                </div>
+            </div>
+
+
+
+
+        </div>
+        <div class="row">
+            <div class="col-md-10 upload-box col-md-offset-1">
+
+                <div class="text-center upload-image">
+                    <img class="img-thumbnail" src='{{ImagePath}}' />
+                    <div class="table-loading" ng-if="uploadLoading">
+                        <div class="loading-overlay"></div>
+                        <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <button class="btn upload-button" ng-model="File" ngf-select ngf-change="changeUpload(File)">Upload <span class="fa fa-upload btn-right"></span></button>
+                </div>
+
+            </div>
+        </div>
+    </form>
+
+</div>
+<div class="table-loading" ng-if="userInsertLoading">
+    <div class="loading-overlay"></div>
+    <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+    <div class="progress-loading">{{progress}}</div>
+</div>
+<div class="modal-footer">
+    <button class="btn success-btn" type="button" ng-click="confirmEdit()">Confirm</button>
+    <button class="btn cancel-btn float-left" type="button" ng-click="cancel()">Cancel</button>
+</div>
+<script src="~/App/Services/convertorService.js"></script>
+

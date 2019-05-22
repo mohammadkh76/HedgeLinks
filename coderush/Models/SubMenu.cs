@@ -10,7 +10,6 @@ namespace HedgeLinks.Models
 {
     public class SubMenu:Detail
     {
-        public int Id { get; set; }
         [DisplayName(" Name ")]
         [Required(ErrorMessage ="*This Field is Required")]
         public string Name { get; set; }

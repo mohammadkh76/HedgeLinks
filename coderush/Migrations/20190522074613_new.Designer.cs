@@ -11,7 +11,7 @@ using System;
 namespace HedgeLinks.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20190521185525_new")]
+    [Migration("20190522074613_new")]
     partial class @new
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -822,6 +822,36 @@ namespace HedgeLinks.Migrations
                     b.ToTable("ThirdSection");
                 });
 
+            modelBuilder.Entity("HedgeLinks.Models.TopImage", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("CreateDate");
+
+                    b.Property<string>("CreatedUserId");
+
+                    b.Property<string>("EditDate");
+
+                    b.Property<string>("EditUserId");
+
+                    b.Property<string>("FilePath");
+
+                    b.Property<string>("ImageSubtitle");
+
+                    b.Property<string>("ImageTitle");
+
+                    b.Property<string>("Keyword");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CreatedUserId");
+
+                    b.HasIndex("EditUserId");
+
+                    b.ToTable("TopImage");
+                });
+
             modelBuilder.Entity("HedgeLinks.Models.UnitOfMeasure", b =>
                 {
                     b.Property<int>("UnitOfMeasureId")
@@ -1138,6 +1168,17 @@ namespace HedgeLinks.Migrations
                         .WithMany("SubMenus")
                         .HasForeignKey("MenubarId")
                         .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("HedgeLinks.Models.TopImage", b =>
+                {
+                    b.HasOne("HedgeLinks.Models.ApplicationUser", "CreatedUser")
+                        .WithMany()
+                        .HasForeignKey("CreatedUserId");
+
+                    b.HasOne("HedgeLinks.Models.ApplicationUser", "EditedUser")
+                        .WithMany()
+                        .HasForeignKey("EditUserId");
                 });
 
             modelBuilder.Entity("HedgeLinks.Models.UserProfile", b =>

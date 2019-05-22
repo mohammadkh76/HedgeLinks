@@ -40,17 +40,28 @@
                     <i class="fa fa-gear"></i> <span>@MainMenu.Menubar.PageName</span>
                 </a>
             </li>
+            <li class="@Html.IsSelected(controller: MainMenu.Submenu.ControllerName, action: MainMenu.Submenu.ActionName)">
+                <a href="@MainMenu.Submenu.Path">
+                    <i class="fa fa-gear"></i> <span>@MainMenu.Submenu.PageName</span>
+                </a>
+            </li>
+            <li class="@Html.IsSelected(controller: MainMenu.TopImage.ControllerName, action: MainMenu.TopImage.ActionName)">
+                <a href="@MainMenu.TopImage.Path">
+                    <i class="fa fa-gear"></i> <span>@MainMenu.TopImage.PageName</span>
+                </a>
+            </li>
+            <li class="@Html.IsSelected(controller: MainMenu.ComercialTips.ControllerName, action: MainMenu.ComercialTips.ActionName)">
+                <a href="@MainMenu.ComercialTips.Path">
+                    <i class="fa fa-gear"></i> <span>@MainMenu.ComercialTips.PageName</span>
+                </a>
+            </li>
             <li class="header">USER & ROLE</li>
             <li class="@Html.IsSelected(controller: MainMenu.User.ControllerName, action: MainMenu.User.ActionName)">
                 <a href="@MainMenu.User.Path">
                     <i class="fa fa-users"></i> <span>@MainMenu.User.PageName</span>
                 </a>
             </li>
-            <li class="@Html.IsSelected(controller: MainMenu.ChangePassword.ControllerName, action: MainMenu.ChangePassword.ActionName)">
-                <a href="@MainMenu.ChangePassword.Path">
-                    <i class="fa fa-key"></i> <span>@MainMenu.ChangePassword.PageName</span>
-                </a>
-            </li>
+           
             <li class="@Html.IsSelected(controller: MainMenu.Role.ControllerName, action: MainMenu.Role.ActionName)">
                 <a href="@MainMenu.Role.Path">
                     <i class="fa fa-gear"></i> <span>@MainMenu.Role.PageName</span>

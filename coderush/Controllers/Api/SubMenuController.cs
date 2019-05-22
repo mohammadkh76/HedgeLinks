@@ -13,7 +13,6 @@ using Microsoft.EntityFrameworkCore;
 namespace HedgeLinks.Controllers.Api
 {
     [Produces("application/json")]
-    [Route("api/SubMenu")]
     public class SubMenuController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -36,7 +35,7 @@ namespace HedgeLinks.Controllers.Api
         {
             int skip = ((pages.Current - 1) * pages.ItemInPage);
 
-            var Items = _context.Submenu.Include(x => x.CreatedUser).Include(x => x.EditedUser).OrderByDescending(x => x.Id);
+            var Items = _context.Submenu.Include(x => x.CreatedUser).Include(x => x.EditedUser).Include(x => x.Menubar).Include(x => x.MenuPath).OrderByDescending(x => x.Id);
             int count = Items.Count();
 
             Items = Items.Skip(skip).Take(pages.ItemInPage).OrderByDescending(x => x.Id);
@@ -48,7 +47,7 @@ namespace HedgeLinks.Controllers.Api
         {
             List<string> messages = new List<string>();
 
-            var rec = _context.Submenu.FirstOrDefault(x => x.Id == id);
+            var rec = _context.Submenu.Include(x => x.Menubar).Include(x => x.MenuPath).FirstOrDefault(x => x.Id == id);
             if (rec != null)
             {
                 _context.Submenu.Remove(rec);
@@ -66,39 +65,50 @@ namespace HedgeLinks.Controllers.Api
         public IActionResult InsertSubmenu([FromBody] SubmenuVM toSendData)
         {
             List<string> messages = new List<string>();
-            var _currentUserId = "";
-            if (HttpContext.User.Identity.IsAuthenticated)
-            {
-                var _currentUser = HttpContext.User.Identity.Name;
-                _currentUserId = _context.ApplicationUser.FirstOrDefault(x => x.UserName == _currentUser).Id;
-            }
-            try
+            if (toSendData != null)
             {
 
-                _context.Submenu.Add(new Submenu
+                if (toSendData.SelectedMenu == 0)
                 {
-                    Name = toSendData.Name,
-                    Path = toSendData.Path,
-                    MenuPathId = toSendData.SelectedPage,
-                    CreatedUserId = _currentUserId,
-                    CreateDate = DateTime.Now.ToString(),
-                });
-                _context.SaveChanges();
-                messages.Add("your data submited successfully.");
+                    messages.Add("you should select Menu");
+                    return BadRequest(new { Status = "Failed", Messages = messages });
+                }
+                var _currentUserId = "";
+                if (HttpContext.User.Identity.IsAuthenticated)
+                {
+                    var _currentUser = HttpContext.User.Identity.Name;
+                    _currentUserId = _context.ApplicationUser.FirstOrDefault(x => x.UserName == _currentUser).Id;
+                }
+                try
+                {
+
+                    _context.Submenu.Add(new SubMenu
+                    {
+                        Name = toSendData.Name,
+                        Path = toSendData.Path,
+                        MenuPathId = toSendData.SelectedPage,
+                        MenubarId = toSendData.SelectedMenu,
+                        CreatedUserId = _currentUserId,
+                        CreateDate = DateTime.Now.ToString(),
+                    });
+                    _context.SaveChanges();
+                    messages.Add("your data submited successfully.");
+
+                }
+                catch (Exception ex)
+                {
+                    messages.Add("there was problem in adding data.");
+
+
+                    throw;
+                }
+
+
+                //var rec = _context.MenuPath.FirstOrDefault(x => x.Id == id);
+                //_context.MenuPath.Remove(rec);
+                //_context.SaveChanges();
 
             }
-            catch (Exception ex)
-            {
-                messages.Add("there was problem in adding data.");
-
-
-                throw;
-            }
-
-
-            //var rec = _context.MenuPath.FirstOrDefault(x => x.Id == id);
-            //_context.MenuPath.Remove(rec);
-            //_context.SaveChanges();
             return Ok(new { Status = "success", Messages = messages });
         }
 
@@ -109,29 +119,44 @@ namespace HedgeLinks.Controllers.Api
         public IActionResult GetEditData(int id)
         {
             List<string> messages = new List<string>();
-            var item = _context.Submenu.Include(x => x.MenuPath).FirstOrDefault(x => x.Id == id);
+            var item = _context.Submenu.Include(x => x.MenuPath).Include(x => x.Menubar).FirstOrDefault(x => x.Id == id);
 
             return Ok(new { Status = "success", Data = item });
         }
         [HttpPost("api/Submenu/Edit/")]
-        public IActionResult Edit([FromBody] SubmenuEditVM menubar)
+        public IActionResult Edit([FromBody] SubmenuEditVM submenu)
         {
             List<string> messages = new List<string>();
-            var item = _context.Submenu.Include(x => x.CreatedUser).Include(x => x.EditedUser).FirstOrDefault(x => x.Id == submenu.Id);
 
-            var _currentUser = HttpContext.User.Identity.Name;
-            var _currentUserId = _context.ApplicationUser.FirstOrDefault(x => x.UserName == _currentUser).Id;
-            if (item != null)
+
+            if (submenu != null)
             {
-                item.Name = submenu.Name;
-                item.Path = submenu.Path;
-                item.MenuPathId = Int32.Parse(submenu.SelectedPage);
-                item.EditUserId = _currentUserId;
-                item.EditDate = DateTime.Now.ToString();
-                _context.SaveChanges();
-            }
-            return Ok(new { Status = "success", Data = item, Messages = messages });
-        }
 
+
+                if (submenu.SelectedMenu == 0)
+                {
+
+                    messages.Add("you should select Menu");
+                    return BadRequest(new { Status = "Failed", Messages = messages });
+                }
+                var item = _context.Submenu.Include(x => x.CreatedUser).Include(x => x.EditedUser).FirstOrDefault(x => x.Id == submenu.Id);
+
+                var _currentUser = HttpContext.User.Identity.Name;
+                var _currentUserId = _context.ApplicationUser.FirstOrDefault(x => x.UserName == _currentUser).Id;
+                if (item != null)
+                {
+                    item.Name = submenu.Name;
+                    item.Path = submenu.Path;
+                    item.MenuPathId = submenu.SelectedPage;
+                    item.MenubarId = submenu.SelectedMenu;
+                    item.EditUserId = _currentUserId;
+                    item.EditDate = DateTime.Now.ToString();
+                    _context.SaveChanges();
+                }
+            }
+            return Ok(new { Status = "success", Messages = messages });
+
+
+        }
     }
 }
