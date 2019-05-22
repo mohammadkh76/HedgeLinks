@@ -7,7 +7,6 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace HedgeLinks.Controllers
 {
-    [Authorize(Roles = Pages.MainMenu.InvoiceType.RoleName)]
     public class InvoiceTypeController : Controller
     {
         public IActionResult Index()

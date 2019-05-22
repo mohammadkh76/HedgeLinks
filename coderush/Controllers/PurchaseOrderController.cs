@@ -9,7 +9,6 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace HedgeLinks.Controllers
 {
-    [Authorize(Roles = Pages.MainMenu.PurchaseOrder.RoleName)]
     public class PurchaseOrderController : Controller
     {
         private readonly ApplicationDbContext _context;

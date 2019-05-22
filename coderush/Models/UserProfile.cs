@@ -8,7 +8,7 @@ namespace HedgeLinks.Models
 {
     public class UserProfile:Detail
     {
-        public int UserProfileId { get; set; }
+        //public int UserProfileId { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Email { get; set; }

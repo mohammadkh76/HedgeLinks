@@ -1,0 +1,78 @@
+﻿@model IEnumerable<HedgeLinks.Models.SubMenu>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Adminlte.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Path)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CreateDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.EditDate)
+                </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreatedUser)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EditedUser)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MenuPath)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Menubar)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Path)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreateDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EditDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreatedUser.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EditedUser.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MenuPath.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Menubar.Name)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

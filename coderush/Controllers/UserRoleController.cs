@@ -20,25 +20,21 @@ namespace HedgeLinks.Controllers
         }
 
 
-        [Authorize(Roles = Pages.MainMenu.User.RoleName)]
         public IActionResult Index()
         {
             return View();
         }
 
-        [Authorize(Roles = Pages.MainMenu.ChangePassword.RoleName)]
         public IActionResult ChangePassword()
         {
             return View();
         }
 
-        [Authorize(Roles = Pages.MainMenu.Role.RoleName)]
         public IActionResult Role()
         {
             return View();
         }
 
-        [Authorize(Roles = Pages.MainMenu.ChangeRole.RoleName)]
         public IActionResult ChangeRole()
         {
             return View();

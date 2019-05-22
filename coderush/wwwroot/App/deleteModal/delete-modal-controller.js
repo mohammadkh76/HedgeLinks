@@ -3,7 +3,8 @@
     
    $scope.confirmDel=function () {
          dataService.get($scope.url).then(function () {
-             $scope.cancel();
+             $uibModalInstance.close();
+
         })
    }
     $scope.cancel = function () {

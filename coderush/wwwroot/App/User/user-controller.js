@@ -48,19 +48,19 @@
         });
     };
     $scope.maxSize = 5;
-    //$scope.openDescriptionModal = function (id) {
-    //    $scope.selectedId = id;
-    //    $scope.url = '/api/Menupath/DescriptionDetail/' + id;
-    //    var modalInstance = $uibModal.open({
-    //        animation: true,
-    //        templateUrl: '/App/MenuPath/description-menupath.html',
-    //        controller: 'descriptionMenupathModalController',
-    //        scope: $scope,
-    //        size: 'lg',
-    //        windowClass: 'delete-modal',
-    //        appendTo: $('body')
-    //    })
-    //}
+    $scope.openChangePasswordModal= function (id) {
+        $scope.selectedId = id;
+        $scope.url = '/api/User/ChangePassword/' ;
+        var modalInstance = $uibModal.open({
+            animation: true,
+            templateUrl: '/App/User/change-password.html',
+            controller: 'ChangePasswordController',
+            scope: $scope,
+            size: 'lg',
+            windowClass: 'delete-modal',
+            appendTo: $('body')
+        })
+    }
     $scope.openDeleteModal = function (id) {
         $scope.selectedId = id;
         $scope.url = '/api/User/Delete/' + id;
