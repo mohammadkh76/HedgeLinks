@@ -41,6 +41,14 @@ namespace HedgeLinks.Controllers.Api
             Items = Items.Skip(skip).Take(pages.ItemInPage).OrderByDescending(x => x.Id);
             return Ok(new { Status = "success", Data = Items.ToList(), Count = count });
         }
+        [HttpGet]
+        [Route("api/Menubar/GetAllMenubar/")]
+        public IActionResult GetAllMenuPath()
+        {
+            var Items = _context.Menubar.Include(x => x.CreatedUser).Include(x => x.EditedUser);
+
+            return Ok(new { Status = "Success", Data = Items.ToList() });
+        }
         [HttpGet("api/Menubar/Delete/{id}")]
 
         public IActionResult DelMenubar(int id)

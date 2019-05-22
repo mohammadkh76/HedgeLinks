@@ -91,6 +91,9 @@
 
   <ItemGroup>
     <Folder Include="Migrations\" />
+    <Folder Include="wwwroot\images\CommercialTips\" />
+    <Folder Include="wwwroot\images\ThirdSection\" />
+    <Folder Include="wwwroot\images\TopImage\" />
     <Folder Include="wwwroot\images\ProfilePics\" />
   </ItemGroup>
 

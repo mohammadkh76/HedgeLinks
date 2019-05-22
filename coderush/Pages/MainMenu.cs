@@ -32,8 +32,8 @@ namespace HedgeLinks.Pages
         {
             public const string PageName = "Submenu";
             public const string RoleName = "Submenu";
-            public const string Path = "/Submenues/Index";
-            public const string ControllerName = "Submenues";
+            public const string Path = "/Submenus/Index";
+            public const string ControllerName = "Submenus";
             public const string ActionName = "Sub Menu";
         }
 
@@ -41,8 +41,8 @@ namespace HedgeLinks.Pages
         {
             public const string PageName = "Comercial Tips";
             public const string RoleName = "Comercial Tips";
-            public const string Path = "/GoodsReceivedNote/Index";
-            public const string ControllerName = "GoodsReceivedNote";
+            public const string Path = "/ComercialTips/Index";
+            public const string ControllerName = "ComercialTips";
             public const string ActionName = "Index";
         }
 
