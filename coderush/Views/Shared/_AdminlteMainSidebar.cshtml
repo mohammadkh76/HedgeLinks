@@ -28,10 +28,16 @@
                 </a>
             </li>
 
+
             <li class="header">UI</li>
             <li class="@Html.IsSelected(controller: MainMenu.MenuPath.ControllerName, action: MainMenu.MenuPath.ActionName)">
                 <a href="@MainMenu.MenuPath.Path">
                     <i class="fa fa-gear"></i> <span>@MainMenu.MenuPath.PageName</span>
+                </a>
+            </li>
+            <li class="@Html.IsSelected(controller: MainMenu.Menubar.ControllerName, action: MainMenu.Menubar.ActionName)">
+                <a href="@MainMenu.Menubar.Path">
+                    <i class="fa fa-gear"></i> <span>@MainMenu.Menubar.PageName</span>
                 </a>
             </li>
             <li class="header">USER & ROLE</li>

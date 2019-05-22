@@ -23,7 +23,7 @@ namespace HedgeLinks.Controllers.Api
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly IHostingEnvironment hostingEnvironment;
-     
+
         public UserController(ApplicationDbContext context,
                         UserManager<ApplicationUser> userManager,
                         RoleManager<IdentityRole> roleManager, IHostingEnvironment environment)
@@ -46,20 +46,17 @@ namespace HedgeLinks.Controllers.Api
             Items = Items.Skip(skip).Take(pages.ItemInPage).OrderByDescending(x => x.Id);
             return Ok(new { Status = "success", Data = Items.ToList(), Count = count });
         }
-
-        [HttpGet("[action]/{id}")]
-        public IActionResult GetByApplicationUserId([FromRoute]string id)
+        [HttpGet("api/User/GetUser/{id}")]
+        public IActionResult GetUser([FromRoute] int id)
         {
-            UserProfile userProfile = _context.UserProfile.SingleOrDefault(x => x.ApplicationUserId.Equals(id));
+            UserProfile userProfile = _context.UserProfile.SingleOrDefault(x => x.Id.Equals(id));
             List<UserProfile> Items = new List<UserProfile>();
             if (userProfile != null)
             {
                 Items.Add(userProfile);
             }
-            int Count = Items.Count();
-            return Ok(new { Items, Count });
+            return Ok(new { Status = "Success", Data = Items[0] });
         }
-
         [HttpPost("api/User/Insert")]
         public async Task<IActionResult> Insert()
         {
@@ -73,11 +70,12 @@ namespace HedgeLinks.Controllers.Api
             string password = String.IsNullOrEmpty(form["Password"]) ? "" : form["Password"].ToString();
             string confirmPassword = String.IsNullOrEmpty(form["ConfirmPassword"]) ? "" : form["ConfirmPassword"].ToString();
             string profilePic = "";
-            if (form.Files[0]==null) {
-                 profilePic = "/upload/blank-person.png";
+            if (form.Files.Count<1)
+            {
+                profilePic = "/upload/blank-person.png";
 
             }
-            if (form.Files[0] != null)
+            if (form.Files.Count>0)
             {
                 var file = form.Files[0];
                 var rootPath = hostingEnvironment.WebRootPath.ToString();
@@ -104,7 +102,7 @@ namespace HedgeLinks.Controllers.Api
                 var result = await _userManager.CreateAsync(user, password);
                 if (result.Succeeded)
                 {
-                    
+
                     register.CreatedUserId = _currentUserId;
                     register.CreateDate = DateTime.Now.ToString();
                     register.Password = user.PasswordHash;
@@ -115,7 +113,16 @@ namespace HedgeLinks.Controllers.Api
                     register.ApplicationUserId = user.Id;
                     register.ProfilePicture = profilePic;
                     _context.UserProfile.Add(register);
-                    await _context.SaveChangesAsync();
+                    try
+                    {
+                        await _context.SaveChangesAsync();
+
+                    }
+                    catch (Exception ex)
+                    {
+
+                        throw;
+                    }
                 }
                 else
                 {
@@ -133,8 +140,57 @@ namespace HedgeLinks.Controllers.Api
             }
             messages.Add("your data Submitted successfully");
 
-            return Ok(new{ Status = "Success", Messages = messages});
+            return Ok(new { Status = "Success", Messages = messages });
         }
+        [HttpPost("api/User/ChangePassword")]
+        public async Task<IActionResult> ChangePassword([FromBody] ChangePasswordVM Data)
+        {
+            UserProfile profile = new UserProfile();
+            List<string> messages = new List<string>();
+            if (Data.Password.Equals(Data.ConfirmPassword))
+            {
+                var selectedUserProfile = _context.UserProfile.FirstOrDefault(x => x.Id == Int32.Parse(Data.SelectedId));
+                var user = await _userManager.FindByIdAsync(selectedUserProfile.ApplicationUserId);
+                var result = await _userManager.ChangePasswordAsync(user, Data.OldPassword, Data.Password);
+                if (result.Errors.Count() > 0)
+                {
+                    messages.Add(result.Errors.First().Description.ToString());
+                    return BadRequest(new { Status = "Failed", Messages = messages });
+
+                }
+                else
+                {
+                    profile = _context.UserProfile.SingleOrDefault(x => x.ApplicationUserId.Equals(Data.SelectedId));
+
+
+                }
+
+            }
+            else
+            {
+                messages.Add("your new password didn't match");
+                return BadRequest(new { Status = "Failed", Messages = messages });
+
+            }
+            messages.Add("password changed successfully");
+            return Ok(new { Status = "Success", Messages = messages });
+
+        }
+
+        [HttpGet("[action]/{id}")]
+        public IActionResult GetByApplicationUserId([FromRoute]string id)
+        {
+            UserProfile userProfile = _context.UserProfile.SingleOrDefault(x => x.ApplicationUserId.Equals(id));
+            List<UserProfile> Items = new List<UserProfile>();
+            if (userProfile != null)
+            {
+                Items.Add(userProfile);
+            }
+            int Count = Items.Count();
+            return Ok(new { Items, Count });
+        }
+
+
 
         [HttpPost("[action]")]
         public async Task<IActionResult> Update([FromBody]CrudViewModel<UserProfile> payload)
@@ -145,44 +201,49 @@ namespace HedgeLinks.Controllers.Api
             return Ok(profile);
         }
 
-        [HttpPost("[action]")]
-        public async Task<IActionResult> ChangePassword([FromBody]CrudViewModel<UserProfile> payload)
+        [HttpGet("api/User/Delete/{id}")]
+        public async Task<IActionResult> Remove([FromRoute] int id)
         {
-            UserProfile profile = payload.value;
-            if (profile.Password.Equals(profile.ConfirmPassword))
+            List<string> messages = new List<string>();
+
+            var userProfile = _context.UserProfile.SingleOrDefault(x => x.Id.Equals(id));
+            if (userProfile != null)
             {
-                var user = await _userManager.FindByIdAsync(profile.ApplicationUserId);
-                var result = await _userManager.ChangePasswordAsync(user, profile.OldPassword, profile.Password);
+                var user = _context.ApplicationUser.SingleOrDefault(x => x.Id == userProfile.ApplicationUserId);
+
+                var result = await _userManager.DeleteAsync(user);
+                if (result.Succeeded)
+                {
+                    try
+                    {
+                        var rootPath = hostingEnvironment.WebRootPath.ToString();
+                        var serverPath = rootPath + userProfile.ProfilePicture;
+                        System.IO.File.Delete(serverPath);
+                        _context.Remove(userProfile);
+                        await _context.SaveChangesAsync();
+                    }
+                    catch (Exception ex)
+                    {
+                        _context.Remove(userProfile);
+                        await _context.SaveChangesAsync();
+
+                    }
+
+                }
+
             }
-            profile = _context.UserProfile.SingleOrDefault(x => x.ApplicationUserId.Equals(profile.ApplicationUserId));
-            return Ok(profile);
+            messages.Add("Record Deleted Successfully"); 
+            return Ok(new { Status = "Success", Messages = messages });
+
         }
+
+
 
         [HttpPost("[action]")]
         public IActionResult ChangeRole([FromBody]CrudViewModel<UserProfile> payload)
         {
             UserProfile profile = payload.value;
             return Ok(profile);
-        }
-
-        [HttpPost("[action]")]
-        public async Task<IActionResult> Remove([FromBody]CrudViewModel<UserProfile> payload)
-        {
-            var userProfile = _context.UserProfile.SingleOrDefault(x => x.UserProfileId.Equals((int)payload.key));
-            if (userProfile != null)
-            {
-                var user = _context.Users.Where(x => x.Id.Equals(userProfile.ApplicationUserId)).FirstOrDefault();
-                var result = await _userManager.DeleteAsync(user);
-                if (result.Succeeded)
-                {
-                    _context.Remove(userProfile);
-                    await _context.SaveChangesAsync();
-                }
-
-            }
-
-            return Ok();
-
         }
 
 

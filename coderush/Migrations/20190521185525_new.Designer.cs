@@ -11,8 +11,8 @@ using System;
 namespace HedgeLinks.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20190521104533_detail")]
-    partial class detail
+    [Migration("20190521185525_new")]
+    partial class @new
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -865,8 +865,6 @@ namespace HedgeLinks.Migrations
                     b.Property<string>("Password");
 
                     b.Property<string>("ProfilePicture");
-
-                    b.Property<int>("UserProfileId");
 
                     b.HasKey("Id");
 

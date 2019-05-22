@@ -56,25 +56,28 @@
         }
         dataService.post('/api/MenuPath/Edit/', $scope.editData).then(function (res) {
             if (res.data.Status == 'success') {
-                $scope.cancel();
-            
+                $uibModalInstance.close();
             }
 
         })
         $uibModalInstance.result.then(function () {
-            $scope.tableLoading = true;
-            $scope.getAll({
-                successFunc() {
-                    $scope.tableLoading = false;
-                },
-                messages() {
-                    toaster.pop('success', 'Success', 'Your Record edited successfully');
+            if (!$scope.isCanceled) {
+                $scope.tableLoading = true;
+                $scope.getAll({
+                    successFunc() {
+                        $scope.tableLoading = false;
+                    },
+                    messages() {
+                        toaster.pop('success', 'Success', 'Your Record edited successfully');
 
-                }
-            });
+                    }
+                });
 
+            }
+           
         });
         $scope.cancel = function () {
+            $scope.isCanceled = true;
             $uibModalInstance.close();
 
         }

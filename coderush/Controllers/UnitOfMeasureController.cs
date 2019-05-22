@@ -7,7 +7,6 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace HedgeLinks.Controllers
 {
-    [Authorize(Roles = Pages.MainMenu.UnitOfMeasure.RoleName)]
     public class UnitOfMeasureController : Controller
     {
         public IActionResult Index()

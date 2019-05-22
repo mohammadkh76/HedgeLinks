@@ -865,8 +865,6 @@ namespace HedgeLinks.Migrations
 
                     b.Property<string>("ProfilePicture");
 
-                    b.Property<int>("UserProfileId");
-
                     b.HasKey("Id");
 
                     b.HasIndex("ApplicationUserId");

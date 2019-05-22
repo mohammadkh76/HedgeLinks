@@ -7,7 +7,6 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace HedgeLinks.Controllers
 {
-    [Authorize(Roles = Pages.MainMenu.CustomerType.RoleName)]
     public class CustomerTypeController : Controller
     {
         public IActionResult Index()
