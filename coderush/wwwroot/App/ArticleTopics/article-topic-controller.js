@@ -1,4 +1,4 @@
-﻿adminModule.controller("menuPathController", ["$scope", "dataService", "$window", "$uibModal", "toaster", function ($scope, dataService, $window, $uibModal, toaster) {
+﻿adminModule.controller("articleTopicController", ["$scope", "dataService", "$window", "$uibModal", "toaster", function ($scope, dataService, $window, $uibModal, toaster) {
     $scope.currentPage = 1;
     $scope.tableLoading = true;
     $scope.page = {
@@ -6,7 +6,7 @@
         ItemInPage: 10
     }
     $scope.getAll = function ({successFunc,messages}) {
-        dataService.post('/api/Menupath/GetAll/', $scope.page).then(function (res) {
+        dataService.post('/api/ArticleTopic/GetAll/', $scope.page).then(function (res) {
             console.log(res.data);
             if (res.data.Data.length > 0) {
                 $scope.data = res.data.Data;
@@ -48,26 +48,14 @@
         });
     };
     $scope.maxSize = 5;
-    $scope.openDescriptionModal = function (id) {
-        $scope.selectedId = id;
-        $scope.url = '/api/Menupath/DescriptionDetail/' + id;
-        var modalInstance = $uibModal.open({
-            animation: true,
-            templateUrl: '/App/MenuPath/description-menupath.html',
-            controller: 'descriptionMenupathModalController',
-            scope: $scope,
-            size: 'lg',
-            windowClass: 'delete-modal',
-            appendTo: $('body')
-        })
-    }
+   
     $scope.openDeleteModal = function (id) {
         $scope.selectedId = id;
         $scope.url = '/api/Menupath/Delete/' + id;
         $scope.href = '/Menupaths/index';
         var modalInstance = $uibModal.open({
             animation: true,
-            templateUrl: '/App/DeleteModal/delete-modal.html',
+            templateUrl: '/App/ArticleTopic/delete-modal.html',
             controller: 'deleteModalController',
             scope: $scope,
             size: 'lg',
@@ -77,12 +65,12 @@
     }
 
     $scope.openInsertModal = function () {
-        $scope.url = '/api/Menupath/Insert/';
-        $scope.href = '/Menupaths/index';
+        $scope.url = '/api/ArticleTopic/Insert/';
+        $scope.href = '/ArticleTopic/index';
         var modalInstance = $uibModal.open({
             animation: true,
-            templateUrl: '/App/Menupath/insert-menupath.html',
-            controller: 'InsertMenupathController',
+            templateUrl: '/App/ArticleTopics/insert-article-topic.html',
+            controller: 'insertArticleTopicController',
             scope: $scope,
             size: 'lg',
             windowClass: 'insert-modal',
@@ -95,12 +83,12 @@
     }
     $scope.openEditModal = function (id) {
         $scope.selectedId = id;
-        $scope.url = '/api/Menupath/GetEditData/' + id;
-        $scope.href = '/Menupaths/index';
+        $scope.url = '/api/ArticleTopic/GetEditData/' + id;
+        $scope.href = '/ArticleTopics/index';
         var modalInstance = $uibModal.open({
             animation: true,
-            templateUrl: '/App/Menupath/edit-menupath.html',
-            controller: 'EditMenupathModalController',
+            templateUrl: '/App/ArticleTopics/edit-article-topic.html',
+            controller: 'editArticleTopicController',
             scope: $scope,
             size: 'lg',
             windowClass: 'delete-modal',

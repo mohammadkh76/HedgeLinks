@@ -11,7 +11,7 @@ using System;
 namespace HedgeLinks.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20190522074613_new")]
+    [Migration("20190522165000_new")]
     partial class @new
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -121,11 +121,23 @@ namespace HedgeLinks.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<string>("CreateDate");
+
+                    b.Property<string>("CreatedUserId");
+
                     b.Property<string>("Description");
+
+                    b.Property<string>("EditDate");
+
+                    b.Property<string>("EditUserId");
 
                     b.Property<string>("Title");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CreatedUserId");
+
+                    b.HasIndex("EditUserId");
 
                     b.ToTable("ArticleTopic");
                 });
@@ -1095,6 +1107,17 @@ namespace HedgeLinks.Migrations
                         .WithMany()
                         .HasForeignKey("MenuPathId")
                         .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("HedgeLinks.Models.ArticleTopic", b =>
+                {
+                    b.HasOne("HedgeLinks.Models.ApplicationUser", "CreatedUser")
+                        .WithMany()
+                        .HasForeignKey("CreatedUserId");
+
+                    b.HasOne("HedgeLinks.Models.ApplicationUser", "EditedUser")
+                        .WithMany()
+                        .HasForeignKey("EditUserId");
                 });
 
             modelBuilder.Entity("HedgeLinks.Models.ComercialTips", b =>

@@ -55,13 +55,23 @@
                     <i class="fa fa-gear"></i> <span>@MainMenu.ComercialTips.PageName</span>
                 </a>
             </li>
+            <li class="@Html.IsSelected(controller: MainMenu.ArticleTopics.ControllerName, action: MainMenu.ArticleTopics.ActionName)">
+                <a href="@MainMenu.ArticleTopics.Path">
+                    <i class="fa fa-gear"></i> <span>@MainMenu.ArticleTopics.PageName</span>
+                </a>
+            </li>
+            <li class="@Html.IsSelected(controller: MainMenu.Articles.ControllerName, action: MainMenu.Articles.ActionName)">
+                <a href="@MainMenu.Articles.Path">
+                    <i class="fa fa-gear"></i> <span>@MainMenu.Articles.PageName</span>
+                </a>
+            </li>
             <li class="header">USER & ROLE</li>
             <li class="@Html.IsSelected(controller: MainMenu.User.ControllerName, action: MainMenu.User.ActionName)">
                 <a href="@MainMenu.User.Path">
                     <i class="fa fa-users"></i> <span>@MainMenu.User.PageName</span>
                 </a>
             </li>
-           
+
             <li class="@Html.IsSelected(controller: MainMenu.Role.ControllerName, action: MainMenu.Role.ActionName)">
                 <a href="@MainMenu.Role.Path">
                     <i class="fa fa-gear"></i> <span>@MainMenu.Role.PageName</span>

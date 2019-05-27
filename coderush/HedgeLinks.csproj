@@ -90,7 +90,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Migrations\" />
+    <Folder Include="wwwroot\App\NewFolder\" />
     <Folder Include="wwwroot\images\CommercialTips\" />
     <Folder Include="wwwroot\images\ThirdSection\" />
     <Folder Include="wwwroot\images\TopImage\" />

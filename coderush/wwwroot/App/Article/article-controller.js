@@ -1,4 +1,4 @@
-﻿adminModule.controller("menubarController", ["$scope", "dataService", "$window", "$uibModal", "toaster", function ($scope, dataService, $window, $uibModal, toaster) {
+﻿adminModule.controller("articleController", ["$scope", "dataService", "$window", "$uibModal", "toaster", function ($scope, dataService, $window, $uibModal, toaster) {
     $scope.currentPage = 1;
     $scope.tableLoading = true;
     $scope.page = {
@@ -8,7 +8,7 @@
    
 
     $scope.getAll = function ({successFunc,messages}) {
-        dataService.post('/api/Menubar/GetAll/', $scope.page).then(function (res) {
+        dataService.post('/api/Article/GetAll/', $scope.page).then(function (res) {
             console.log(res.data);
             if (res.data.Data.length > 0) {
                 $scope.data = res.data.Data;
@@ -65,8 +65,8 @@
     //}
     $scope.openDeleteModal = function (id) {
         $scope.selectedId = id;
-        $scope.url = '/api/Menubar/Delete/' + id;
-        $scope.href = '/Menubars/index';
+        $scope.url = '/api/Article/Delete/' + id;
+        $scope.href = '/Articles/index';
         var modalInstance = $uibModal.open({
             animation: true,
             templateUrl: '/App/DeleteModal/delete-modal.html',
@@ -79,12 +79,12 @@
     }
 
     $scope.openInsertModal = function () {
-        $scope.url = '/api/Menubar/Insert/';
-        $scope.href = '/Menubars/index';
+        $scope.url = '/api/Article/Insert/';
+        $scope.href = '/Articles/index';
         var modalInstance = $uibModal.open({
             animation: true,
-            templateUrl: '/App/Menubar/insert-menubar.html',
-            controller: 'InsertMenubarController',
+            templateUrl: '/App/Article/insert-article.html',
+            controller: 'insertArticleController',
             scope: $scope,
             size: 'lg',
             windowClass: 'insert-modal',
@@ -97,12 +97,12 @@
     }
     $scope.openEditModal = function (id) {
         $scope.selectedId = id;
-        $scope.url = '/api/Menubar/GetEditData/' + id;
-        $scope.href = '/Menubars/index';
+        $scope.url = '/api/Article/GetEditData/' + id;
+        $scope.href = '/Articles/index';
         var modalInstance = $uibModal.open({
             animation: true,
-            templateUrl: '/App/Menubar/edit-menubar.html',
-            controller: 'EditMenubarController',
+            templateUrl: '/App/Article/edit-article.html',
+            controller: 'editArticleController',
             scope: $scope,
             size: 'lg',
             windowClass: 'delete-modal',

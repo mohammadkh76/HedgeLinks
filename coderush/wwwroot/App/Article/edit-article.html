@@ -14,24 +14,65 @@
         <div class="row">
             <div class="form-group">
                 <div class="col-md-10 col-md-offset-1">
-                    <input type="text" name="Name" value="" ng-model="Name" class="insert-editor" placeholder="Name" />
+                    <input type="text" name="AuthorName" value="" ng-model="AuthorName" class="insert-editor" placeholder="AuthorName" />
                 </div>
             </div>
-
             <div class="form-group">
                 <div class="col-md-10 col-md-offset-1">
-                    <select class="insert-editor" ng-model="SelectedPage" ng-change="clearPath()">
+                    <input type="text" name="Title" value="" ng-model="Title" class="insert-editor" placeholder="Title" />
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-10 col-md-offset-1">
+                    <input type="text" name="Description" value="" ng-model="Description" class="insert-editor" placeholder="Description" />
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-10 col-md-offset-1">
+                    <input type="text" name="Date" value="" ng-model="Date" class="insert-editor" placeholder="Date" />
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-10 col-md-offset-1">
+                    <textarea  name="Keyword" value="" ng-model="Keyword" class="insert-editor" placeholder="Keyword" />
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-10 col-md-offset-1">
+                    <select class="insert-editor" ng-model="SelectedArticleTopic" ng-change="clearPath()">
                         <option value="">select</option>
-                        <option value="{{item.Id}}" ng-repeat="item in pages">{{item.Name}}</option>
+                        <option value="{{item.Id}}" ng-repeat="item in articleTopic">{{item.Name}}</option>
                     </select>
                 </div>
             </div>
             <div class="form-group">
-                <div class="col-md-10  col-md-offset-1">
-                    <input type="text" class="insert-editor" ng-model="Path" name="Path" ng-disabled="SelectedPage" value="" placeholder="Path" />
+                <div class="col-md-10 col-md-offset-1">
+                    <select class="insert-editor" ng-model="SelectedPage" ng-change="clearPath()">
+                        <option value="">select</option>
+                        <option value="{{item.Id}}" ng-repeat="item in page">{{item.Name}}</option>
+                    </select>
                 </div>
             </div>
-
+            <div class="form-group">
+                <div class="col-md-10 col-md-offset-1">
+                    <input type="text" name="ExtenalLink" ng-disabled="SelectedPage" value="" ng-model="ExtenalLink" class="insert-editor" placeholder="ExtenalLink" />
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-10 col-md-offset-1">
+                    <input id="cbx" type="checkbox" />
+                    <label class="cbx" for="cbx">
+                        <div class="flip">
+                            <div class="front"></div>
+                            <div class="back">
+                                <svg width="16" height="14" viewBox="0 0 16 14">
+                                    <path d="M2 8.5L6 12.5L14 1.5"></path>
+                                </svg>
+                            </div>
+                        </div>
+                    </label>
+                </div>
+            </div>
         </div>
 
     </form>
