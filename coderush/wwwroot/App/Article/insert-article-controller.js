@@ -1,4 +1,4 @@
-﻿adminModule.controller('InsertMenubarController', ['$scope', '$uibModalInstance', 'dataService', '$window', 'toaster', function ($scope, $uibModalInstance, dataService, $window, toaster) {
+﻿adminModule.controller('insertArticleController', ['$scope', '$uibModalInstance', 'dataService', '$window', 'toaster', function ($scope, $uibModalInstance, dataService, $window, toaster) {
     $scope.page = {
         Current: $scope.currentPage,
         ItemInPage: 10
@@ -8,20 +8,36 @@
     dataService.get('/api/Menupath/GetAllMenupath/').then(function (res) {
         if (res.data.Status == "Success") {
             
-            $scope.pages = res.data.Data;
-            
+            $scope.page= res.data.Data;
+            $scope.$apply();
+
 
         }
         $scope.menubarLoading = false;
 
     })
-   
+    dataService.get('/api/ArticleTopic/GetAllArticleTopic/').then(function (res) {
+        if (res.data.Status == "Success") {
+
+            $scope.articleTopic = res.data.Data;
+            $scope.$apply();
+
+        }
+        $scope.menubarLoading = false;
+
+    })
+
     $scope.confirmInsert = function () {
         $scope.toSendData = {
-            Name: $scope.Name,
-            Path: $scope.Path,
-            SelectedPage: $scope.SelectedPage
-
+            AuthorName: $scope.AuthorName,
+            Title: $scope.Title,
+            Description: $scope.Description,
+            Date: $scope.Date,
+            Keyword: $scope.Keyword,
+            ArticleTopicId: $scope.SelectedArticleTopic,
+            MenupathId: $scope.SelectedPage,
+            ExternalLink: $scope.ExternalLink,
+            isShow:$scope.isShow
         }
         dataService.post($scope.url, $scope.toSendData).then(function (res) {
             if (res.data.Status == "success") {

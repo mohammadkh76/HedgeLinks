@@ -4,27 +4,22 @@ using System.Linq;
 using System.Threading.Tasks;
 using HedgeLinks.Data;
 using HedgeLinks.Models;
-using System.Web;
-//using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using HedgeLinks.Models.ManageViewModels;
-using HedgeLinks.Models.SyncfusionViewModels;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
 using HedgeLinks.Models.RESTViewModel;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace HedgeLinks.Controllers.Api
 {
     [Produces("application/json")]
-    
-    //[ApiController]
-    public class MenuPathController : ControllerBase
+    public class ArticleTopicController : Controller
     {
         private readonly ApplicationDbContext _context;
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
 
-        public MenuPathController(ApplicationDbContext context,
+        public ArticleTopicController(ApplicationDbContext context,
                         UserManager<ApplicationUser> userManager,
                         RoleManager<IdentityRole> roleManager)
         {
@@ -32,42 +27,48 @@ namespace HedgeLinks.Controllers.Api
             _userManager = userManager;
             _roleManager = roleManager;
         }
+        [HttpGet]
+        [Route("api/ArticleTopic/GetAllArticleTopic/")]
+        public IActionResult GetAllArticleTopic()
+        {
+            var Items = _context.ArticleTopic.Include(x => x.CreatedUser).Include(x => x.EditedUser);
 
+            return Ok(new { Status = "Success", Data = Items.ToList() });
+        }
         // GET: api/User
         [HttpPost]
-        [Route("api/MenuPath/GetAll/")]
-        public IActionResult PostMenuPath([FromBody]PageVM pages)
+        [Route("api/ArticleTopic/GetAll/")]
+        public IActionResult PostMenuPath([FromBody] PageVM pages)
         {
-            int skip =((pages.Current-1)  * pages.ItemInPage);
-            
-           var Items = _context.MenuPath.Include(x => x.CreatedUser).Include(x=>x.EditedUser).OrderByDescending(x => x.Id);
+            int skip = ((pages.Current - 1) * pages.ItemInPage);
+
+            var Items = _context.ArticleTopic.Include(x => x.CreatedUser).Include(x => x.EditedUser).OrderByDescending(x => x.Id);
             int count = Items.Count();
 
-             Items = Items.Skip(skip).Take(pages.ItemInPage).OrderByDescending(x => x.Id);
-            return Ok(new {Status="success",Data= Items.ToList(), Count=count});
+            Items = Items.Skip(skip).Take(pages.ItemInPage).OrderByDescending(x => x.Id);
+            return Ok(new { Status = "success", Data = Items.ToList(), Count = count });
         }
         [HttpGet]
-        [Route("api/MenuPath/GetAllMenuPath/")]
+        [Route("api/ArticleTopic/GetAllMenuPath/")]
         public IActionResult GetAllMenuPath()
         {
-            var Items = _context.MenuPath.Include(x => x.CreatedUser).Include(x => x.EditedUser);
+            var Items = _context.ArticleTopic.Include(x => x.CreatedUser).Include(x => x.EditedUser);
 
-            return Ok(new { Status = "Success", Data = Items.ToList()});
+            return Ok(new { Status = "Success", Data = Items.ToList() });
         }
-      
-        [HttpGet("api/MenuPath/Delete/{id}")]
+        [HttpGet("api/ArticleTopic/Delete/{id}")]
 
         public IActionResult DelMenuPath(int id)
         {
             List<string> messages = new List<string>();
 
-            var rec = _context.MenuPath.FirstOrDefault(x => x.Id == id);
-            if (rec!=null)
+            var rec = _context.ArticleTopic.FirstOrDefault(x => x.Id == id);
+            if (rec != null)
             {
-                _context.MenuPath.Remove(rec);
+                _context.ArticleTopic.Remove(rec);
 
             }
-            var count = _context.MenuPath.Count() ;
+            var count = _context.ArticleTopic.Count();
             _context.SaveChanges();
             messages.Add("your data deleted successfully.");
 
@@ -76,8 +77,8 @@ namespace HedgeLinks.Controllers.Api
         }
 
 
-        [HttpPost("api/MenuPath/Insert")]
-        public IActionResult InsertMenuPath([FromBody] MenuPathVM toSendData)
+        [HttpPost("api/ArticleTopic/Insert")]
+        public IActionResult InsertMenuPath([FromBody] ArticleTopicVM toSendData)
         {
             List<string> messages = new List<string>();
             var _currentUserId = "";
@@ -88,12 +89,11 @@ namespace HedgeLinks.Controllers.Api
             }
             try
             {
-                _context.MenuPath.Add(new MenuPath
+                _context.ArticleTopic.Add(new ArticleTopic
                 {
-                    Name = toSendData.Name,
+                    Title = toSendData.Title,
                     Description = toSendData.Description,
-                    PageName = toSendData.PageName,
-                   CreatedUserId = _currentUserId,
+                    CreatedUserId = _currentUserId,
                     CreateDate = DateTime.Now.ToString(),
                 });
                 _context.SaveChanges();
@@ -112,48 +112,39 @@ namespace HedgeLinks.Controllers.Api
             //var rec = _context.MenuPath.FirstOrDefault(x => x.Id == id);
             //_context.MenuPath.Remove(rec);
             //_context.SaveChanges();
-            return Ok(new { Status = "success",Messages=messages });
+            return Ok(new { Status = "success", Messages = messages });
         }
 
 
 
-        [HttpGet("api/Menupath/DescriptionDetail/{id}")]
-        public IActionResult ShowDescription(int id) {
-            List<string> messages = new List<string>();
-            string desc = _context.MenuPath.FirstOrDefault(x => x.Id == id).Description.ToString() ;
-            messages.Add("Your Page will show like this...");
-            return Ok(new { Status = "success", Data = desc, Messages = messages });
-        }
+       
 
-        [HttpGet("api/Menupath/GetEditData/{id}")]
+        [HttpGet("api/ArticleTopic/GetEditData/{id}")]
         public IActionResult GetEditData(int id)
         {
             List<string> messages = new List<string>();
-            var item = _context.MenuPath.FirstOrDefault(x => x.Id == id);
+            var item = _context.ArticleTopic.FirstOrDefault(x => x.Id == id);
 
-            return Ok(new { Status = "success",Data=item});
+            return Ok(new { Status = "success", Data = item });
         }
-        [HttpPost("api/MenuPath/Edit/")]
-        public IActionResult Edit([FromBody] MenuPathEditVM menupath)
+        [HttpPost("api/ArticleTopic/Edit/")]
+        public IActionResult Edit([FromBody] ArticleTopicEditVM menupath)
         {
             List<string> messages = new List<string>();
-            var item = _context.MenuPath.Include(x=>x.CreatedUser).Include(x=>x.EditedUser).FirstOrDefault(x => x.Id == menupath.Id);
+            var item = _context.ArticleTopic.Include(x => x.CreatedUser).Include(x => x.EditedUser).FirstOrDefault(x => x.Id == menupath.Id);
 
             var _currentUser = HttpContext.User.Identity.Name;
             var _currentUserId = _context.ApplicationUser.FirstOrDefault(x => x.UserName == _currentUser).Id;
-            if (item!=null)
+            if (item != null)
             {
-                item.Name = menupath.Name;
-                item.PageName = menupath.PageName;
+                item.Title = menupath.Title;
+                item.Description = menupath.Description;
                 item.EditUserId = _currentUserId;
                 item.EditDate = DateTime.Now.ToString();
-                item.Description = menupath.Description;
                 _context.SaveChanges();
             }
             return Ok(new { Status = "success", Data = item, Messages = messages });
         }
-
-    
 
     }
 }

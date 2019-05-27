@@ -4,9 +4,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace HedgeLinks.Models
+namespace HedgeLinks.Models.RESTViewModel
 {
-    public class Article:Detail
+    public class ArticleVM
     {
         public string AuthorName { get; set; }
         public string Title { get; set; }
@@ -16,10 +16,9 @@ namespace HedgeLinks.Models
         [ForeignKey("ArticleTopicId")]
         public ArticleTopic ArticleTopic { get; set; }
         public int ArticleTopicId { get; set; }
-        public MenuPath Menupath{ get; set; }
-        public int MenuPathId{ get; set; }
-        public string ExternalLink{ get; set; }
+        public MenuPath Menupath { get; set; }
+        public int MenuPathId { get; set; }
+        public string ExternalLink { get; set; }
         public bool isShow { get; set; }
-
     }
 }

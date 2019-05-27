@@ -1,44 +1,76 @@
-﻿<link href="/App/MenuPath/insert-menupath.css" rel="stylesheet" />
+﻿<link href="/App/Article/insert-article.css" rel="stylesheet" />
 <script>
 
 </script>
 <div class="modal-header">
-    <h3 class="modal-title" id="modal-title">Insert Menubar</h3>
+    <h3 class="modal-title" id="modal-title">Insert Article</h3>
 </div>
 <div class="modal-body">
-    <form name="insertForm" class="text-center" ng-submit="confirmInsert()">
+    <form name="insertForm" class="text-center">
         <div class="row">
             <div class="form-group">
                 <div class="col-md-10 col-md-offset-1">
-                    <input type="text" name="Name" value="" ng-model="Name" class="insert-editor" placeholder="Name" />
+                    <input type="text" name="Author Name" value="" ng-model="AuthorName" class="insert-editor" placeholder="AuthorName" />
                 </div>
             </div>
-
             <div class="form-group">
                 <div class="col-md-10 col-md-offset-1">
-                    <select class="insert-editor" ng-model="SelectedPage">
-                        <option value="">Select</option>
-                        <option ng-value="item.Id" ng-repeat="item in pages">{{item.Name}}</option>
+                    <input type="text" name="Title" value="" ng-model="Title" class="insert-editor" placeholder="Title" />
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-10 col-md-offset-1">
+                    <input type="text" name="Description" value="" ng-model="Description" class="insert-editor" placeholder="Description" />
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-10 col-md-offset-1">
+                    <input type="text" name="Date" value="" ng-model="Date" class="insert-editor" placeholder="Date" />
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-10 col-md-offset-1">
+                    <input type="text" name="Keyword" value="" ng-model="Keyword" class="insert-editor" placeholder="Keyword" />
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-10 col-md-offset-1">
+                    <select class="insert-editor" ng-model="SelectedArticleTopic" ng-change="clearPath()">
+                        <option value="">select Article Topic</option>
+                        <option value="{{item.Id}}" ng-repeat="item in articleTopic">{{item.Title}}</option>
                     </select>
                 </div>
             </div>
             <div class="form-group">
-                <div class="col-md-10  col-md-offset-1">
-
-                    <input type="text" ng-model="Path" ng-disabled="SelectedPage" name="Path" value="" placeholder="Path" class="insert-editor" />
-
+                <div class="col-md-10 col-md-offset-1">
+                    <select class="insert-editor" ng-model="SelectedPage" ng-change="clearPath()">
+                        <option value="">select Page</option>
+                        <option value="{{item.Id}}" ng-repeat="item in page">{{item.Name}}</option>
+                    </select>
                 </div>
             </div>
-            <div class="table-loading" ng-if="menubarLoading">
-                <div class="loading-overlay"></div>
-                <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+            <div class="form-group">
+                <div class="col-md-10 col-md-offset-1">
+                    <input type="text" name="ExtenalLink" value="" ng-model="ExternalLink" class="insert-editor" placeholder="ExtenalLink" />
+                </div>
             </div>
+            <div class="form-group">
+                <div class="col-md-10 col-md-offset-1">
+                    <div class="switch_box box_1">
+                        <div class="col-md-6 no-padding">
+                            <p class="float-left is-show-title">do you want to show this item in home page?</p>
+                        </div>
+                        <div class="col-md-6 no-padding">
 
-
+                            <input type="checkbox" class="switch_1" ng-model="isShow">
+                            </div>
+                        </div>
+                    </div>
+            </div>
         </div>
 
     </form>
-   
+
 </div>
 <div class="modal-footer">
     <button class="btn success-btn" type="button" ng-click="confirmInsert()">Confirm</button>
