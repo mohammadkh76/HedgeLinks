@@ -87,6 +87,7 @@ namespace HedgeLinks.Controllers.Api
                     ExternalLink = toSendData.ExternalLink,
                     AuthorName = toSendData.AuthorName,
                     MenuPathId = toSendData.MenuPathId,
+                    ArticleTopicId = toSendData.ArticleTopicId,
                     CreatedUserId = _currentUserId,
                     CreateDate = DateTime.Now.ToString(),
                 });
