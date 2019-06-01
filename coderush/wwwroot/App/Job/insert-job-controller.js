@@ -18,8 +18,8 @@
     }
     dataService.get('/api/Menupath/GetAllMenupath/').then(function (res) {
         if (res.data.Status == "Success") {
-            
-            $scope.page= res.data.Data;
+
+            $scope.page = res.data.Data;
 
 
         }
@@ -48,12 +48,12 @@
         $scope.ExternalLink = "";
 
     }
-   
+
 
     $scope.confirmInsert = function () {
-      debugger
+        debugger
         Upload.upload({
-            
+
             url: '/api/Job/Insert',
             data: {
                 Title: $scope.Title,
@@ -71,11 +71,10 @@
                 IsEasyApply: $scope.IsEasyApply,
                 IsTrend: $scope.IsTrend,
                 Keyword: $scope.Keyword,
-                MenuPathId:$scope.SelectedPage,
+                MenuPathId: $scope.SelectedPage,
                 JobIndustryId: $scope.SelectedJobIndustry,
                 JobTypeId: $scope.SelectedJobType,
-              ExternalLink:$scope.ExternalLink,
-
+                ExternalLink: $scope.ExternalLink,
                 File: $scope.File
             }
         }).then(function (resp) {

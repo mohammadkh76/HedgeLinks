@@ -10,6 +10,7 @@
         $scope.toSendData = {
             Title: $scope.Title,
             Description: $scope.Description,
+            IsShow: $scope.IsShow,
         }
         dataService.post($scope.url, $scope.toSendData).then(function (res) {
             if (res.data.Status == "success") {
