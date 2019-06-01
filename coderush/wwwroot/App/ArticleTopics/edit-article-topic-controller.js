@@ -14,6 +14,7 @@
           debugger
             $scope.Description = res.data.Data.Description;
             $scope.Title = res.data.Data.Title;
+            $scope.IsShow = res.data.Data.IsShow;
             $scope.selectedId = res.data.Data.Id;
             $scope.editDataLoading = false;
 
@@ -26,6 +27,7 @@
             Id:$scope.selectedId,
             Title: $scope.Title,
             Description: $scope.Description,
+            IsShow: $scope.IsShow,
         }
         dataService.post('/api/ArticleTopic/Edit/', $scope.editData).then(function (res) {
             if (res.data.Status == 'success') {

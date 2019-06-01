@@ -93,6 +93,7 @@ namespace HedgeLinks.Controllers.Api
                 {
                     Title = toSendData.Title,
                     Description = toSendData.Description,
+                    IsShow = toSendData.IsShow,
                     CreatedUserId = _currentUserId,
                     CreateDate = DateTime.Now.ToString(),
                 });
@@ -139,6 +140,7 @@ namespace HedgeLinks.Controllers.Api
             {
                 item.Title = menupath.Title;
                 item.Description = menupath.Description;
+                item.IsShow = menupath.IsShow;
                 item.EditUserId = _currentUserId;
                 item.EditDate = DateTime.Now.ToString();
                 _context.SaveChanges();
