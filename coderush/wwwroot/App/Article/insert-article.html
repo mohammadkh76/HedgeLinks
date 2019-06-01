@@ -35,7 +35,7 @@
             </div>
             <div class="form-group">
                 <div class="col-md-10 col-md-offset-1">
-                    <select class="insert-editor" ng-model="SelectedArticleTopic" ng-change="clearPath()">
+                    <select class="insert-editor" ng-model="SelectedArticleTopic">
                         <option value="">select Article Topic</option>
                         <option value="{{item.Id}}" ng-repeat="item in articleTopic">{{item.Title}}</option>
                     </select>
@@ -51,7 +51,7 @@
             </div>
             <div class="form-group">
                 <div class="col-md-10 col-md-offset-1">
-                    <input type="text" name="ExtenalLink" value="" ng-model="ExternalLink" class="insert-editor" placeholder="ExtenalLink" />
+                    <input type="text" name="ExtenalLink" value="" ng-model="ExternalLink" ng-disabled="SelectedPage" class="insert-editor" placeholder="ExtenalLink" />
                 </div>
             </div>
             <div class="form-group">
@@ -63,9 +63,9 @@
                         <div class="col-md-6 no-padding">
 
                             <input type="checkbox" class="switch_1" ng-model="isShow">
-                            </div>
                         </div>
                     </div>
+                </div>
             </div>
         </div>
 

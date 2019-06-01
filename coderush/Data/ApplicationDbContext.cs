@@ -89,6 +89,9 @@ namespace HedgeLinks.Data
         public DbSet<ArticleTopic> ArticleTopic { get; set; }
         public DbSet<ComercialTips> ComercialTips { get; set; }
         public DbSet<ThirdSection> ThirdSection { get; set; }
+        public DbSet<Job> Job { get; set; }
+        public DbSet<JobIndustry> JobIndustries { get; set; }
+        public DbSet<JobType> JobType { get; set; }
         public DbSet<HedgeLinks.Models.TopImage> TopImage { get; set; }
     }
 }

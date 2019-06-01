@@ -1,0 +1,55 @@
+﻿@model HedgeLinks.Models.JobIndustry
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Adminlte.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>JobIndustry</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CreateDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CreateDate)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.EditDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.EditDate)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CreatedUser)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CreatedUser.Id)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.EditedUser)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.EditedUser.Id)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

@@ -90,8 +90,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="wwwroot\App\ThirdSection\" />
     <Folder Include="wwwroot\App\NewFolder\" />
     <Folder Include="wwwroot\images\CommercialTips\" />
+    <Folder Include="wwwroot\images\NewFolder\" />
     <Folder Include="wwwroot\images\ThirdSection\" />
     <Folder Include="wwwroot\images\TopImage\" />
     <Folder Include="wwwroot\images\ProfilePics\" />

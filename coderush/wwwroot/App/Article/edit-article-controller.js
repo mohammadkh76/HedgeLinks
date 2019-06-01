@@ -1,4 +1,4 @@
-﻿adminModule.controller('EditMenubarController', ['$scope', '$uibModalInstance', 'dataService', '$window', 'toaster', function ($scope, $uibModalInstance, dataService, $window, toaster) {
+﻿adminModule.controller('editArticleController', ['$scope', '$uibModalInstance', 'dataService', '$window', 'toaster', function ($scope, $uibModalInstance, dataService, $window, toaster) {
     console.log("in edit modal conroller")
     $scope.editDataLoading = true;
     $scope.page = {
@@ -7,7 +7,8 @@
     }
     dataService.get('/api/Menupath/GetAllMenupath/').then(function (res) {
         if (res.data.Status == "Success") {
-            $scope.pages = res.data.Data;
+            $scope.page = res.data.Data;
+            $scope.$apply();
         }
         $scope.menubarLoading = false;
 
@@ -15,19 +16,20 @@
     dataService.get('/api/ArticleTopic/GetAllArticleTopic/').then(function (res) {
         if (res.data.Status == "Success") {
 
-            $scope.articlePath = res.data.Data;
+            $scope.articleTopic = res.data.Data;
+            $scope.$apply();
 
 
         }
+    })
     $scope.clearPath = function () {
-        $scope.Path = "";
+        $scope.ExternalLink = "";
 
     }
     $scope.editDataLoading = true;
 
     dataService.get($scope.url).then(function (res) {
         if (res.data.Status == "success") {
-           debugger
             $scope.ExternalLink = res.data.Data.ExternalLink;
             $scope.Title = res.data.Data.Title;
             $scope.AuthorName = res.data.Data.AuthorName;
@@ -35,8 +37,9 @@
             $scope.Date = res.data.Data.Date;
             $scope.Keyword = res.data.Data.Keyword;
             $scope.selectedId = res.data.Data.Id;
-            $scope.SelectedArticleTopic = parseInt(res.data.Data.ArticleTopicId);
-            $scope.SelectedPage = parseInt(res.data.Data.MenuPathId);
+            $scope.SelectedArticleTopic = res.data.Data.ArticleTopicId.toString()
+            $scope.isShow = res.data.Data.isShow;
+            $scope.SelectedPage = res.data.Data.MenuPathId.toString();
             $scope.editDataLoading = false;
 
         }
@@ -44,6 +47,7 @@
 
     })
     $scope.confirmEdit = function () {
+        
         $scope.editData = {
             Id:$scope.selectedId,
             AuthorName: $scope.AuthorName,
@@ -51,13 +55,13 @@
             Description: $scope.Description,
             Date: $scope.Date,
             Keyword: $scope.Keyword,
-            SelectedArticleTopic: $scope.SelectedArticleTopic,
-            SelectedPage: $scope.SelectedPage,
+            ArticleTopicId: $scope.SelectedArticleTopic,
+            MenuPathId: $scope.SelectedPage,
             ExternalLink: $scope.ExternalLink,
             isShow: $scope.isShow
-
         }
-        dataService.post('/api/Menubar/Edit/', $scope.editData).then(function (res) {
+        debugger;
+        dataService.post('/api/Article/Edit/', $scope.editData).then(function (res) {
             if (res.data.Status == 'success') {
                 $uibModalInstance.close();
             }
@@ -82,7 +86,6 @@
         $scope.cancel = function () {
             $scope.isCanceled = true;
             $uibModalInstance.close();
-
         }
 
     }

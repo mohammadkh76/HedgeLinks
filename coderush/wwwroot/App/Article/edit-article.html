@@ -14,7 +14,7 @@
         <div class="row">
             <div class="form-group">
                 <div class="col-md-10 col-md-offset-1">
-                    <input type="text" name="AuthorName" value="" ng-model="AuthorName" class="insert-editor" placeholder="AuthorName" />
+                    <input type="text" name="Author Name" value="" ng-model="AuthorName" class="insert-editor" placeholder="AuthorName" />
                 </div>
             </div>
             <div class="form-group">
@@ -34,43 +34,41 @@
             </div>
             <div class="form-group">
                 <div class="col-md-10 col-md-offset-1">
-                    <textarea  name="Keyword" value="" ng-model="Keyword" class="insert-editor" placeholder="Keyword" />
+                    <input type="text" name="Keyword" value="" ng-model="Keyword" class="insert-editor" placeholder="Keyword" />
                 </div>
             </div>
             <div class="form-group">
                 <div class="col-md-10 col-md-offset-1">
-                    <select class="insert-editor" ng-model="SelectedArticleTopic" ng-change="clearPath()">
-                        <option value="">select</option>
-                        <option value="{{item.Id}}" ng-repeat="item in articleTopic">{{item.Name}}</option>
+                    <select class="insert-editor" ng-model="SelectedArticleTopic">
+                        <option value="">select Article Topic</option>
+                        <option value="{{item.Id}}" ng-repeat="item in articleTopic">{{item.Title}}</option>
                     </select>
                 </div>
             </div>
             <div class="form-group">
                 <div class="col-md-10 col-md-offset-1">
                     <select class="insert-editor" ng-model="SelectedPage" ng-change="clearPath()">
-                        <option value="">select</option>
+                        <option value="0">select Page</option>
                         <option value="{{item.Id}}" ng-repeat="item in page">{{item.Name}}</option>
                     </select>
                 </div>
             </div>
             <div class="form-group">
                 <div class="col-md-10 col-md-offset-1">
-                    <input type="text" name="ExtenalLink" ng-disabled="SelectedPage" value="" ng-model="ExtenalLink" class="insert-editor" placeholder="ExtenalLink" />
+                    <input type="text" name="ExtenalLink" value="" ng-model="ExternalLink" ng-disabled="SelectedPage" class="insert-editor" placeholder="ExtenalLink" />
                 </div>
             </div>
             <div class="form-group">
                 <div class="col-md-10 col-md-offset-1">
-                    <input id="cbx" type="checkbox" />
-                    <label class="cbx" for="cbx">
-                        <div class="flip">
-                            <div class="front"></div>
-                            <div class="back">
-                                <svg width="16" height="14" viewBox="0 0 16 14">
-                                    <path d="M2 8.5L6 12.5L14 1.5"></path>
-                                </svg>
-                            </div>
+                    <div class="switch_box box_1">
+                        <div class="col-md-6 no-padding">
+                            <p class="float-left is-show-title">do you want to show this item in home page?</p>
                         </div>
-                    </label>
+                        <div class="col-md-6 no-padding">
+
+                            <input type="checkbox" class="switch_1" ng-model="isShow"/>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
