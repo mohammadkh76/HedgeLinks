@@ -83,12 +83,20 @@ namespace HedgeLinks.Pages
             public const string ActionName = "Index";
         }
 
-        public static class JobCategories
+        public static class JobIndustry
         {
-            public const string PageName = "JobCategories";
-            public const string RoleName = "JobCategories";
-            public const string Path = "/JobCategories/Index";
-            public const string ControllerName = "JobCategories";
+            public const string PageName = "Job Industries";
+            public const string RoleName = "Job Industries";
+            public const string Path = "/JobIndustries/Index";
+            public const string ControllerName = "JobIndustries";
+            public const string ActionName = "Index";
+        }
+        public static class JobType
+        {
+            public const string PageName = "Job Type";
+            public const string RoleName = "Job Type";
+            public const string Path = "/JobTypes/Index";
+            public const string ControllerName = "JobTypes";
             public const string ActionName = "Index";
         }
 
@@ -96,12 +104,13 @@ namespace HedgeLinks.Pages
         {
             public const string PageName = "Third Section";
             public const string RoleName = "Third Section";
-            public const string Path = "/ThirdSection/Index";
+            public const string Path = "/ThirdSections/Index";
             public const string ControllerName = "ThirdSection";
             public const string ActionName = "Index";
         }
+      
 
-        
+
 
         public static class User
         {

@@ -11,7 +11,7 @@ using System;
 namespace HedgeLinks.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20190522165000_new")]
+    [Migration("20190531235641_new")]
     partial class @new
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -95,13 +95,13 @@ namespace HedgeLinks.Migrations
 
                     b.Property<string>("ExternalLink");
 
+                    b.Property<string>("Keyword");
+
                     b.Property<int>("MenuPathId");
 
                     b.Property<string>("Title");
 
                     b.Property<bool>("isShow");
-
-                    b.Property<string>("keyword");
 
                     b.HasKey("Id");
 
@@ -130,6 +130,8 @@ namespace HedgeLinks.Migrations
                     b.Property<string>("EditDate");
 
                     b.Property<string>("EditUserId");
+
+                    b.Property<bool>("IsShow");
 
                     b.Property<string>("Title");
 
@@ -375,6 +377,124 @@ namespace HedgeLinks.Migrations
                     b.HasKey("InvoiceTypeId");
 
                     b.ToTable("InvoiceType");
+                });
+
+            modelBuilder.Entity("HedgeLinks.Models.Job", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Address");
+
+                    b.Property<string>("City");
+
+                    b.Property<string>("CompanyName");
+
+                    b.Property<string>("Compensation");
+
+                    b.Property<string>("Country");
+
+                    b.Property<string>("CreateDate");
+
+                    b.Property<string>("CreatedUserId");
+
+                    b.Property<string>("DatePlaced");
+
+                    b.Property<string>("Description");
+
+                    b.Property<string>("EditDate");
+
+                    b.Property<string>("EditUserId");
+
+                    b.Property<string>("FilePath");
+
+                    b.Property<int>("JobIndustryId");
+
+                    b.Property<int>("JobTypeId");
+
+                    b.Property<string>("Keyword");
+
+                    b.Property<int?>("MenuPathId");
+
+                    b.Property<string>("RequiredExp");
+
+                    b.Property<string>("RequiredRole");
+
+                    b.Property<string>("ShortDescription");
+
+                    b.Property<string>("State");
+
+                    b.Property<string>("Title");
+
+                    b.Property<bool>("isEasyApply");
+
+                    b.Property<bool>("isTrend");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CreatedUserId");
+
+                    b.HasIndex("EditUserId");
+
+                    b.HasIndex("JobIndustryId");
+
+                    b.HasIndex("JobTypeId");
+
+                    b.HasIndex("MenuPathId");
+
+                    b.ToTable("Job");
+                });
+
+            modelBuilder.Entity("HedgeLinks.Models.JobIndustry", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("CreateDate");
+
+                    b.Property<string>("CreatedUserId");
+
+                    b.Property<string>("Description");
+
+                    b.Property<string>("EditDate");
+
+                    b.Property<string>("EditUserId");
+
+                    b.Property<string>("Title");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CreatedUserId");
+
+                    b.HasIndex("EditUserId");
+
+                    b.ToTable("JobIndustries");
+                });
+
+            modelBuilder.Entity("HedgeLinks.Models.JobType", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("CreateDate");
+
+                    b.Property<string>("CreatedUserId");
+
+                    b.Property<string>("Description");
+
+                    b.Property<string>("EditDate");
+
+                    b.Property<string>("EditUserId");
+
+                    b.Property<string>("Title");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CreatedUserId");
+
+                    b.HasIndex("EditUserId");
+
+                    b.ToTable("JobType");
                 });
 
             modelBuilder.Entity("HedgeLinks.Models.Menubar", b =>
@@ -823,13 +943,27 @@ namespace HedgeLinks.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<string>("CreateDate");
+
+                    b.Property<string>("CreatedUserId");
+
+                    b.Property<string>("EditDate");
+
+                    b.Property<string>("EditUserId");
+
                     b.Property<string>("FilePath");
+
+                    b.Property<string>("Keyword");
 
                     b.Property<string>("Subtitle");
 
                     b.Property<string>("Title");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CreatedUserId");
+
+                    b.HasIndex("EditUserId");
 
                     b.ToTable("ThirdSection");
                 });
@@ -1131,6 +1265,53 @@ namespace HedgeLinks.Migrations
                         .HasForeignKey("EditUserId");
                 });
 
+            modelBuilder.Entity("HedgeLinks.Models.Job", b =>
+                {
+                    b.HasOne("HedgeLinks.Models.ApplicationUser", "CreatedUser")
+                        .WithMany()
+                        .HasForeignKey("CreatedUserId");
+
+                    b.HasOne("HedgeLinks.Models.ApplicationUser", "EditedUser")
+                        .WithMany()
+                        .HasForeignKey("EditUserId");
+
+                    b.HasOne("HedgeLinks.Models.JobIndustry", "JobIndustry")
+                        .WithMany()
+                        .HasForeignKey("JobIndustryId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("HedgeLinks.Models.JobType", "JobType")
+                        .WithMany()
+                        .HasForeignKey("JobTypeId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("HedgeLinks.Models.MenuPath", "MenuPath")
+                        .WithMany()
+                        .HasForeignKey("MenuPathId");
+                });
+
+            modelBuilder.Entity("HedgeLinks.Models.JobIndustry", b =>
+                {
+                    b.HasOne("HedgeLinks.Models.ApplicationUser", "CreatedUser")
+                        .WithMany()
+                        .HasForeignKey("CreatedUserId");
+
+                    b.HasOne("HedgeLinks.Models.ApplicationUser", "EditedUser")
+                        .WithMany()
+                        .HasForeignKey("EditUserId");
+                });
+
+            modelBuilder.Entity("HedgeLinks.Models.JobType", b =>
+                {
+                    b.HasOne("HedgeLinks.Models.ApplicationUser", "CreatedUser")
+                        .WithMany()
+                        .HasForeignKey("CreatedUserId");
+
+                    b.HasOne("HedgeLinks.Models.ApplicationUser", "EditedUser")
+                        .WithMany()
+                        .HasForeignKey("EditUserId");
+                });
+
             modelBuilder.Entity("HedgeLinks.Models.Menubar", b =>
                 {
                     b.HasOne("HedgeLinks.Models.ApplicationUser", "CreatedUser")
@@ -1191,6 +1372,17 @@ namespace HedgeLinks.Migrations
                         .WithMany("SubMenus")
                         .HasForeignKey("MenubarId")
                         .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("HedgeLinks.Models.ThirdSection", b =>
+                {
+                    b.HasOne("HedgeLinks.Models.ApplicationUser", "CreatedUser")
+                        .WithMany()
+                        .HasForeignKey("CreatedUserId");
+
+                    b.HasOne("HedgeLinks.Models.ApplicationUser", "EditedUser")
+                        .WithMany()
+                        .HasForeignKey("EditUserId");
                 });
 
             modelBuilder.Entity("HedgeLinks.Models.TopImage", b =>

@@ -1,0 +1,38 @@
+﻿<link href="/App/JobType/edit-job-type.css" rel="stylesheet" />
+<script>
+
+</script>
+<div class="table-loading" ng-if="editDataLoading">
+    <div class="loading-overlay"></div>
+    <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+</div>
+<div class="modal-header">
+    <h3 class="modal-title" id="modal-title">Edit Job Type</h3>
+</div>
+<div class="modal-body">
+    <form name="insertForm" class="text-center">
+        <div class="row">
+            <div class="form-group">
+                <div class="col-md-10 col-md-offset-1">
+                    <input type="text" name="Title" value="" ng-model="Title" class="insert-editor" placeholder="Title" />
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-10  col-md-offset-1">
+
+                    <textarea class="insert-editor" type="text" ng-model="Description" name="Description" value="" placeholder="Description" />
+
+                </div>
+            </div>
+           
+
+
+        </div>
+
+    </form>
+
+</div>
+<div class="modal-footer">
+    <button class="btn success-btn" type="button" ng-click="confirmEdit()">Confirm</button>
+    <button class="btn cancel-btn float-left" type="button" ng-click="cancel()">Cancel</button>
+</div>

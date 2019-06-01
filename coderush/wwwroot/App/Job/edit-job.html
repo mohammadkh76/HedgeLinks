@@ -1,0 +1,156 @@
+﻿<link href="/App/MenuPath/edit-menupath.css" rel="stylesheet" />
+<script>
+
+</script>
+<div class="table-loading" ng-if="editDataLoading">
+    <div class="loading-overlay"></div>
+    <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+</div>
+<div class="modal-header">
+    <h3 class="modal-title" id="modal-title">Edit Menubar</h3>
+</div>
+<div class="modal-body">
+    <form name="insertForm" class="text-center">
+        <div class="row">
+            <div class="form-group">
+                <div class="col-md-10 col-md-offset-1">
+                    <input type="text" name="Title" value="" ng-model="Title" class="insert-editor" placeholder="Job Title" />
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-10 col-md-offset-1">
+                    <textarea type="text" name="Description" value="" ng-model="Description" class="insert-editor" placeholder="Description"></textarea>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-10 col-md-offset-1">
+                    <textarea type="text" name="ShortDescription" value="" ng-model="ShortDescription" class="insert-editor" placeholder="Short Description"></textarea>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-10 col-md-offset-1">
+                    <input type="text" name="RequirdExp" value="" ng-model="RequiredExp" class="insert-editor" placeholder="Requird Exprience" />
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-10 col-md-offset-1">
+                    <input type="text" name="Country" value="" ng-model="Country" class="insert-editor" placeholder="Country" />
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-10 col-md-offset-1">
+                    <input type="text" name="State" value="" ng-model="State" class="insert-editor" placeholder="State" />
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-10 col-md-offset-1">
+                    <input type="text" name="City" value="" ng-model="City" class="insert-editor" placeholder="City" />
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-10 col-md-offset-1">
+                    <textarea type="text" name="Address" value="" ng-model="Address" class="insert-editor" placeholder="Address"></textarea>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-10 col-md-offset-1">
+                    <input type="text" name="Compensation" value="" ng-model="Compensation" class="insert-editor" placeholder="Compensation">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-10 col-md-offset-1">
+                    <input type="text" name="DatePlaced" value="" ng-model="DatePlaced" class="insert-editor" placeholder="Date Placed">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-10 col-md-offset-1">
+                    <input type="text" name="DatePlaced" value="" ng-model="RequiredRole" class="insert-editor" placeholder="Requird Role">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-10 col-md-offset-1">
+                    <input type="text" name="CompanyName" value="" ng-model="CompanyName" class="insert-editor" placeholder="CompanyName">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-10 col-md-offset-1">
+                    <textarea type="text" name="Keyword" value="" ng-model="Keyword" class="insert-editor" placeholder="Keyword"></textarea>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-10 col-md-offset-1">
+                    <select class="insert-editor" ng-model="SelectedJobType">
+                        <option value="">select Job Type</option>
+                        <option value="{{item.Id}}" ng-repeat="item in jobType">{{item.Title}}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-10 col-md-offset-1">
+                    <select class="insert-editor" ng-model="SelectedJobIndustry">
+                        <option value="">select Job Industry</option>
+                        <option value="{{item.Id}}" ng-repeat="item in jobIndustry">{{item.Title}}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-10 col-md-offset-1">
+                    <select class="insert-editor" ng-model="SelectedPage" ng-change="clearPath()">
+                        <option value="">select Page</option>
+                        <option value="{{item.Id}}" ng-repeat="item in page">{{item.Name}}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-10 col-md-offset-1">
+                    <input type="text" name="ExtenalLink" value="" ng-model="ExternalLink" ng-disabled="SelectedPage" class="insert-editor" placeholder="ExtenalLink" />
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-10 col-md-offset-1">
+                    <div class="switch_box box_1">
+                        <div class="col-md-6 no-padding">
+                            <p class="float-left is-show-title">do you want to show this item in home page?</p>
+                        </div>
+                        <div class="col-md-6 no-padding">
+                            <input type="checkbox" class="switch_1" ng-model="IsTrend">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-10 col-md-offset-1">
+                    <div class="switch_box box_1">
+                        <div class="col-md-6 no-padding">
+                            <p class="float-left is-show-title">is this job have Easy Application Method?</p>
+                        </div>
+                        <div class="col-md-6 no-padding">
+                            <input type="checkbox" class="switch_1" ng-model="IsEasyApply">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-10 upload-box col-md-offset-1">
+
+                    <div class="text-center upload-image">
+                        <img class="img-thumbnail" src='{{uploadPreview}}' />
+                        <div class="table-loading" ng-if="uploadLoading">
+                            <div class="loading-overlay"></div>
+                            <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <button class="btn upload-button" ng-model="File" ngf-select ngf-change="changeUpload(File)">Upload <span class="fa fa-upload btn-right"></span></button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </form>
+
+</div>
+<div class="modal-footer">
+    <button class="btn success-btn" type="button" ng-click="confirmEdit()">Confirm</button>
+    <button class="btn cancel-btn float-left" type="button" ng-click="cancel()">Cancel</button>
+</div>

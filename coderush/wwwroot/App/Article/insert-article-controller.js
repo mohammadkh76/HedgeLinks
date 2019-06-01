@@ -9,7 +9,6 @@
         if (res.data.Status == "Success") {
             
             $scope.page= res.data.Data;
-            $scope.$apply();
 
 
         }
@@ -20,12 +19,16 @@
         if (res.data.Status == "Success") {
 
             $scope.articleTopic = res.data.Data;
-            $scope.$apply();
 
         }
         $scope.menubarLoading = false;
 
     })
+    $scope.clearPath = function () {
+        $scope.ExternalLink = "";
+
+    }
+   
 
     $scope.confirmInsert = function () {
         $scope.toSendData = {

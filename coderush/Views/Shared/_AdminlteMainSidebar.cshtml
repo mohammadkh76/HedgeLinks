@@ -65,6 +65,26 @@
                     <i class="fa fa-gear"></i> <span>@MainMenu.Articles.PageName</span>
                 </a>
             </li>
+            <li class="@Html.IsSelected(controller: MainMenu.ThirdSection.ControllerName, action: MainMenu.ThirdSection.ActionName)">
+                <a href="@MainMenu.ThirdSection.Path">
+                    <i class="fa fa-gear"></i> <span>@MainMenu.ThirdSection.PageName</span>
+                </a>
+            </li>
+            <li class="@Html.IsSelected(controller: MainMenu.JobIndustry.ControllerName, action: MainMenu.JobIndustry.ActionName)">
+                <a href="@MainMenu.JobIndustry.Path">
+                    <i class="fa fa-gear"></i> <span>@MainMenu.JobIndustry.PageName</span>
+                </a>
+            </li>
+            <li class="@Html.IsSelected(controller: MainMenu.JobType.ControllerName, action: MainMenu.JobType.ActionName)">
+                <a href="@MainMenu.JobType.Path">
+                    <i class="fa fa-gear"></i> <span>@MainMenu.JobType.PageName</span>
+                </a>
+            </li>
+            <li class="@Html.IsSelected(controller: MainMenu.Job.ControllerName, action: MainMenu.Job.ActionName)">
+                <a href="@MainMenu.Job.Path">
+                    <i class="fa fa-gear"></i> <span>@MainMenu.Job.PageName</span>
+                </a>
+            </li>
             <li class="header">USER & ROLE</li>
             <li class="@Html.IsSelected(controller: MainMenu.User.ControllerName, action: MainMenu.User.ActionName)">
                 <a href="@MainMenu.User.Path">
