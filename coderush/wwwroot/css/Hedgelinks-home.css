@@ -49,12 +49,13 @@
 }
 
 .info-first-icon {
-    background-image: url(/images/collaboration.png);
+   
     background-size:100% 100%;
     background-repeat:no-repeat;
     width: 66px;
     height: 66px;
     margin-right: 10px;
+    border-radius:50%;
 }
 .info-text {
     width:65%;

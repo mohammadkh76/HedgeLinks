@@ -27,7 +27,14 @@ namespace HedgeLinks.Controllers.Api
             hostingEnvironment = environment;
 
         }
+        [HttpGet]
+        [Route("api/TopImage/GetAllTopImage/")]
+        public IActionResult GetAllTopImage()
+        {
+            var Items = _context.TopImage.Include(x => x.CreatedUser).Include(x => x.EditedUser).First();
 
+            return Ok(new { Status = "Success", Data = Items });
+        }
         // GET: api/User
         [HttpGet]
         [Route("api/TopImage/GetAll/")]
@@ -107,7 +114,7 @@ namespace HedgeLinks.Controllers.Api
 
 
 
-        [HttpGet("api/User/Delete/{id}")]
+        [HttpGet("api/TopImage/Delete/{id}")]
         public async Task<IActionResult> Remove([FromRoute] int id)
         {
             List<string> messages = new List<string>();
@@ -151,11 +158,17 @@ namespace HedgeLinks.Controllers.Api
             return Ok(new { Status = "success", Data = item });
         }
         [HttpPost("api/TopImage/Edit/")]
-        public IActionResult Edit([FromBody] TopImageEditVM topimage)
+        public async Task<IActionResult> Edit()
         {
             var form = Request.Form;
+            string title = String.IsNullOrEmpty(form["ImageTitle"]) ? "" : form["ImageTitle"].ToString();
+            string id = String.IsNullOrEmpty(form["Id"]) ? "" : form["Id"].ToString();
+            string subtitle = String.IsNullOrEmpty(form["ImageSubtitle"]) ? "" : form["ImageSubtitle"].ToString();
+            string keyword = String.IsNullOrEmpty(form["Keyword"]) ? "" : form["Keyword"].ToString();
+            string oldImage = String.IsNullOrEmpty(form["FilePath"]) ? "" : form["FilePath"].ToString();
+            string image = "";
             List<string> messages = new List<string>();
-            var item = _context.TopImage.Include(x => x.CreatedUser).Include(x => x.EditedUser).FirstOrDefault(x => x.Id == topimage.Id);
+            var item = _context.TopImage.Include(x => x.CreatedUser).Include(x => x.EditedUser).FirstOrDefault(x => x.Id == Int32.Parse(id));
 
             var _currentUser = HttpContext.User.Identity.Name;
             var _currentUserId = _context.ApplicationUser.FirstOrDefault(x => x.UserName == _currentUser).Id;
@@ -168,32 +181,49 @@ namespace HedgeLinks.Controllers.Api
                     var file = form.Files[0];
 
                     var rootPath = hostingEnvironment.WebRootPath.ToString();
-                    var serverPath = rootPath + topimage.FilePath;
+                    var serverPath = rootPath + oldImage;
                    
                     System.IO.File.Delete(serverPath);
                     item.FilePath = "/Images/TopImage/" + guid + file.FileName;
+                    var serverPath2 = rootPath + "\\Images\\TopImage\\" + guid + file.FileName;
+                    using (var stream = new FileStream(serverPath2, FileMode.Create))
+                    {
+                        await file.CopyToAsync(stream);
+                    }
+                    image = "/Images/TopImage/" + guid + file.FileName;
+                    item.FilePath = image;
+
+
                 }
                 catch (Exception ex)
                 {
                     var file = form.Files[0];
+                    var rootPath = hostingEnvironment.WebRootPath.ToString();
+                    var serverPath2 = rootPath + "\\Images\\TopImage\\" + guid + file.FileName;
+                    using (var stream = new FileStream(serverPath2, FileMode.Create))
+                    {
+                        await file.CopyToAsync(stream);
+                    }
+                    image = "/Images/TopImage/" + guid + file.FileName;
 
-                    item.FilePath = "/Images/TopImage/" + guid + file.FileName;
+                item.FilePath = image;
+
                 }
             }
             else
             {
-                item.FilePath = topimage.FilePath;
+                item.FilePath = oldImage;
             }
             if (item != null)
             {
-                item.ImageSubtitle = topimage.ImageSubtitle;
-                item.ImageTitle = topimage.ImageTitle;
-                item.Keyword = topimage.Keyword;
+                item.ImageSubtitle = subtitle;
+                item.ImageTitle =title;
+                item.Keyword = keyword;
                 item.EditUserId = _currentUserId;
                 item.EditDate = DateTime.Now.ToString();
                 _context.SaveChanges();
             }
-            return Ok(new { Status = "success", Data = item, Messages = messages });
+            return Ok(new { Status = "Success", Data = item, Messages = messages });
         }
 
 

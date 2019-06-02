@@ -27,7 +27,13 @@ namespace HedgeLinks.Controllers.Api
             hostingEnvironment = environment;
 
         }
-
+        [HttpGet]
+        [Route("api/Job/GetAllJobCompensation/")]
+        public IActionResult GetAllJobCompensation()
+        {
+            var Items = _context.Job.Select(x => x.Compensation);
+            return Ok(new { Status = "success", Data = Items.ToList()});
+        }
         // GET: api/User
         [HttpPost]
         [Route("api/Job/GetAll/")]
