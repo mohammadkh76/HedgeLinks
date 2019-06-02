@@ -11,8 +11,8 @@ using System;
 namespace HedgeLinks.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20190601114209_ss")]
-    partial class ss
+    [Migration("20190601161721_job")]
+    partial class job
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -405,6 +405,8 @@ namespace HedgeLinks.Migrations
                     b.Property<string>("EditDate");
 
                     b.Property<string>("EditUserId");
+
+                    b.Property<string>("ExternalLink");
 
                     b.Property<string>("FilePath");
 

@@ -24,7 +24,7 @@
             $scope.Path = res.data.Data.Path;
             $scope.Name = res.data.Data.Name;
             $scope.selectedId = res.data.Data.Id;
-            $scope.SelectedPage = parseInt(res.data.Data.MenuPathId);
+            $scope.SelectedPage = (res.data.Data.MenuPathId) ? res.data.Data.MenuPathId : "0";
             $scope.editDataLoading = false;
 
         }

@@ -100,7 +100,7 @@
                 JobIndustryId: $scope.SelectedJobIndustry,
                 JobTypeId: $scope.SelectedJobType,
                 OldImage: $scope.OldImage,
-                ExternalLink: res.data.Data.ExternalLink,
+                ExternalLink: $scope.ExternalLink,
                 File: $scope.File,
             }
         }).then(function (resp) {

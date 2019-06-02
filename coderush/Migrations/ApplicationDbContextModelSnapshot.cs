@@ -405,6 +405,8 @@ namespace HedgeLinks.Migrations
 
                     b.Property<string>("EditUserId");
 
+                    b.Property<string>("ExternalLink");
+
                     b.Property<string>("FilePath");
 
                     b.Property<int>("JobIndustryId");

@@ -76,7 +76,7 @@
                 JobTypeId: $scope.SelectedJobType,
                 ExternalLink: $scope.ExternalLink,
                 File: $scope.File
-            }
+            },
         }).then(function (resp) {
             if (resp.data.Status == "Success") {
                 $scope.userInsertLoading = false;

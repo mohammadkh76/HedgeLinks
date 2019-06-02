@@ -115,6 +115,7 @@ namespace HedgeLinks.Controllers.Api
                     record.JobIndustryId = Int32.Parse(JobIndustry);
                     record.CompanyName = companyName;
                     record.DatePlaced = datePlaced;
+                    record.ExternalLink = externalLink;
                     record.FilePath = image;
                     record.isEasyApply = (isEasyApply != "") ? bool.Parse(isEasyApply) : false;
                     record.isTrend = (isTrend != "") ? bool.Parse(isTrend) : false;
@@ -152,12 +153,12 @@ namespace HedgeLinks.Controllers.Api
 
 
 
-        [HttpGet("api/CommercialTips/Delete/{id}")]
+        [HttpGet("api/Job/Delete/{id}")]
         public async Task<IActionResult> Remove([FromRoute] int id)
         {
             List<string> messages = new List<string>();
 
-            var cp = _context.ComercialTips.SingleOrDefault(x => x.Id.Equals(id));
+            var cp = _context.Job.SingleOrDefault(x => x.Id.Equals(id));
             if (cp != null)
             {
 
@@ -285,6 +286,7 @@ namespace HedgeLinks.Controllers.Api
                 item.JobIndustryId = Int32.Parse(JobIndustry);
                 item.CompanyName = companyName;
                 item.DatePlaced = datePlaced;
+                item.ExternalLink = externalLink;
                 item.FilePath = image;
                 item.isEasyApply = (isEasyApply != "") ? bool.Parse(isEasyApply) : false;
                 item.isTrend = (isTrend != "") ? bool.Parse(isTrend) : false;
