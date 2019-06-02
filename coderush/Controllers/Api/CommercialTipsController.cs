@@ -27,7 +27,14 @@ namespace HedgeLinks.Controllers.Api
             hostingEnvironment = environment;
 
         }
+        [HttpGet]
+        [Route("api/CommercialTips/GetAllCommercialTips/")]
+        public IActionResult GetAllTopImage()
+        {
+            var Items = _context.ComercialTips.Include(x => x.CreatedUser).Include(x => x.EditedUser);
 
+            return Ok(new { Status = "Success", Data = Items.ToList() });
+        }
         // GET: api/User
         [HttpGet]
         [Route("api/CommercialTips/GetAll/")]

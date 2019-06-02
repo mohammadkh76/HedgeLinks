@@ -27,8 +27,8 @@
     @RenderSection("Styles", required: false)
 
 </head>
-<body>
-    <section id="large-menubar" ng-app="adminModule" ng-controller="layoutController">
+<body  ng-app="adminModule">
+    <section id="large-menubar" ng-controller="layoutController">
         <div class="row">
             <div class="main-menubar-container">
                 <div class="col-md-2 text-center">
@@ -215,7 +215,7 @@
     <script src="~/App/Lib/ui-bootstrap-2.5.0.min.js"></script>
     <script src="~/App/Lib/ui-bootstrap-tpls-2.5.0.js"></script>
     <script src="~/App/Services/data-service.js"></script>
-
+    <script src="~/App/Home/homeController.js"></script>
 
     @RenderSection("Scripts", required: false)
 

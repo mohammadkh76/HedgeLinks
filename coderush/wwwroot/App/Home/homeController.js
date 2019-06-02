@@ -1,15 +1,22 @@
-module.controller("homeController", ["$scope", "dataService", function ($scope, dataService) {
-    $scope.message = null;
-    $scope.NewsLetterBtn=false;
-    $scope.sendNewsLetter = function () {
-        debugger;
-            dataService.post('/api/HomeApi/sendNewsLetter',news).then(function (res) {
-                debugger;
-                toastr.success(res.data);
+adminModule.controller("homeController", ["$scope", "dataService", function ($scope, dataService) {
+    dataService.get('api/TopImage/GetAllTopImage/').then(function (res) {
+        $scope.topImage=res.data.Data
+        console.log(res.data.Data);
 
-            }).catch(function (err) {
-                debugger;
-                toastr.error(res.error);
-            })
-        }
+    })
+    dataService.get('api/CommercialTips/GetAllCommercialTips/').then(function (res) {
+        $scope.commercialTips = res.data.Data
+        console.log(res.data.Data);
+
+    })
+    dataService.get('api/JobIndustry/GetAllJobIndustry/').then(function (res) {
+        $scope.jobIndustry = res.data.Data
+        console.log(res.data.Data);
+
+    })
+    dataService.get('api/Job/GetAllJobCompensation').then(function (res) {
+        $scope.compensation = res.data.Data;
+    })
+
+    
 }]);
