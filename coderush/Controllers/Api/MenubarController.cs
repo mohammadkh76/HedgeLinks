@@ -1,14 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using HedgeLinks.Data;
+﻿using HedgeLinks.Data;
 using HedgeLinks.Models;
 using HedgeLinks.Models.RESTViewModel;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace HedgeLinks.Controllers.Api
 {
@@ -35,7 +34,7 @@ namespace HedgeLinks.Controllers.Api
         {
             int skip = ((pages.Current - 1) * pages.ItemInPage);
 
-            var Items = _context.Menubar.Include(x => x.CreatedUser).Include(x => x.EditedUser).OrderByDescending(x => x.Id);
+            var Items = _context.Menubar.Include(x => x.CreatedUser).Include(x => x.EditedUser).Include(x=>x.MenuPath).OrderByDescending(x => x.Id);
             int count = Items.Count();
 
             Items = Items.Skip(skip).Take(pages.ItemInPage).OrderByDescending(x => x.Id);
@@ -45,7 +44,25 @@ namespace HedgeLinks.Controllers.Api
         [Route("api/Menubar/GetAllMenubar/")]
         public IActionResult GetAllMenuPath()
         {
-            var Items = _context.Menubar.Include(x => x.CreatedUser).Include(x => x.EditedUser);
+            var Items = _context.Menubar.Include(x => x.CreatedUser).Include(x => x.SubMenus).Include(x => x.EditedUser);
+            var path = "";
+            foreach (var item in Items)
+            {
+
+                if (item.MenuPathId != null)
+                {
+                    MenuPath menuPath = _context.MenuPath.Find(item.MenuPathId);
+                    path = "/MenuPages/Page?PageName=" + menuPath.PageName;
+                }
+                else
+                {
+                    path = item.Path;
+                }
+
+                item.Path = path;
+            }
+
+
 
             return Ok(new { Status = "Success", Data = Items.ToList() });
         }
@@ -64,7 +81,7 @@ namespace HedgeLinks.Controllers.Api
             _context.SaveChanges();
             messages.Add("your data deleted successfully.");
 
-            return Ok(new { Status = "Success",Messages=messages });
+            return Ok(new { Status = "Success", Messages = messages });
 
         }
 
@@ -81,7 +98,7 @@ namespace HedgeLinks.Controllers.Api
             }
             try
             {
-               
+
                 _context.Menubar.Add(new Menubar
                 {
                     Name = toSendData.Name,
@@ -111,12 +128,12 @@ namespace HedgeLinks.Controllers.Api
 
 
 
-       
+
         [HttpGet("api/Menubar/GetEditData/{id}")]
         public IActionResult GetEditData(int id)
         {
             List<string> messages = new List<string>();
-            var item = _context.Menubar.Include(x=>x.MenuPath).FirstOrDefault(x => x.Id == id);
+            var item = _context.Menubar.Include(x => x.MenuPath).FirstOrDefault(x => x.Id == id);
 
             return Ok(new { Status = "success", Data = item });
         }
@@ -132,7 +149,7 @@ namespace HedgeLinks.Controllers.Api
             {
                 item.Name = menubar.Name;
                 item.Path = menubar.Path;
-                item.MenuPathId = Int32.Parse(menubar.SelectedPage);
+                item.MenuPathId = Int32.Parse(menubar.SelectedPage) == 0 ? (int?)null : Int32.Parse(menubar.SelectedPage);
                 item.EditUserId = _currentUserId;
                 item.EditDate = DateTime.Now.ToString();
                 _context.SaveChanges();

@@ -28,7 +28,7 @@
 
 </head>
 <body>
-    <section id="large-menubar">
+    <section id="large-menubar" ng-app="adminModule" ng-controller="layoutController">
         <div class="row">
             <div class="main-menubar-container">
                 <div class="col-md-2 text-center">
@@ -36,18 +36,12 @@
                 </div>
                 <div class="col-md-5 no-padding">
                     <div class="menu-item-container">
-                        <div class="lg-menu-item theme-color">
-                            Home
-                        </div>
-                        <div class="lg-menu-item">
-                            Search for Jobs
-                        </div>
-                        <div class="lg-menu-item">
-                            Companies
-                        </div>
-                        <div class="lg-menu-item">
-                            Search for Resumes
-                        </div>
+                        <a href="{{item.Path}}" ng-repeat="item in menubar">
+                            <div class="lg-menu-item">
+                                {{item.Name}}
+                            </div>
+                        </a>
+
                     </div>
                 </div>
                 <div class="col-md-4">
@@ -69,7 +63,7 @@
             </div>
         </div>
     </section>
-    
+
     @*<nav class="navbar navbar-inverse navbar-fixed-top">
             <div class="container">
                 <div class="navbar-header">
@@ -92,93 +86,93 @@
                 </div>
             </div>
         </nav>*@
-        @RenderBody()
-        <hr />
-        <footer>
-            <div class="footer-line"></div>
-            <section id="site-footer">
-                <div class="main-content-container ">
-                    <div class="footer-column">
-                        <a class="footer-logo" title="hedgelink.com"></a>
-                        <a class="footer-item footer-bold" title="hedgelink.com">Hello</a>
-                        <a class="footer-item footer-bold" title="hedgelink.com">Hello</a>
-                        <a class="footer-item footer-bold" title="hedgelink.com">Hello</a>
-                        <a class="footer-item footer-bold" title="hedgelink.com">Hello</a>
-                        <a class="footer-item footer-bold" title="hedgelink.com">Hello</a>
-                        <a class="footer-item footer-bold" title="hedgelink.com">Hello</a>
-                        <a class="footer-item footer-bold" title="hedgelink.com">Hello</a>
-                        <a class="footer-item footer-bold" title="hedgelink.com">Hello</a>
-                        <a class="footer-item footer-bold" title="hedgelink.com">Hello</a>
-                        <a class="footer-item" title="hedgelink.com">Hello</a>
-                        <a class="footer-item" title="hedgelink.com">Hello</a>
-                        <a class="footer-item" title="hedgelink.com">Hello</a>
-                        <a class="footer-item" title="hedgelink.com">Hello</a>
-                    </div>
-                    <div class="footer-column">
-                        <a class="footer-item footer-bold" title="hedgelink.com">Hello</a>
-                        <a class="footer-item footer-bold" title="hedgelink.com">Hello</a>
-                        <a class="footer-item footer-bold" title="hedgelink.com">Hello</a>
-                        <a class="footer-item footer-bold" title="hedgelink.com">Hello</a>
-                        <a class="footer-item footer-bold" title="hedgelink.com">Hello</a>
-                        <a class="footer-item footer-bold" title="hedgelink.com">Hello</a>
-                        <a class="footer-item footer-bold" title="hedgelink.com">Hello</a>
-                        <a class="footer-item footer-bold" title="hedgelink.com">Hello</a>
-                        <a class="footer-item footer-bold" title="hedgelink.com">Hello</a>
-                        <a class="footer-item" title="hedgelink.com">Hello</a>
-                        <a class="footer-item" title="hedgelink.com">Hello</a>
-                        <a class="footer-item" title="hedgelink.com">Hello</a>
-                        <a class="footer-item" title="hedgelink.com">Hello</a>
-                    </div>
-                    <div class="footer-column">
-                        <a class="footer-item footer-bold" title="hedgelink.com">Hello</a>
-                        <a class="footer-item footer-bold" title="hedgelink.com">Hello</a>
-                        <a class="footer-item footer-bold" title="hedgelink.com">Hello</a>
-                        <a class="footer-item footer-bold" title="hedgelink.com">Hello</a>
-                        <a class="footer-item footer-bold" title="hedgelink.com">Hello</a>
-                        <a class="footer-item footer-bold" title="hedgelink.com">Hello</a>
-                        <a class="footer-item footer-bold" title="hedgelink.com">Hello</a>
-                        <a class="footer-item footer-bold" title="hedgelink.com">Hello</a>
-                        <a class="footer-item footer-bold" title="hedgelink.com">Hello</a>
-                        <a class="footer-item" title="hedgelink.com">Hello</a>
-                        <a class="footer-item" title="hedgelink.com">Hello</a>
-                        <a class="footer-item" title="hedgelink.com">Hello</a>
-                        <a class="footer-item" title="hedgelink.com">Hello</a>
-                    </div>
-                    <div class="footer-column">
-                        <a class="footer-item footer-bold" title="hedgelink.com">Hello</a>
-                        <a class="footer-item footer-bold" title="hedgelink.com">Hello</a>
-                        <a class="footer-item footer-bold" title="hedgelink.com">Hello</a>
-                        <a class="footer-item footer-bold" title="hedgelink.com">Hello</a>
-                        <a class="footer-item footer-bold" title="hedgelink.com">Hello</a>
-                        <a class="footer-item footer-bold" title="hedgelink.com">Hello</a>
-                        <a class="footer-item footer-bold" title="hedgelink.com">Hello</a>
-                        <a class="footer-item footer-bold" title="hedgelink.com">Hello</a>
-                        <a class="footer-item footer-bold" title="hedgelink.com">Hello</a>
-                        <a class="footer-item" title="hedgelink.com">Hello</a>
-                        <a class="footer-item" title="hedgelink.com">Hello</a>
-                        <a class="footer-item" title="hedgelink.com">Hello</a>
-                        <a class="footer-item" title="hedgelink.com">Hello</a>
-                    </div>
-                    <div class="footer-column">
-                        <a class="footer-item footer-bold" title="hedgelink.com">Hello</a>
-                        <a class="footer-item footer-bold" title="hedgelink.com">Hello</a>
-                        <a class="footer-item footer-bold" title="hedgelink.com">Hello</a>
-                        <a class="footer-item footer-bold" title="hedgelink.com">Hello</a>
-                        <a class="footer-item footer-bold" title="hedgelink.com">Hello</a>
-                        <a class="footer-item footer-bold" title="hedgelink.com">Hello</a>
-                        <a class="footer-item footer-bold" title="hedgelink.com">Hello</a>
-                        <a class="footer-item footer-bold" title="hedgelink.com">Hello</a>
-                        <a class="footer-item footer-bold" title="hedgelink.com">Hello</a>
-                        <a class="footer-item" title="hedgelink.com">Hello</a>
-                        <a class="footer-item" title="hedgelink.com">Hello</a>
-                        <a class="footer-item" title="hedgelink.com">Hello</a>
-                        <a class="footer-item" title="hedgelink.com">Hello</a>
-                    </div>
-
+    @RenderBody()
+    <hr />
+    <footer>
+        <div class="footer-line"></div>
+        <section id="site-footer">
+            <div class="main-content-container ">
+                <div class="footer-column">
+                    <a class="footer-logo" title="hedgelink.com"></a>
+                    <a class="footer-item footer-bold" title="hedgelink.com">Hello</a>
+                    <a class="footer-item footer-bold" title="hedgelink.com">Hello</a>
+                    <a class="footer-item footer-bold" title="hedgelink.com">Hello</a>
+                    <a class="footer-item footer-bold" title="hedgelink.com">Hello</a>
+                    <a class="footer-item footer-bold" title="hedgelink.com">Hello</a>
+                    <a class="footer-item footer-bold" title="hedgelink.com">Hello</a>
+                    <a class="footer-item footer-bold" title="hedgelink.com">Hello</a>
+                    <a class="footer-item footer-bold" title="hedgelink.com">Hello</a>
+                    <a class="footer-item footer-bold" title="hedgelink.com">Hello</a>
+                    <a class="footer-item" title="hedgelink.com">Hello</a>
+                    <a class="footer-item" title="hedgelink.com">Hello</a>
+                    <a class="footer-item" title="hedgelink.com">Hello</a>
+                    <a class="footer-item" title="hedgelink.com">Hello</a>
                 </div>
-            </section>
-            <p>&copy;HedgeLinks</p>
-        </footer>
+                <div class="footer-column">
+                    <a class="footer-item footer-bold" title="hedgelink.com">Hello</a>
+                    <a class="footer-item footer-bold" title="hedgelink.com">Hello</a>
+                    <a class="footer-item footer-bold" title="hedgelink.com">Hello</a>
+                    <a class="footer-item footer-bold" title="hedgelink.com">Hello</a>
+                    <a class="footer-item footer-bold" title="hedgelink.com">Hello</a>
+                    <a class="footer-item footer-bold" title="hedgelink.com">Hello</a>
+                    <a class="footer-item footer-bold" title="hedgelink.com">Hello</a>
+                    <a class="footer-item footer-bold" title="hedgelink.com">Hello</a>
+                    <a class="footer-item footer-bold" title="hedgelink.com">Hello</a>
+                    <a class="footer-item" title="hedgelink.com">Hello</a>
+                    <a class="footer-item" title="hedgelink.com">Hello</a>
+                    <a class="footer-item" title="hedgelink.com">Hello</a>
+                    <a class="footer-item" title="hedgelink.com">Hello</a>
+                </div>
+                <div class="footer-column">
+                    <a class="footer-item footer-bold" title="hedgelink.com">Hello</a>
+                    <a class="footer-item footer-bold" title="hedgelink.com">Hello</a>
+                    <a class="footer-item footer-bold" title="hedgelink.com">Hello</a>
+                    <a class="footer-item footer-bold" title="hedgelink.com">Hello</a>
+                    <a class="footer-item footer-bold" title="hedgelink.com">Hello</a>
+                    <a class="footer-item footer-bold" title="hedgelink.com">Hello</a>
+                    <a class="footer-item footer-bold" title="hedgelink.com">Hello</a>
+                    <a class="footer-item footer-bold" title="hedgelink.com">Hello</a>
+                    <a class="footer-item footer-bold" title="hedgelink.com">Hello</a>
+                    <a class="footer-item" title="hedgelink.com">Hello</a>
+                    <a class="footer-item" title="hedgelink.com">Hello</a>
+                    <a class="footer-item" title="hedgelink.com">Hello</a>
+                    <a class="footer-item" title="hedgelink.com">Hello</a>
+                </div>
+                <div class="footer-column">
+                    <a class="footer-item footer-bold" title="hedgelink.com">Hello</a>
+                    <a class="footer-item footer-bold" title="hedgelink.com">Hello</a>
+                    <a class="footer-item footer-bold" title="hedgelink.com">Hello</a>
+                    <a class="footer-item footer-bold" title="hedgelink.com">Hello</a>
+                    <a class="footer-item footer-bold" title="hedgelink.com">Hello</a>
+                    <a class="footer-item footer-bold" title="hedgelink.com">Hello</a>
+                    <a class="footer-item footer-bold" title="hedgelink.com">Hello</a>
+                    <a class="footer-item footer-bold" title="hedgelink.com">Hello</a>
+                    <a class="footer-item footer-bold" title="hedgelink.com">Hello</a>
+                    <a class="footer-item" title="hedgelink.com">Hello</a>
+                    <a class="footer-item" title="hedgelink.com">Hello</a>
+                    <a class="footer-item" title="hedgelink.com">Hello</a>
+                    <a class="footer-item" title="hedgelink.com">Hello</a>
+                </div>
+                <div class="footer-column">
+                    <a class="footer-item footer-bold" title="hedgelink.com">Hello</a>
+                    <a class="footer-item footer-bold" title="hedgelink.com">Hello</a>
+                    <a class="footer-item footer-bold" title="hedgelink.com">Hello</a>
+                    <a class="footer-item footer-bold" title="hedgelink.com">Hello</a>
+                    <a class="footer-item footer-bold" title="hedgelink.com">Hello</a>
+                    <a class="footer-item footer-bold" title="hedgelink.com">Hello</a>
+                    <a class="footer-item footer-bold" title="hedgelink.com">Hello</a>
+                    <a class="footer-item footer-bold" title="hedgelink.com">Hello</a>
+                    <a class="footer-item footer-bold" title="hedgelink.com">Hello</a>
+                    <a class="footer-item" title="hedgelink.com">Hello</a>
+                    <a class="footer-item" title="hedgelink.com">Hello</a>
+                    <a class="footer-item" title="hedgelink.com">Hello</a>
+                    <a class="footer-item" title="hedgelink.com">Hello</a>
+                </div>
+
+            </div>
+        </section>
+        <p>&copy;HedgeLinks</p>
+    </footer>
 
 
     <environment include="Development">
@@ -209,6 +203,18 @@
     <script src="~/scripts/properties.js" type="text/javascript"></script>
     <script src="~/scripts/jquery.validate.min.js"></script>
     <script src="~/scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/App/Lib/ng-file-upload-shim.min.js"></script>
+    <script src="~/lib/Angular/angular.js"></script>
+    <script src="~/lib/Angular/angular-animate.js"></script>
+    <script src="~/App/Lib/AngularJS-Toaster-master/toaster.js"></script>
+    <script src="~/App/Lib/angular-tinymce.js"></script>
+    <script src="~/App/Module/admin-module.js"></script>
+    <script src="~/App/Lib/ng-file-upload-all.js"></script>
+
+    <script src="~/App/Layout/layout-controller.js"></script>
+    <script src="~/App/Lib/ui-bootstrap-2.5.0.min.js"></script>
+    <script src="~/App/Lib/ui-bootstrap-tpls-2.5.0.js"></script>
+    <script src="~/App/Services/data-service.js"></script>
 
 
     @RenderSection("Scripts", required: false)

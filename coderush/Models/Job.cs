@@ -22,6 +22,7 @@ namespace HedgeLinks.Models
         public string RequiredRole { get; set; }
         public string Keyword { get; set; }
         public string CompanyName { get; set; }
+        public string ExternalLink { get; set; }
         public bool isEasyApply { get; set; }
         public bool isTrend { get; set; }
         [ForeignKey("JobIndustryId")]
