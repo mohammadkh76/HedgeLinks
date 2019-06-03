@@ -29,7 +29,13 @@ namespace HedgeLinks.Controllers.Api
             hostingEnvironment = environment;
 
         }
-
+        [HttpGet]
+        [Route("api/ThirdSection/GetAllThirdSection/")]
+        public IActionResult GetAllThirdSection()
+        {
+            var Items = _context.ThirdSection.First() ;
+            return Ok(new { Status = "success", Data = Items });
+        }
         // GET: api/User
         [HttpGet]
         [Route("api/ThirdSection/GetAll/")]

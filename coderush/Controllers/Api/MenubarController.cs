@@ -44,7 +44,7 @@ namespace HedgeLinks.Controllers.Api
         [Route("api/Menubar/GetAllMenubar/")]
         public IActionResult GetAllMenuPath()
         {
-            var Items = _context.Menubar.Include(x => x.CreatedUser).Include(x => x.SubMenus).Include(x => x.EditedUser);
+            var Items = _context.Menubar.Include(x => x.SubMenus);
             var path = "";
             foreach (var item in Items)
             {
@@ -103,8 +103,8 @@ namespace HedgeLinks.Controllers.Api
                 {
                     Name = toSendData.Name,
                     Path = toSendData.Path,
-                    MenuPathId = toSendData.SelectedPage,
-                    CreatedUserId = _currentUserId,
+                    MenuPathId = toSendData.SelectedPage == 0 ? (int?)null :toSendData.SelectedPage,
+                CreatedUserId = _currentUserId,
                     CreateDate = DateTime.Now.ToString(),
                 });
                 _context.SaveChanges();
@@ -149,7 +149,7 @@ namespace HedgeLinks.Controllers.Api
             {
                 item.Name = menubar.Name;
                 item.Path = menubar.Path;
-                item.MenuPathId = Int32.Parse(menubar.SelectedPage) == 0 ? (int?)null : Int32.Parse(menubar.SelectedPage);
+                item.MenuPathId = menubar.SelectedPage == 0 ? (int?)null : menubar.SelectedPage;
                 item.EditUserId = _currentUserId;
                 item.EditDate = DateTime.Now.ToString();
                 _context.SaveChanges();

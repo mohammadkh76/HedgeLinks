@@ -11,6 +11,8 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace HedgeLinks.Controllers
 {
+    [Authorize(Roles = Pages.MainMenu.MenuPath.RoleName)]
+
     public class MenuPathsController : Controller
     {
         private readonly ApplicationDbContext _context;

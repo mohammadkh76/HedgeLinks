@@ -151,9 +151,7 @@
     font-size:17px;
     line-height:26px;
 }
-.hot-topic-item{
 
-}
 .hot-topic-title{
     font-size:17px;
     margin-top:10px;
@@ -181,11 +179,15 @@
     font-size:16px; 
 
 }
-.job-cat{
-    font-size:16px;
-    
-    margin-bottom:3px;
-
+.job-item {
+    line-height: 24px;
+    padding-top: 20px;
+    margin-bottom: 20px;
+}
+.job-cat {
+    font-size: 18px;
+    margin-bottom: 3px;
+    font-weight: bold;
 }
 .job-title{
     color:#7db323;

@@ -86,7 +86,7 @@ namespace HedgeLinks.Controllers.Api
                     Keyword = toSendData.Keyword,
                     ExternalLink = toSendData.ExternalLink,
                     AuthorName = toSendData.AuthorName,
-                    MenuPathId = toSendData.MenuPathId,
+                    MenuPathId = toSendData.MenuPathId == 0 ? (int?)null : toSendData.MenuPathId,
                     ArticleTopicId = toSendData.ArticleTopicId,
                     CreatedUserId = _currentUserId,
                     CreateDate = DateTime.Now.ToString(),
@@ -138,7 +138,7 @@ namespace HedgeLinks.Controllers.Api
                 item.isShow = article.isShow;
                 item.Keyword = article.Keyword;
                 item.ExternalLink = article.ExternalLink;
-                item.MenuPathId = article.MenuPathId;
+                item.MenuPathId = article.MenuPathId == 0 ? (int?)null : article.MenuPathId;
                 item.ArticleTopicId =article.ArticleTopicId;
                 item.EditUserId = _currentUserId;
                 item.EditDate = DateTime.Now.ToString();

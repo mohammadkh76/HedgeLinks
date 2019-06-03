@@ -31,7 +31,13 @@ namespace HedgeLinks.Controllers.Api
         [Route("api/TopImage/GetAllTopImage/")]
         public IActionResult GetAllTopImage()
         {
-            var Items = _context.TopImage.Include(x => x.CreatedUser).Include(x => x.EditedUser).First();
+            TopImage Items = new TopImage();
+
+            if (_context.TopImage.Count()>0)
+            {
+                 Items = _context.TopImage.First();
+
+            }
 
             return Ok(new { Status = "Success", Data = Items });
         }

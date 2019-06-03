@@ -116,7 +116,7 @@ namespace HedgeLinks.Controllers.Api
                     record.Country = country;
                     record.State = state;
                     record.Compensation = compensation;
-                    record.MenuPathId = (menuPath != "") ? Int32.Parse(menuPath) : 0;
+                    record.MenuPathId = (menuPath != "0") ? Int32.Parse(menuPath) :(int?)null;
                     record.JobTypeId = Int32.Parse(JobType);
                     record.JobIndustryId = Int32.Parse(JobIndustry);
                     record.CompanyName = companyName;
@@ -287,7 +287,7 @@ namespace HedgeLinks.Controllers.Api
                 item.Country = country;
                 item.State = state;
                 item.Compensation = compensation;
-                item.MenuPathId = Int32.Parse(menuPath);
+                item.MenuPathId = (menuPath != "0") ? Int32.Parse(menuPath) : (int?)null;
                 item.JobTypeId = Int32.Parse(JobType);
                 item.JobIndustryId = Int32.Parse(JobIndustry);
                 item.CompanyName = companyName;

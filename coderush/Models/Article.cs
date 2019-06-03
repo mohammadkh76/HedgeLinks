@@ -17,7 +17,7 @@ namespace HedgeLinks.Models
         public ArticleTopic ArticleTopic { get; set; }
         public int ArticleTopicId { get; set; }
         public MenuPath Menupath{ get; set; }
-        public int MenuPathId{ get; set; }
+        public int? MenuPathId{ get; set; }
         public string ExternalLink{ get; set; }
         public bool isShow { get; set; }
 

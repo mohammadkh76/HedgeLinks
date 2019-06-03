@@ -7,9 +7,12 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using HedgeLinks.Data;
 using HedgeLinks.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace HedgeLinks.Controllers
 {
+    [Authorize(Roles = Pages.MainMenu.Articles.RoleName)]
+
     public class ComercialTipsController : Controller
     {
         private readonly ApplicationDbContext _context;
