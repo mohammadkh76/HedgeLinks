@@ -31,9 +31,34 @@ namespace HedgeLinks.Controllers.Api
         [Route("api/JobIndustry/GetAllJobIndustry/")]
         public IActionResult GetAllJobIndustry()
         {
-            var Items = _context.JobIndustries.Include(x => x.CreatedUser).Include(x => x.EditedUser);
+            var Items = _context.JobIndustries;
 
             return Ok(new { Status = "Success", Data = Items.ToList() });
+        }
+        [HttpGet]
+        [Route("api/JobIndustry/GetAllShowedJobIndustry/")]
+        public IActionResult GetAllShowedJobIndustry()
+        {
+
+            var showedJobIndustry = _context.JobIndustries.Include(x => x.Jobs).Where(x => x.IsShow == true);
+            var Items = showedJobIndustry.Where(x => x.Jobs.Any(y => y.isTrend == true));
+            //var Items = showedJobIndustry.ForEach(y => y.Jobs.Where(y=>y.isTrend)));
+            //foreach (var item in Items)
+            //{
+            //    var relatedJobs = item.Jobs;
+            //    foreach (var rj in relatedJobs)
+            //    {
+            //        if (rj.isTrend==true)
+            //        {
+            //            showedJobs.Add(rj);
+
+            //        }
+            //        item.Jobs = showedJobs;
+
+            //    }
+
+            //}
+            return Ok(new { Status = "Success", Data = showedJobIndustry });
         }
         // GET: api/User
         [HttpPost]
@@ -93,6 +118,7 @@ namespace HedgeLinks.Controllers.Api
                 {
                     Title = toSendData.Title,
                     Description = toSendData.Description,
+                    IsShow = toSendData.IsShow,
                     CreatedUserId = _currentUserId,
                     CreateDate = DateTime.Now.ToString(),
                 });
@@ -139,6 +165,7 @@ namespace HedgeLinks.Controllers.Api
             {
                 item.Title = menupath.Title;
                 item.Description = menupath.Description;
+                item.IsShow = menupath.IsShow;
                 item.EditUserId = _currentUserId;
                 item.EditDate = DateTime.Now.ToString();
                 _context.SaveChanges();

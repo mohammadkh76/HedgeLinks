@@ -31,7 +31,10 @@ namespace HedgeLinks.Controllers.Api
         [Route("api/ArticleTopic/GetAllArticleTopic/")]
         public IActionResult GetAllArticleTopic()
         {
-            var Items = _context.ArticleTopic.Include(x => x.CreatedUser).Include(x => x.EditedUser);
+
+                var Items = _context.ArticleTopic;
+
+
 
             return Ok(new { Status = "Success", Data = Items.ToList() });
         }

@@ -31,7 +31,7 @@ namespace HedgeLinks.Controllers.Api
         [Route("api/CommercialTips/GetAllCommercialTips/")]
         public IActionResult GetAllTopImage()
         {
-            var Items = _context.ComercialTips.Include(x => x.CreatedUser).Include(x => x.EditedUser);
+            var Items = _context.ComercialTips;
 
             return Ok(new { Status = "Success", Data = Items.ToList() });
         }

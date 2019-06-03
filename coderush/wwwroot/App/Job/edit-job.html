@@ -80,7 +80,7 @@
             <div class="form-group">
                 <div class="col-md-10 col-md-offset-1">
                     <select class="insert-editor" ng-model="SelectedJobType">
-                        <option value="">select Job Type</option>
+                        <option value="0">select Job Type</option>
                         <option value="{{item.Id}}" ng-repeat="item in jobType">{{item.Title}}</option>
                     </select>
                 </div>
@@ -88,7 +88,7 @@
             <div class="form-group">
                 <div class="col-md-10 col-md-offset-1">
                     <select class="insert-editor" ng-model="SelectedJobIndustry">
-                        <option value="">select Job Industry</option>
+                        <option value="0">select Job Industry</option>
                         <option value="{{item.Id}}" ng-repeat="item in jobIndustry">{{item.Title}}</option>
                     </select>
                 </div>
@@ -96,7 +96,7 @@
             <div class="form-group">
                 <div class="col-md-10 col-md-offset-1">
                     <select class="insert-editor" ng-model="SelectedPage" ng-change="clearPath()">
-                        <option value="">select Page</option>
+                        <option value="0">select Page</option>
                         <option value="{{item.Id}}" ng-repeat="item in page">{{item.Name}}</option>
                     </select>
                 </div>

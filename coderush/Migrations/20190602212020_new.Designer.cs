@@ -11,8 +11,8 @@ using System;
 namespace HedgeLinks.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20190601161721_job")]
-    partial class job
+    [Migration("20190602212020_new")]
+    partial class @new
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -461,6 +461,8 @@ namespace HedgeLinks.Migrations
                     b.Property<string>("EditDate");
 
                     b.Property<string>("EditUserId");
+
+                    b.Property<bool>("IsShow");
 
                     b.Property<string>("Title");
 
@@ -1278,7 +1280,7 @@ namespace HedgeLinks.Migrations
                         .HasForeignKey("EditUserId");
 
                     b.HasOne("HedgeLinks.Models.JobIndustry", "JobIndustry")
-                        .WithMany()
+                        .WithMany("Jobs")
                         .HasForeignKey("JobIndustryId")
                         .OnDelete(DeleteBehavior.Cascade);
 

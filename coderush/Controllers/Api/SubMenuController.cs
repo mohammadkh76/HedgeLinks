@@ -86,7 +86,7 @@ namespace HedgeLinks.Controllers.Api
                     {
                         Name = toSendData.Name,
                         Path = toSendData.Path,
-                        MenuPathId = toSendData.SelectedPage,
+                        MenuPathId = toSendData.SelectedPage == 0 ? (int?)null : toSendData.SelectedPage,
                         MenubarId = toSendData.SelectedMenu,
                         CreatedUserId = _currentUserId,
                         CreateDate = DateTime.Now.ToString(),
@@ -147,7 +147,7 @@ namespace HedgeLinks.Controllers.Api
                 {
                     item.Name = submenu.Name;
                     item.Path = submenu.Path;
-                    item.MenuPathId = submenu.SelectedPage;
+                    item.MenuPathId = submenu.SelectedPage == 0 ? (int?)null : submenu.SelectedPage;
                     item.MenubarId = submenu.SelectedMenu;
                     item.EditUserId = _currentUserId;
                     item.EditDate = DateTime.Now.ToString();

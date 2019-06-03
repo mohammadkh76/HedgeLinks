@@ -59,7 +59,7 @@
             $scope.IsEasyApply = res.data.Data.isEasyApply;
             $scope.IsTrend = res.data.Data.isTrend;
             $scope.Keyword = res.data.Data.Keyword;
-            $scope.SelectedPage = res.data.Data.MenuPathId.toString();
+            $scope.SelectedPage = (res.data.Data.MenuPathId) ? res.data.Data.MenuPathId.toString():"0";
             $scope.SelectedJobIndustry = res.data.Data.JobIndustryId.toString();
             $scope.SelectedJobType = res.data.Data.JobTypeId.toString();
             $scope.OldImage = res.data.Data.FilePath;

@@ -54,8 +54,11 @@
                 </div>
             </div>
             <div class="form-group">
-                <div class="col-md-10 col-md-offset-1">
-                    <input type="text" name="DatePlaced" value="" ng-model="DatePlaced" class="insert-editor" placeholder="Date Placed">
+                <span class="control-label col-md-6">Date of Placed: </span>
+                <div class="col-md-8">
+                    <date-picker ng-model="data.BirthDate" date-format="YYYY/MM/DD"></date-picker>
+                    {{data.BirthDate}}
+
                 </div>
             </div>
             <div class="form-group">
@@ -92,7 +95,7 @@
             <div class="form-group">
                 <div class="col-md-10 col-md-offset-1">
                     <select class="insert-editor" ng-model="SelectedPage" ng-change="clearPath()">
-                        <option value="">select Page</option>
+                        <option value="0">select Page</option>
                         <option value="{{item.Id}}" ng-repeat="item in page">{{item.Name}}</option>
                     </select>
                 </div>

@@ -15,6 +15,7 @@
             $scope.Description = res.data.Data.Description;
             $scope.Title = res.data.Data.Title;
             $scope.selectedId = res.data.Data.Id;
+            $scope.IsShow = res.data.Data.IsShow;
             $scope.editDataLoading = false;
 
         }
@@ -26,6 +27,7 @@
             Id:$scope.selectedId,
             Title: $scope.Title,
             Description: $scope.Description,
+            IsShow: $scope.IsShow,
         }
         dataService.post('/api/JobIndustry/Edit/', $scope.editData).then(function (res) {
             if (res.data.Status == 'success') {

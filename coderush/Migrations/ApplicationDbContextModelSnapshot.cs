@@ -461,6 +461,8 @@ namespace HedgeLinks.Migrations
 
                     b.Property<string>("EditUserId");
 
+                    b.Property<bool>("IsShow");
+
                     b.Property<string>("Title");
 
                     b.HasKey("Id");
@@ -1277,7 +1279,7 @@ namespace HedgeLinks.Migrations
                         .HasForeignKey("EditUserId");
 
                     b.HasOne("HedgeLinks.Models.JobIndustry", "JobIndustry")
-                        .WithMany()
+                        .WithMany("Jobs")
                         .HasForeignKey("JobIndustryId")
                         .OnDelete(DeleteBehavior.Cascade);
 

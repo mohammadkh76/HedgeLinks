@@ -9,7 +9,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace HedgeLinks.Controllers
 {
-    
+        [Authorize(Roles = Pages.MainMenu.User.RoleName)]
+
     public class UserRoleController : Controller
     {
         private readonly UserManager<ApplicationUser> _userManager;

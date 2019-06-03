@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace HedgeLinks.Migrations
 {
-    public partial class job : Migration
+    public partial class @new : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -677,6 +677,7 @@ namespace HedgeLinks.Migrations
                     Description = table.Column<string>(nullable: true),
                     EditDate = table.Column<string>(nullable: true),
                     EditUserId = table.Column<string>(nullable: true),
+                    IsShow = table.Column<bool>(nullable: false),
                     Title = table.Column<string>(nullable: true)
                 },
                 constraints: table =>

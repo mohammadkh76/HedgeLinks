@@ -14,9 +14,23 @@ adminModule.controller("homeController", ["$scope", "dataService", function ($sc
         console.log(res.data.Data);
 
     })
+    dataService.get('api/JobIndustry/GetAllShowedJobIndustry/').then(function (res) {
+        $scope.showedJobIndustry = res.data.Data
+        console.log(res.data.Data);
+
+    })
     dataService.get('api/Job/GetAllJobCompensation').then(function (res) {
         $scope.compensation = res.data.Data;
+
     })
+    dataService.get('api/ArticleTopic/GetAllArticleTopic/').then(function (res) {
+        $scope.articlTopic = res.data.Data;
+    })
+    dataService.get('api/ThirdSection/GetAllThirdSection/').then(function (res) {
+        $scope.thirdSection = res.data.Data;
+    })
+
+
 
     
 }]);

@@ -67,10 +67,10 @@ namespace HedgeLinks.Controllers
                     if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
                     {
                         _logger.LogInformation("User logged in.");
-                        return RedirectToLocal(returnUrl);
+                        return RedirectToLocal("/Dashboard/");
                     }
                     _logger.LogInformation("User logged in.");
-                    return RedirectToLocal(returnUrl);
+                    return RedirectToLocal("/Dashboard/");
 
                 }
                 
