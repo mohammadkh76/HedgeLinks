@@ -34,6 +34,27 @@ namespace HedgeLinks.Controllers.Api
             var Items = _context.Job.Select(x => x.Compensation);
             return Ok(new { Status = "success", Data = Items.ToList()});
         }
+        [HttpGet]
+        [Route("api/Job/GetAllJobViaCompany/")]
+        public IActionResult GetAllJobViaCompany()
+        {
+            var Items = _context.Job.Select(x => x.CompanyName);
+            return Ok(new { Status = "success", Data = Items.ToList() });
+        }
+        [HttpGet]
+        [Route("api/Job/GetAllJobViaCity/")]
+        public IActionResult GetAllJobViaCity()
+        {
+            var Items = _context.Job.Select(x => x.City);
+            return Ok(new { Status = "success", Data = Items.ToList() });
+        }
+        [HttpGet]
+        [Route("api/Job/GetAllJobViaTitle/")]
+        public IActionResult GetAllJobViaTitle()
+        {
+            var Items = _context.Job.Select(x => x.Title);
+            return Ok(new { Status = "success", Data = Items.ToList() });
+        }
         // GET: api/User
         [HttpPost]
         [Route("api/Job/GetAll/")]

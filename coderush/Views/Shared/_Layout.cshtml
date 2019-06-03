@@ -27,8 +27,8 @@
     @RenderSection("Styles", required: false)
 
 </head>
-<body ng-app="adminModule">
-    <section id="large-menubar" ng-controller="layoutController">
+<body ng-app="adminModule" ng-controller="layoutController">
+    <section id="large-menubar" >
         <div class="row">
             <div class="main-menubar-container">
                 <div class="col-md-2 text-center">
@@ -90,88 +90,51 @@
     <hr />
     <footer>
         <div class="footer-line"></div>
-        <section id="site-footer">
+        <section id="site-footer" >
             <div class="main-content-container ">
                 <div class="footer-column">
                     <a class="footer-logo" title="hedgelink.com"></a>
-                    <a class="footer-item footer-bold" title="hedgelink.com">Hello</a>
-                    <a class="footer-item footer-bold" title="hedgelink.com">Hello</a>
-                    <a class="footer-item footer-bold" title="hedgelink.com">Hello</a>
-                    <a class="footer-item footer-bold" title="hedgelink.com">Hello</a>
-                    <a class="footer-item footer-bold" title="hedgelink.com">Hello</a>
-                    <a class="footer-item footer-bold" title="hedgelink.com">Hello</a>
-                    <a class="footer-item footer-bold" title="hedgelink.com">Hello</a>
-                    <a class="footer-item footer-bold" title="hedgelink.com">Hello</a>
-                    <a class="footer-item footer-bold" title="hedgelink.com">Hello</a>
-                    <a class="footer-item" title="hedgelink.com">Hello</a>
-                    <a class="footer-item" title="hedgelink.com">Hello</a>
-                    <a class="footer-item" title="hedgelink.com">Hello</a>
-                    <a class="footer-item" title="hedgelink.com">Hello</a>
+                    <a class="footer-item footer-title" title="hedgelink.com">Related Links</a>
+                    <a class="footer-item footer-bold" title="hedgelink.com">Work At HedgeLinks</a>
+                    <a class="footer-item footer-bold" title="hedgelink.com">Contact Us</a>
+                    <a class="footer-item footer-bold" title="hedgelink.com">News & Advice</a>
+                    <a class="footer-item footer-bold" title="hedgelink.com">Editorial Team</a>
+                    <a class="footer-item footer-bold" title="hedgelink.com">Recruiter Site</a>
+                    <a class="footer-item footer-bold" title="hedgelink.com">Press Coverage</a>
+                    <a class="footer-item" title="hedgelink.com">Privacy</a>
+                    <a class="footer-item" title="hedgelink.com">Terms of Use</a>
+                    <a class="footer-item" title="hedgelink.com">FAQs</a>
+                    <a class="footer-item" title="hedgelink.com">Site Maps</a>
                 </div>
                 <div class="footer-column">
-                    <a class="footer-item footer-bold" title="hedgelink.com">Hello</a>
-                    <a class="footer-item footer-bold" title="hedgelink.com">Hello</a>
-                    <a class="footer-item footer-bold" title="hedgelink.com">Hello</a>
-                    <a class="footer-item footer-bold" title="hedgelink.com">Hello</a>
-                    <a class="footer-item footer-bold" title="hedgelink.com">Hello</a>
-                    <a class="footer-item footer-bold" title="hedgelink.com">Hello</a>
-                    <a class="footer-item footer-bold" title="hedgelink.com">Hello</a>
-                    <a class="footer-item footer-bold" title="hedgelink.com">Hello</a>
-                    <a class="footer-item footer-bold" title="hedgelink.com">Hello</a>
-                    <a class="footer-item" title="hedgelink.com">Hello</a>
-                    <a class="footer-item" title="hedgelink.com">Hello</a>
-                    <a class="footer-item" title="hedgelink.com">Hello</a>
-                    <a class="footer-item" title="hedgelink.com">Hello</a>
+                    <a class="footer-item footer-title" title="hedgelink.com">Company Careers</a>
+                    <div class="items" ng-repeat="jc in jobCompany">
+                        <a class="footer-item" title="hedgelink.com">{{jc}} Jobs</a>
+                    </div>
                 </div>
                 <div class="footer-column">
-                    <a class="footer-item footer-bold" title="hedgelink.com">Hello</a>
-                    <a class="footer-item footer-bold" title="hedgelink.com">Hello</a>
-                    <a class="footer-item footer-bold" title="hedgelink.com">Hello</a>
-                    <a class="footer-item footer-bold" title="hedgelink.com">Hello</a>
-                    <a class="footer-item footer-bold" title="hedgelink.com">Hello</a>
-                    <a class="footer-item footer-bold" title="hedgelink.com">Hello</a>
-                    <a class="footer-item footer-bold" title="hedgelink.com">Hello</a>
-                    <a class="footer-item footer-bold" title="hedgelink.com">Hello</a>
-                    <a class="footer-item footer-bold" title="hedgelink.com">Hello</a>
-                    <a class="footer-item" title="hedgelink.com">Hello</a>
-                    <a class="footer-item" title="hedgelink.com">Hello</a>
-                    <a class="footer-item" title="hedgelink.com">Hello</a>
-                    <a class="footer-item" title="hedgelink.com">Hello</a>
-                </div>
-                <div class="footer-column">
-                    <a class="footer-item footer-bold" title="hedgelink.com">Hello</a>
-                    <a class="footer-item footer-bold" title="hedgelink.com">Hello</a>
-                    <a class="footer-item footer-bold" title="hedgelink.com">Hello</a>
-                    <a class="footer-item footer-bold" title="hedgelink.com">Hello</a>
-                    <a class="footer-item footer-bold" title="hedgelink.com">Hello</a>
-                    <a class="footer-item footer-bold" title="hedgelink.com">Hello</a>
-                    <a class="footer-item footer-bold" title="hedgelink.com">Hello</a>
-                    <a class="footer-item footer-bold" title="hedgelink.com">Hello</a>
-                    <a class="footer-item footer-bold" title="hedgelink.com">Hello</a>
-                    <a class="footer-item" title="hedgelink.com">Hello</a>
-                    <a class="footer-item" title="hedgelink.com">Hello</a>
-                    <a class="footer-item" title="hedgelink.com">Hello</a>
-                    <a class="footer-item" title="hedgelink.com">Hello</a>
-                </div>
-                <div class="footer-column">
-                    <a class="footer-item footer-bold" title="hedgelink.com">Hello</a>
-                    <a class="footer-item footer-bold" title="hedgelink.com">Hello</a>
-                    <a class="footer-item footer-bold" title="hedgelink.com">Hello</a>
-                    <a class="footer-item footer-bold" title="hedgelink.com">Hello</a>
-                    <a class="footer-item footer-bold" title="hedgelink.com">Hello</a>
-                    <a class="footer-item footer-bold" title="hedgelink.com">Hello</a>
-                    <a class="footer-item footer-bold" title="hedgelink.com">Hello</a>
-                    <a class="footer-item footer-bold" title="hedgelink.com">Hello</a>
-                    <a class="footer-item footer-bold" title="hedgelink.com">Hello</a>
-                    <a class="footer-item" title="hedgelink.com">Hello</a>
-                    <a class="footer-item" title="hedgelink.com">Hello</a>
-                    <a class="footer-item" title="hedgelink.com">Hello</a>
-                    <a class="footer-item" title="hedgelink.com">Hello</a>
-                </div>
+                    <a class="footer-item footer-title" title="hedgelink.com">Industry Jobs</a>
+                    <div class="items" ng-repeat="ji in jobIndustry">
+                        <a class="footer-item" title="{{item.Description}}">{{ji.Title}} Jobs</a>
+                    </div>
 
-            </div>
-        </section>
-        <p>&copy;HedgeLinks</p>
+                </div>
+                <div class="footer-column">
+                    <a class="footer-item footer-title" title="hedgelink.com">Top Cities</a>
+                    <div class="items" ng-repeat="jci in jobCity">
+                        <a class="footer-item" title="hedgelink.com">{{jci}} Jobs</a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <a class="footer-item footer-title" title="hedgelink.com">Top Jobs</a>
+                    <div class="items" ng-repeat="jt in jobTitle">
+                        <a class="footer-item footer-bold" title="hedgelink.com">{{jt}} Jobs</a>
+                    </div>
+
+                </div>
+                <p>All right Reserved to&copy;HedgeLinks.com</p>
+
+</section>
     </footer>
 
 

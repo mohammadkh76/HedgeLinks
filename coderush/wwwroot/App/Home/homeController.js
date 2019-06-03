@@ -23,13 +23,12 @@ adminModule.controller("homeController", ["$scope", "dataService", function ($sc
         $scope.compensation = res.data.Data;
 
     })
-    dataService.get('api/ArticleTopic/GetAllArticleTopic/').then(function (res) {
+    dataService.get('api/ArticleTopic/GetAllShowedArticleTopic/').then(function (res) {
         $scope.articlTopic = res.data.Data;
     })
     dataService.get('api/ThirdSection/GetAllThirdSection/').then(function (res) {
         $scope.thirdSection = res.data.Data;
     })
-
 
 
     

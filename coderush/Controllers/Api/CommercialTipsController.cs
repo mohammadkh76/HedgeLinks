@@ -169,6 +169,7 @@ namespace HedgeLinks.Controllers.Api
             string filePath = String.IsNullOrEmpty(form["FilePath"]) ? "" : form["FilePath"].ToString();
             string title = String.IsNullOrEmpty(form["Title"]) ? "" : form["Title"].ToString();
             string subtitle = String.IsNullOrEmpty(form["Subtitle"]) ? "" : form["Subtitle"].ToString();
+            string oldImage = String.IsNullOrEmpty(form["OldImage"]) ? "" : form["OldImage"].ToString();
             string keyword = String.IsNullOrEmpty(form["Keyword"]) ? "" : form["Keyword"].ToString();
             string image = "";
             var item = _context.ComercialTips.Include(x => x.CreatedUser).Include(x => x.EditedUser).FirstOrDefault(x => x.Id == Int32.Parse(id));
@@ -183,7 +184,7 @@ namespace HedgeLinks.Controllers.Api
                     var file = form.Files[0];
 
                     var rootPath = hostingEnvironment.WebRootPath.ToString();
-                    var serverPath = rootPath + filePath;
+                    var serverPath = rootPath + oldImage;
                     System.IO.File.Delete(serverPath);
                   
                     var serverPath2 = rootPath + "/Images/CommercialTips/" + guid + file.FileName;

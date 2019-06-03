@@ -43,7 +43,7 @@ namespace HedgeLinks.Controllers.Api
         {
             var Items = _context.ThirdSection.Include(x => x.CreatedUser).Include(x => x.EditedUser).OrderByDescending(x => x.Id);
             int count = Items.Count();
-            return Ok(new { Status = "success", Data = Items.ToList() });
+            return Ok(new { Status = "Success", Data = Items.ToList() });
         }
 
         [HttpPost("api/ThirdSection/Insert")]

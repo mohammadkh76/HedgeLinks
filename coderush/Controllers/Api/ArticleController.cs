@@ -74,6 +74,11 @@ namespace HedgeLinks.Controllers.Api
                 var _currentUser = HttpContext.User.Identity.Name;
                 _currentUserId = _context.ApplicationUser.FirstOrDefault(x => x.UserName == _currentUser).Id;
             }
+            if (toSendData.ArticleTopicId==0)
+            {
+                messages.Add("you should select Article Topic");
+                return BadRequest(new { Status = "Failed", Messages = messages });
+            }
             try
             {
 
