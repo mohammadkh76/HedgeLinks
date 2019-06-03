@@ -28,7 +28,7 @@
 
 </head>
 <body ng-app="adminModule" ng-controller="layoutController">
-    <section id="large-menubar" >
+    <section id="large-menubar">
         <div class="row">
             <div class="main-menubar-container">
                 <div class="col-md-2 text-center">
@@ -90,10 +90,11 @@
     <hr />
     <footer>
         <div class="footer-line"></div>
-        <section id="site-footer" >
-            <div class="main-content-container ">
-                <div class="footer-column">
-                    <a class="footer-logo" title="hedgelink.com"></a>
+        <section id="site-footer">
+            <div class="main-content-container">
+                <a class="footer-logo" title="hedgelink.com"></a>
+
+                <div class="col-md-2">
                     <a class="footer-item footer-title" title="hedgelink.com">Related Links</a>
                     <a class="footer-item footer-bold" title="hedgelink.com">Work At HedgeLinks</a>
                     <a class="footer-item footer-bold" title="hedgelink.com">Contact Us</a>
@@ -106,36 +107,41 @@
                     <a class="footer-item" title="hedgelink.com">FAQs</a>
                     <a class="footer-item" title="hedgelink.com">Site Maps</a>
                 </div>
-                <div class="footer-column">
+                <div class="col-md-2">
                     <a class="footer-item footer-title" title="hedgelink.com">Company Careers</a>
                     <div class="items" ng-repeat="jc in jobCompany">
                         <a class="footer-item" title="hedgelink.com">{{jc}} Jobs</a>
                     </div>
                 </div>
-                <div class="footer-column">
+                <div class="col-md-2">
                     <a class="footer-item footer-title" title="hedgelink.com">Industry Jobs</a>
                     <div class="items" ng-repeat="ji in jobIndustry">
                         <a class="footer-item" title="{{item.Description}}">{{ji.Title}} Jobs</a>
                     </div>
 
                 </div>
-                <div class="footer-column">
+                <div class="col-md-2">
                     <a class="footer-item footer-title" title="hedgelink.com">Top Cities</a>
                     <div class="items" ng-repeat="jci in jobCity">
                         <a class="footer-item" title="hedgelink.com">{{jci}} Jobs</a>
                     </div>
                 </div>
-                <div class="footer-column">
+                <div class="col-md-2">
                     <a class="footer-item footer-title" title="hedgelink.com">Top Jobs</a>
                     <div class="items" ng-repeat="jt in jobTitle">
                         <a class="footer-item footer-bold" title="hedgelink.com">{{jt}} Jobs</a>
                     </div>
 
                 </div>
-                <p>All right Reserved to&copy;HedgeLinks.com</p>
 
-</section>
+            </div>
+        </section>
     </footer>
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <p>All right Reserved to&copy;HedgeLinks.com</p>
+        </div>
+    </div>
 
 
     <environment include="Development">
