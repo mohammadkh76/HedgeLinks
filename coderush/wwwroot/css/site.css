@@ -198,7 +198,7 @@ body {
 }
 .footer-logo{
     background-image:url(../images/logo.png);
-    width:100%;
+    width:200px;
     height:60px;
     display:block;
     background-size:cover;

@@ -14,6 +14,11 @@
     dataService.get('api/Job/GetAllJobViaTitle/').then(function (res) {
         $scope.jobTitle = res.data.Data;
     })
+    dataService.get('api/JobIndustry/GetAllJobIndustry/').then(function (res) {
+        $scope.jobIndustry = res.data.Data
+        console.log(res.data.Data);
+
+    })
 
 
 }]);
