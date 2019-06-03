@@ -21,6 +21,7 @@
             $scope.ImageSubtitle = res.data.Data.ImageSubtitle;
             $scope.Keyword = res.data.Data.Keyword;
             $scope.ImagePath = res.data.Data.FilePath;
+            $scope.OldImage = res.data.Data.FilePath;
             $scope.editDataLoading = false;
 
         }
@@ -44,6 +45,7 @@
                 ImageSubtitle: $scope.ImageSubtitle,
                 Keyword: $scope.Keyword,
                 FilePath: $scope.ImagePath,
+                OldImage: $scope.OldImage,
                 File: $scope.File,
             }
         }).then(function (resp) {

@@ -7,7 +7,7 @@
     <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
 </div>
 <div class="modal-header">
-    <h3 class="modal-title" id="modal-title">Edit Menubar</h3>
+    <h3 class="modal-title" id="modal-title">Edit Article</h3>
 </div>
 <div class="modal-body">
     <form name="insertForm" class="text-center">
@@ -40,7 +40,7 @@
             <div class="form-group">
                 <div class="col-md-10 col-md-offset-1">
                     <select class="insert-editor" ng-model="SelectedArticleTopic">
-                        <option value="">select Article Topic</option>
+                        <option value="0">select Article Topic</option>
                         <option value="{{item.Id}}" ng-repeat="item in articleTopic">{{item.Title}}</option>
                     </select>
                 </div>
@@ -55,7 +55,7 @@
             </div>
             <div class="form-group">
                 <div class="col-md-10 col-md-offset-1">
-                    <input type="text" name="ExtenalLink" value="" ng-model="ExternalLink" ng-disabled="SelectedPage" class="insert-editor" placeholder="ExtenalLink" />
+                    <input type="text" name="ExtenalLink" value="" ng-model="ExternalLink" ng-disabled="SelectedPage&&SelectedPage != '0'" class="insert-editor" placeholder="ExtenalLink" />
                 </div>
             </div>
             <div class="form-group">

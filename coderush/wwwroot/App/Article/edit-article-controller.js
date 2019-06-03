@@ -39,7 +39,7 @@
             $scope.selectedId = res.data.Data.Id;
             $scope.SelectedArticleTopic = res.data.Data.ArticleTopicId.toString()
             $scope.isShow = res.data.Data.isShow;
-            $scope.SelectedPage = res.data.Data.MenuPathId.toString();
+            $scope.SelectedPage = (res.data.Data.MenuPathId) ? res.data.Data.MenuPathId.toString():'0';
             $scope.editDataLoading = false;
 
         }

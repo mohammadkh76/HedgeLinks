@@ -34,6 +34,7 @@
             Subtitle: $scope.Subtitle,
             Keyword: $scope.Keyword,
             FilePath: $scope.ImagePath,
+            OldImage: $scope.ImagePath,
             File: $scope.File,
         }
         $scope.userInsertLoading = true;
@@ -48,6 +49,7 @@
                 Title: $scope.Title,
                 Subtitle: $scope.Subtitle,
                 Keyword: $scope.Keyword,
+                OldImage:$scope.OldImage,
                 File: $scope.File
             }
         }).then(function (resp) {

@@ -36,7 +36,7 @@
             <div class="form-group">
                 <div class="col-md-10 col-md-offset-1">
                     <select class="insert-editor" ng-model="SelectedArticleTopic">
-                        <option value="">select Article Topic</option>
+                        <option value="0">select Article Topic</option>
                         <option value="{{item.Id}}" ng-repeat="item in articleTopic">{{item.Title}}</option>
                     </select>
                 </div>
@@ -44,14 +44,14 @@
             <div class="form-group">
                 <div class="col-md-10 col-md-offset-1">
                     <select class="insert-editor" ng-model="SelectedPage" ng-change="clearPath()">
-                        <option value="">select Page</option>
+                        <option value="0">select Page</option>
                         <option value="{{item.Id}}" ng-repeat="item in page">{{item.Name}}</option>
                     </select>
                 </div>
             </div>
             <div class="form-group">
                 <div class="col-md-10 col-md-offset-1">
-                    <input type="text" name="ExtenalLink" value="" ng-model="ExternalLink" ng-disabled="SelectedPage" class="insert-editor" placeholder="ExtenalLink" />
+                    <input type="text" name="ExtenalLink" value="" ng-model="ExternalLink" ng-disabled="SelectedPage&&SelectedPage != '0'" class="insert-editor" placeholder="ExtenalLink" />
                 </div>
             </div>
             <div class="form-group">

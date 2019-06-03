@@ -34,14 +34,16 @@
 
     dataService.get($scope.url).then(function (res) {
         if (res.data.Status == "success") {
-           debugger
+            debugger
             $scope.Path = res.data.Data.Path;
             $scope.Name = res.data.Data.Name;
             $scope.selectedId = res.data.Data.Id;
             $scope.SelectedPage = (res.data.Data.MenuPathId) ? res.data.Data.MenuPathId.toString() : '0';
+            $scope.SelectedMenu = res.data.Data.MenubarId.toString();
             $scope.editDataLoading = false;
 
         }
+        
 
 
     })
@@ -56,6 +58,12 @@
         dataService.post('/api/Submenu/Edit/', $scope.editData).then(function (res) {
             if (res.data.Status == 'success') {
                 $uibModalInstance.close();
+            }
+           
+
+        }).catch(function (err) {
+            if (res.data.Status == "Failed") {
+                toaster.pop("error", "Error", res.data.Messages)
             }
 
         })

@@ -38,6 +38,17 @@ namespace HedgeLinks.Controllers.Api
 
             return Ok(new { Status = "Success", Data = Items.ToList() });
         }
+        [HttpGet]
+        [Route("api/ArticleTopic/GetAllShowedArticleTopic/")]
+        public IActionResult GetAllShowedArticleTopic()
+        {
+
+            var Items = _context.ArticleTopic.Where(x=>x.IsShow==true);
+
+
+
+            return Ok(new { Status = "Success", Data = Items.ToList() });
+        }
         // GET: api/User
         [HttpPost]
         [Route("api/ArticleTopic/GetAll/")]

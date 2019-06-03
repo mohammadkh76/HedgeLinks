@@ -171,7 +171,8 @@ namespace HedgeLinks.Controllers.Api
             string id = String.IsNullOrEmpty(form["Id"]) ? "" : form["Id"].ToString();
             string subtitle = String.IsNullOrEmpty(form["ImageSubtitle"]) ? "" : form["ImageSubtitle"].ToString();
             string keyword = String.IsNullOrEmpty(form["Keyword"]) ? "" : form["Keyword"].ToString();
-            string oldImage = String.IsNullOrEmpty(form["FilePath"]) ? "" : form["FilePath"].ToString();
+            string imagePath = String.IsNullOrEmpty(form["FilePath"]) ? "" : form["FilePath"].ToString();
+            string oldImage = String.IsNullOrEmpty(form["OldImage"]) ? "" : form["OldImage"].ToString();
             string image = "";
             List<string> messages = new List<string>();
             var item = _context.TopImage.Include(x => x.CreatedUser).Include(x => x.EditedUser).FirstOrDefault(x => x.Id == Int32.Parse(id));
