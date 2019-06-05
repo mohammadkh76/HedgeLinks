@@ -7,7 +7,7 @@ namespace HedgeLinks.Models
 {
     public class TopImage:Detail
     {
-        public int Id { get; set; }
+     
         public string ImageTitle { get; set; }
         public string ImageSubtitle { get; set; }
         public string Keyword { get; set; }
