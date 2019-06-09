@@ -1,4 +1,4 @@
-﻿adminModule.service('dataService',
+﻿generalModule.service('dataService',
     ['$http',
     function ($http) {
         this.get = function (url) {

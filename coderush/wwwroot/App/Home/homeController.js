@@ -1,4 +1,4 @@
-adminModule.controller("homeController", ["$scope", "dataService", function ($scope, dataService) {
+layoutModule.controller("homeController", ["$scope", "dataService", function ($scope, dataService) {
     dataService.get('api/TopImage/GetAllTopImage/').then(function (res) {
         $scope.topImage=res.data.Data
         console.log(res.data.Data);

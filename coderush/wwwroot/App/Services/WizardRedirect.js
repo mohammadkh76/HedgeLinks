@@ -1,4 +1,4 @@
-module.service('RedirectToRoute',[function () {
+generalModule.service('RedirectToRoute',[function () {
     this.wizardRedirect=function () {
         let pageState=0;
          

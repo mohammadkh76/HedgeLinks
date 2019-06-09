@@ -99,6 +99,10 @@
     <Folder Include="wwwroot\images\ProfilePics\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Include="wwwroot\App\Registration\register-section1.html" />
+  </ItemGroup>
+
   <ProjectExtensions><VisualStudio><UserProperties appsettings_1json__JSONSchema="http://json.schemastore.org/babelrc" /></VisualStudio></ProjectExtensions>
 
 </Project>

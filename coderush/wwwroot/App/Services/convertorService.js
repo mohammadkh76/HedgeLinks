@@ -1,4 +1,4 @@
-    adminModule.service('convertorService',
+    generalModule.service('convertorService',
     [function () {
         this.toBase64 = function (file) {
             return new Promise((resolve) => {

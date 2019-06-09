@@ -1,1 +1,1 @@
-﻿var layoutModule = angular.module("layoutModule", ['ui.bootstrap', 'toaster']);
+﻿var layoutModule = angular.module('layoutModule',['generalModule']);
