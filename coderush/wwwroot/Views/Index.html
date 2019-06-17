@@ -1,0 +1,174 @@
+<link href="/css/Hedgelinks-home.css" rel="stylesheet" />
+
+<div id="all-index" ng-controller="homeController">
+
+    <section id="top-cover">
+        <div class="row" ng-if="topImage">
+            <div class="col-md-12 no-padding relative">
+                <div class="top-cover-image" style="background-image:url('{{topImage.FilePath}}')" title="HedgeLinks best recruiment system">
+
+                </div>
+                <div class="top-image-overlay">
+
+                </div>
+                <div class="top-cover-text-container">
+                    <p class="top-cover-title" title="{{topImage.ImageTitle}}">{{topImage.ImageTitle}}</p>
+                    <p class="top-cover-description" title="{{topImage.ImageTitle}}">{{topImage.ImageSubtitle}}</p>
+
+                </div>
+                <div class="top-cover-scroll-btn">
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="register-section" class="main-content-container pad-t60 pad-b60">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="info-list">
+                    <div class="info-item" ng-repeat="item in commercialTips">
+                        <div class="info-first-icon" style="background-image: url({{item.FilePath}});" title="{{item.Keyword}}">
+                        </div>
+                        <div class="info-text">
+                            <h4><b class="theme-color">{{item.Title}}</b> {{item.Subtitle}}</h4>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-md-5">
+                <div class="reg-form-sliding">
+                    <p class="registration-title">Search Milions of Jobs</p>
+                    <form action="/register/" method="post">
+                        <div class="form-label">
+                            WHAT YOU DO?
+                            <select name="JobIndustry" class="register-select-list">
+                                <option value="0">Please Select Your Job Industry</option>
+                                <option value="1" ng-repeat="item in jobIndustry">{{item.Title}}</option>
+
+                            </select>
+                        </div>
+                        <div class="form-label">
+                            COMPENSATION
+                            <select name="Compensation" class="register-select-list">
+                                <option value="0">Please Select Compansation</option>
+                                <option value="1" ng-repeat="item in compensation">{{item}}</option>
+
+                            </select>
+
+                        </div>
+                        <div class="form-label">
+                            DESIRED JOB
+                            <input type="text" name="DesiredJob" class="text-input-box" />
+                        </div>
+                        <div class="form-label">
+                            <input class="theme-btn register-btn" type="submit" name="name" value="NEXT" />
+                        </div>
+                        <div class="register-facebook-btn">
+                            <input class="facebook-btn" type="submit" name="name" value="Cuntinue With Facebook" />
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+
+    </section>
+    <section id="category-section" class="category-color">
+        <div class="main-content-container">
+            <div class="row">
+                <div class="main-content-container category-dim  pad-t60 pad-b60">
+                    <div class="col-md-6 no-padding text-center">
+                        <img src="{{(thirdSection.FilePath)?thirdSection.FilePath:'/images/hedgelinks.com-search-among-milions-of-jobs.png'}}" class="advert-image" />
+                    </div>
+                    <div class="col-md-5">
+                        <h2 class="category-title">{{thirdSection.Title}}</h2>
+                        <p class="category-text">{{thirdSection.Subtitle}}</p>
+                        <div class="hot-topic-section">
+                            <h5 class="hot-topic-title">Hot Topics:</h5>
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <ul>
+                                        <li class="hot-topic-item">
+                                            <a class="hot-topic-link" href="#">Latest News</a>
+                                        </li>
+                                        <li class="hot-topic-item">
+                                            <a class="hot-topic-link" href="#">Office Life</a>
+                                        </li>
+                                        <li class="hot-topic-item">
+                                            <a class="hot-topic-link" href="#">the Future of Work</a>
+                                        </li>
+                                        <li class="hot-topic-item">
+                                            <a class="hot-topic-link" href="#">Job Search</a>
+                                        </li>
+
+                                    </ul>
+                                </div>
+                                <div class="col-md-6 no-padding">
+                                    <ul>
+                                        <li class="hot-topic-item">
+                                            <a class="hot-topic-link" href="#">interview Tips</a>
+                                        </li>
+                                        <li class="hot-topic-item">
+                                            <a class="hot-topic-link" href="#">Marc's Newsletter</a>
+                                        </li>
+                                        <li class="hot-topic-item">
+                                            <a class="hot-topic-link" href="#">Resume Help</a>
+                                        </li>
+                                        <li class="hot-topic-item">
+                                            <a class="hot-topic-link" href="#">Free Resume Templates</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+
+                        </div>
+
+                        <div class="col-md-6 no-padding">
+                            <button class="news-btn theme-outlined-btn">
+                                Go to HedgeLinks News
+                            </button>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-1">
+                    <h5 class="hot-topic-title">
+                        Adviced by Topic:
+                    </h5>
+                </div>
+                <div class="col-md-10">
+                    <span class="category-link-item" ng-repeat="item in articlTopic">
+                        <a href="#" title="{{item.Description}}">{{item.Title}}</a>
+                        &nbsp;•&nbsp;
+
+                    </span>
+                </div>
+            </div>
+        </div>
+
+    </section>
+    <section id="trend-section" class="">
+        <div class="main-content-container">
+            <div class="row">
+                <h3 class="trend-title">What's trending nationalwide</h3>
+
+                <div class="col-md-3 no-padding margin-bt20" ng-repeat="item in showedJobIndustry">
+                    <p class="job-cat">{{item.Title}}</p>
+                    <div class="job-item" ng-repeat="job in item.Jobs">
+                        <p class="job-title"  ng-if="job.isTrend">{{job.Title}}</p>
+                        <p class="job-salary" ng-if="job.isTrend">
+                            {{job.Compensation}} • {{item.Jobs.length}} open jobs
+                        </p>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </section>
+</div>

@@ -1,1 +1,1 @@
-﻿var layoutModule = angular.module('layoutModule',['generalModule']);
+﻿var layoutModule = angular.module("layoutModule", ['generalModule']);

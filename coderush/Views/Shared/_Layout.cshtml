@@ -25,10 +25,63 @@
 
 
     @RenderSection("Styles", required: false)
+    <!--Syncfusion-->
+    @*<script src="~/scripts/jsondata.min.js"></script>
+    <script src="~/scripts/jsrender.min.js"></script>*@
+    @*<script src="~/scripts/ej.web.all.min.js" type="text/javascript"></script>*@
+    
+    <environment include="Development">
+        <script src="~/lib/jquery/dist/jquery.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+        <script src="~/js/site.js" asp-append-version="true"></script>
+    </environment>
+    <environment exclude="Development">
+        <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-2.2.0.min.js"
+                asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
+                asp-fallback-test="window.jQuery"
+                crossorigin="anonymous"
+                integrity="sha384-K+ctZQ+LL8q6tP7I94W+qzQsfRV2a+AfHIi9k8z8l9ggpc8X+Ytst4yBo/hH+8Fk">
+        </script>
+        <script src="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/bootstrap.min.js"
+                asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.min.js"
+                asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
+                crossorigin="anonymous"
+                integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa">
+        </script>
+        <script src="~/js/site.min.js" asp-append-version="true"></script>
+    </environment>
+
+
+    <script src="~/scripts/properties.js" type="text/javascript"></script>
+    <script src="~/scripts/jquery.validate.min.js"></script>
+    <script src="~/scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/App/Lib/ng-file-upload-shim.min.js"></script>
+
+    <script src="~/lib/Angular/angular.min.js"></script>
+    <script src="~/lib/Angular/angular-route.min.js"></script>
+<script src="~/lib/Angular/angular-animate.min.js"></script>
+
+    <script src="~/App/Lib/AngularJS-Toaster-master/toaster.js"></script>
+    <script src="~/App/Lib/angular-tinymce.js"></script>
+    <script src="~/App/Module/general-module.js"></script>
+    <script src="~/App/Module/layout-module.js"></script>
+    <script src="~/App/Layout/layout-routes.js"></script>
+        <script src="~/App/Services/convertorService.js"></script>
+
+    <script src="~/App/Lib/ng-file-upload-all.js"></script>
+
+    <script src="~/App/Layout/layout-controller.js"></script>
+    <script src="~/App/Index/index-controller.js"></script>
+    <script src="~/App/Lib/ui-bootstrap-2.5.0.min.js"></script>
+    <script src="~/App/Lib/ui-bootstrap-tpls-2.5.0.js"></script>
+    <script src="~/App/Services/data-service.js"></script>
+    <script src="~/App/Home/homeController.js"></script>
+      <script src="~/App/Services/datePicker/moment.js"></script>
+        <script src="~/App/Services/datePicker/date-picker-directive.js"></script>
 
 </head>
-<body ng-app="layoutModule" ng-controller="layoutController">
-    <section id="large-menubar">
+<body ng-app="layoutModule" >
+    <section ng-controller="layoutController" id="large-menubar">
         <div class="row">
             <div class="main-menubar-container">
                 <div class="col-md-2 text-center">
@@ -87,8 +140,9 @@
             </div>
         </nav>*@
     @RenderBody()
+  
     <hr />
-    <footer>
+    <footer ng-controller="layoutController">
         <div class="footer-line"></div>
         <section id="site-footer">
             <div class="main-content-container">
@@ -143,51 +197,6 @@
         </div>
     </div>
 
-
-    <environment include="Development">
-        <script src="~/lib/jquery/dist/jquery.js"></script>
-        <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
-        <script src="~/js/site.js" asp-append-version="true"></script>
-    </environment>
-    <environment exclude="Development">
-        <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-2.2.0.min.js"
-                asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
-                asp-fallback-test="window.jQuery"
-                crossorigin="anonymous"
-                integrity="sha384-K+ctZQ+LL8q6tP7I94W+qzQsfRV2a+AfHIi9k8z8l9ggpc8X+Ytst4yBo/hH+8Fk">
-        </script>
-        <script src="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/bootstrap.min.js"
-                asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.min.js"
-                asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
-                crossorigin="anonymous"
-                integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa">
-        </script>
-        <script src="~/js/site.min.js" asp-append-version="true"></script>
-    </environment>
-
-    <!--Syncfusion-->
-    @*<script src="~/scripts/jsondata.min.js"></script>
-        <script src="~/scripts/jsrender.min.js"></script>*@
-    @*<script src="~/scripts/ej.web.all.min.js" type="text/javascript"></script>*@
-    <script src="~/scripts/properties.js" type="text/javascript"></script>
-    <script src="~/scripts/jquery.validate.min.js"></script>
-    <script src="~/scripts/jquery.validate.unobtrusive.min.js"></script>
-    <script src="~/App/Lib/ng-file-upload-shim.min.js"></script>
-    <script src="~/lib/Angular/angular.min.js"></script>
-    <script src="~/lib/Angular/angular-animate.min.js"></script>
-    <script src="~/App/Lib/AngularJS-Toaster-master/toaster.js"></script>
-    <script src="~/App/Lib/angular-tinymce.js"></script>
-
-    <script src="~/App/Module/general-module.js"></script>
-    <script src="~/App/Module/layout-module.js"></script>
-    <script src="~/App/Routes/registration-route.js"></script>
-    <script src="~/App/Lib/ng-file-upload-all.js"></script>
-
-    <script src="~/App/Layout/layout-controller.js"></script>
-    <script src="~/App/Lib/ui-bootstrap-2.5.0.min.js"></script>
-    <script src="~/App/Lib/ui-bootstrap-tpls-2.5.0.js"></script>
-    <script src="~/App/Services/data-service.js"></script>
-    <script src="~/App/Home/homeController.js"></script>
 
     @RenderSection("Scripts", required: false)
 

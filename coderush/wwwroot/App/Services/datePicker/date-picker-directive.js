@@ -223,4 +223,4 @@ function datePickerFunc() {
         }
     }
 }
-adminModule.directive('datePicker', [datePickerFunc]);
+generalModule.directive('datePicker', [datePickerFunc]);
