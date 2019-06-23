@@ -1,0 +1,42 @@
+body{
+    background-color:#f0f0f0;
+}
+.register-box{
+    margin: 30px auto;
+    width: 40%;
+}
+.register-form{
+    padding: 50px;
+    background-color:#fff;
+}
+.register-headline{
+    color:black;
+    font-size:22px;
+    font-weight:bold;
+    text-align: center;
+}
+.register-headline2{
+    color:black;
+    font-size:16px;
+    font-weight:bold;
+    margin-bottom:50px;
+}
+.register-label{
+    display: block;
+    color:black;
+    font-size:14px;
+    margin-bottom:8px;
+}
+.register-input{
+    color:black;
+    width:100%;
+    padding:10px 5px;
+    text-align: left;
+    border-radius:5px;  
+    border:1px solid #d1d1d1;
+    
+}
+.register-input:focus{
+    outline-color:#7db323;
+    box-shadow: #7db323 3px 0px 7px ;
+}

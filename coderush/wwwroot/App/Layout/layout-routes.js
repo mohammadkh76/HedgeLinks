@@ -5,8 +5,8 @@ layoutModule.config(function($routeProvider) {
             controller:"indexController"
             
         })
-        .when("/red", {
-            templateUrl : "red.htm"
+        .when("/job-seeker-register", {
+            templateUrl : "/Views/job-seeker-register.html"
         })
         .when("/green", {
             templateUrl : "green.htm"
