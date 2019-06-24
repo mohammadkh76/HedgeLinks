@@ -1,6 +1,7 @@
 ﻿using HedgeLinks.Services;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -18,8 +19,8 @@ namespace HedgeLinks.Data
             {
                 return; //if user is not empty, DB has been seed
             }
-
-            //init app with super admin user
+            StreamReader streamReader = new StreamReader("~/Countries/countries.json");            //init app with super admin user
+            string data = streamReader.ReadToEnd(); 
             await functional.CreateDefaultSuperAdmin();
 
             //init app data
