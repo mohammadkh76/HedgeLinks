@@ -17,10 +17,16 @@ namespace HedgeLinks
 {
     public class Program
     {
+        private IHostingEnvironment _hostingEnvironment;
+        public static string serverPath;
+       
         public static void Main(string[] args)
         {
-            var host = BuildWebHost(args);
+            
 
+            var host = BuildWebHost(args);
+            
+          
             using (var scope = host.Services.CreateScope())
             {
                 var services = scope.ServiceProvider;

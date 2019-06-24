@@ -19,8 +19,7 @@ namespace HedgeLinks.Data
             {
                 return; //if user is not empty, DB has been seed
             }
-            StreamReader streamReader = new StreamReader("~/Countries/countries.json");            //init app with super admin user
-            string data = streamReader.ReadToEnd(); 
+       
             await functional.CreateDefaultSuperAdmin();
 
             //init app data

@@ -13,6 +13,8 @@ using System.Linq;
 using System.Net;
 using System.Net.Mail;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 
 namespace HedgeLinks.Services
 {
@@ -23,9 +25,12 @@ namespace HedgeLinks.Services
         private readonly ApplicationDbContext _context;
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly IRoles _roles;
+        private readonly IHostingEnvironment _hostingEnvironment;
+
         private readonly SuperAdminDefaultOptions _superAdminDefaultOptions;
 
-        public Functional(UserManager<ApplicationUser> userManager,
+        
+        public Functional(UserManager<ApplicationUser> userManager,IHostingEnvironment environment,
            RoleManager<IdentityRole> roleManager,
            ApplicationDbContext context,
            SignInManager<ApplicationUser> signInManager,
@@ -33,6 +38,7 @@ namespace HedgeLinks.Services
            IOptions<SuperAdminDefaultOptions> superAdminDefaultOptions)
         {
             _userManager = userManager;
+            _hostingEnvironment = environment;
             _roleManager = roleManager;
             _context = context;
             _signInManager = signInManager;
@@ -44,9 +50,73 @@ namespace HedgeLinks.Services
 
         public async Task InitAppData()
         {
+
             try
             {
+                var countryServerPath = _hostingEnvironment.WebRootPath+ "\\Countries\\countries.json";
+                StreamReader streamReaderCountry = new StreamReader( countryServerPath);            //init app with super admin user
+                string data = streamReaderCountry.ReadToEnd();
                
+                if (data!=null)
+                {
+                    var json = JsonConvert.DeserializeObject<CountryRoot>(data);
+                    foreach (var item in json.countries)
+                    {
+                       await _context.Country.AddAsync(new Country
+                        {
+                            name = item.name,
+                            sortname = item.sortname,
+                            phoneCode = item.phoneCode
+                        });
+                       await _context.SaveChangesAsync();
+                    }
+                }
+                var stateServerPath = _hostingEnvironment.WebRootPath + "\\Countries\\states.json";
+                StreamReader streamReaderState = new StreamReader(stateServerPath);            //init app with super admin user
+                string state = streamReaderState.ReadToEnd();
+               
+                if (state!=null)
+                {
+                    var json2 = JsonConvert.DeserializeObject<StateRoot>(state);
+                    foreach (var item in json2.states)
+                    {
+                        try
+                        {
+                            await _context.State.AddAsync(new State
+                            {
+                                name = item.name,
+                                country_id = Int32.Parse(item.country_id)
+                            });
+                            await _context.SaveChangesAsync();
+
+                        }
+                        catch (Exception e)
+                        {
+                            Console.WriteLine(e);
+                            throw;
+                        }
+                     
+                    }
+                }
+                var cityServerPath = _hostingEnvironment.WebRootPath + "\\Countries\\cities.json";
+                StreamReader streamReaderCity = new StreamReader(cityServerPath);            //init app with super admin user
+                string city = streamReaderCity.ReadToEnd();
+               
+                if (city!=null)
+                {
+                    var json3 = JsonConvert.DeserializeObject<CityRoot>(city);
+                    foreach (var item in json3.Cities)
+                    {
+                        await _context.City.AddAsync(new City
+                        {
+                            name = item.name,
+                            
+                            state_id = Int32.Parse(item.state_id)
+                        });
+                        await _context.SaveChangesAsync();
+                    }
+                }
+//                countries.Add(data); 
                 await _context.BillType.AddAsync(new BillType { BillTypeName = "Default" });
                 await _context.SaveChangesAsync();
 
@@ -165,7 +235,7 @@ namespace HedgeLinks.Services
                 await _context.SaveChangesAsync();
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
                 throw;
