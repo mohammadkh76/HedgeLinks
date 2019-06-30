@@ -8,18 +8,53 @@
         
 
         <div class="form-group">
-            <lable for="FirstName" class="register-label">First Name</lable>
-            <input type="text" class="register-input" placeholder=""/> 
+            <lable for="FirstName" class="register-label">Name</lable>
+            <input type="text" class="register-input" placeholder="Enter Your Full Name: "/> 
         </div>
-        <div class="form-group">
-            <lable for="LastName" class="register-label">Last Name</lable>
-            <input type="text" class="register-input" placeholder=""/>
-        </div>
+       
         <div class="form-group">
             <lable for="Email" class="register-label">Email Address</lable>
             <input type="text" class="register-input" placeholder="Enter your Email ID"/>
         </div>
-        
+        <div class="form-group">
+           <lable for="Country" class="register-label">Country</lable>
+            <select class="register-input register-select">
+                <option class="register-options" value="0">Select Country                    
+                </option>
+            </select>
+        </div>
+        <div class="form-group">
+            <lable for="State" class="register-label">State</lable>
+            <select name="state" class="register-input register-select">
+                <option class="register-options" value="0">Select State
+                </option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <lable for="City" class="register-label">City</lable>
+           <input type="text" class="register-input" name="city"/>
+        </div>
+
+        <div class="form-group">
+            <lable for="JobTitle" class="register-label">Desired Job Title</lable>
+            <input type="text" class="register-input" name="JobTitle"/>
+        </div>
+        <lable for="Resume" class="register-label">Desired Job Title</lable>
+
+        <div class="input-container">
+
+            <input type="file" name="Resume" id="real-input">
+            <button class="browse-btn">
+                Browse Files
+            </button>
+            <span class="file-info">only pdf, jpg, png, doc is supported.</span>
+        </div>
+        <div class="upload-size-tip">
+            <span class="star-icon">*</span> Must be less than 500 KB size
+        </div>
+
+
     </form>
     </div>
     

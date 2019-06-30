@@ -40,3 +40,51 @@ body{
     outline-color:#7db323;
     box-shadow: #7db323 3px 0px 7px ;
 }
+.input-container {
+  
+    background-color: #EDEDED;
+    border: 1px solid #7db323;
+    height:55px;
+
+}
+
+#real-input {
+    display: none;
+}
+
+.file-info {
+    font-size: 14px;
+    color:gray;
+    position: relative;
+    top: calc(50% - 13px);
+}
+
+.browse-btn {
+    background: #7db323;
+    color: #fff;
+    min-height: 35px;
+    padding: 10px;
+    border: none;
+    float: right;
+}
+
+.browse-btn:hover {
+    background: #94C04B;
+}
+
+@media (max-width: 300px) {
+    button {
+        width: 100%;
+        border-top-right-radius: 5px;
+        border-bottom-left-radius: 0;
+    }
+
+    .file-info {
+        display: block;
+        margin: 10px 5px;
+    }
+}
+
+.star-icon{
+    color:red;
+}
