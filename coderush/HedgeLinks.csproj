@@ -91,12 +91,30 @@
 
   <ItemGroup>
     <Folder Include="wwwroot\App\ThirdSection\" />
-    <Folder Include="wwwroot\App\NewFolder\" />
+    <Folder Include="wwwroot\App\Register\" />
     <Folder Include="wwwroot\images\CommercialTips\" />
     <Folder Include="wwwroot\images\NewFolder\" />
     <Folder Include="wwwroot\images\ThirdSection\" />
     <Folder Include="wwwroot\images\TopImage\" />
     <Folder Include="wwwroot\images\ProfilePics\" />
+    <Folder Include="wwwroot\Resume" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="wwwroot\App\Directives\angular-wizard\angular-wizard.css" />
+    <_ContentIncludedByDefault Remove="wwwroot\App\Directives\angular-wizard\angular-wizard.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\App\Directives\datePicker\date-picker-directive.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\App\Directives\datePicker\date-picker-tmpl.html" />
+    <_ContentIncludedByDefault Remove="wwwroot\App\Directives\datePicker\datePicker.css" />
+    <_ContentIncludedByDefault Remove="wwwroot\App\Directives\datePicker\datePickerTemplate.css" />
+    <_ContentIncludedByDefault Remove="wwwroot\App\Directives\datePicker\moment.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\App\Directives\Recaptcha\angular-recaptcha.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\App\Directives\Recaptcha\directive.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\App\Directives\Recaptcha\module.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\App\Directives\Recaptcha\service.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\App\Directives\Step\step-wizard-directive.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\App\Directives\Step\step-wizard-tmpl.html" />
+    <_ContentIncludedByDefault Remove="wwwroot\App\Directives\Step\step-wizard.css" />
   </ItemGroup>
 
   <ProjectExtensions><VisualStudio><UserProperties appsettings_1json__JSONSchema="http://json.schemastore.org/babelrc" /></VisualStudio></ProjectExtensions>

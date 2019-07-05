@@ -118,6 +118,21 @@ namespace HedgeLinks.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Country",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    name = table.Column<string>(nullable: true),
+                    phoneCode = table.Column<string>(nullable: true),
+                    sortname = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Country", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Currency",
                 columns: table => new
                 {
@@ -215,6 +230,25 @@ namespace HedgeLinks.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_InvoiceType", x => x.InvoiceTypeId);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "JobSeekerDetail",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Address = table.Column<string>(nullable: true),
+                    CurrentJobStatus = table.Column<string>(nullable: true),
+                    CurrentJobTitle = table.Column<string>(nullable: true),
+                    PhoneNumber = table.Column<string>(nullable: true),
+                    WorkSpacePhoneNumber = table.Column<string>(nullable: true),
+                    WorkspaceAddress = table.Column<string>(nullable: true),
+                    compensation = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_JobSeekerDetail", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -865,6 +899,26 @@ namespace HedgeLinks.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "State",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    country_id = table.Column<int>(nullable: false),
+                    name = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_State", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_State_Country_country_id",
+                        column: x => x.country_id,
+                        principalTable: "Country",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "PurchaseOrderLine",
                 columns: table => new
                 {
@@ -940,7 +994,7 @@ namespace HedgeLinks.Migrations
                     EditUserId = table.Column<string>(nullable: true),
                     ExternalLink = table.Column<string>(nullable: true),
                     Keyword = table.Column<string>(nullable: true),
-                    MenuPathId = table.Column<int>(nullable: false),
+                    MenuPathId = table.Column<int>(nullable: true),
                     Title = table.Column<string>(nullable: true),
                     isShow = table.Column<bool>(nullable: false)
                 },
@@ -970,7 +1024,7 @@ namespace HedgeLinks.Migrations
                         column: x => x.MenuPathId,
                         principalTable: "MenuPath",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -1074,6 +1128,71 @@ namespace HedgeLinks.Migrations
                         principalTable: "MenuPath",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "City",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    name = table.Column<string>(nullable: true),
+                    state_id = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_City", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_City_State_state_id",
+                        column: x => x.state_id,
+                        principalTable: "State",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "JobSeeker",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    ApplicationUserId = table.Column<string>(nullable: true),
+                    CountryId = table.Column<int>(nullable: false),
+                    DesiredJobTitle = table.Column<string>(nullable: true),
+                    Email = table.Column<string>(nullable: true),
+                    FullName = table.Column<string>(nullable: true),
+                    JobSeekerDetailId = table.Column<int>(nullable: false),
+                    ResumeFile = table.Column<string>(nullable: true),
+                    StateId = table.Column<int>(nullable: false),
+                    city = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_JobSeeker", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_JobSeeker_AspNetUsers_ApplicationUserId",
+                        column: x => x.ApplicationUserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_JobSeeker_Country_CountryId",
+                        column: x => x.CountryId,
+                        principalTable: "Country",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_JobSeeker_JobSeekerDetail_JobSeekerDetailId",
+                        column: x => x.JobSeekerDetailId,
+                        principalTable: "JobSeekerDetail",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_JobSeeker_State_StateId",
+                        column: x => x.StateId,
+                        principalTable: "State",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -1190,6 +1309,11 @@ namespace HedgeLinks.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
+                name: "IX_City_state_id",
+                table: "City",
+                column: "state_id");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_ComercialTips_CreatedUserId",
                 table: "ComercialTips",
                 column: "CreatedUserId");
@@ -1235,6 +1359,26 @@ namespace HedgeLinks.Migrations
                 column: "EditUserId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_JobSeeker_ApplicationUserId",
+                table: "JobSeeker",
+                column: "ApplicationUserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_JobSeeker_CountryId",
+                table: "JobSeeker",
+                column: "CountryId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_JobSeeker_JobSeekerDetailId",
+                table: "JobSeeker",
+                column: "JobSeekerDetailId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_JobSeeker_StateId",
+                table: "JobSeeker",
+                column: "StateId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_JobType_CreatedUserId",
                 table: "JobType",
                 column: "CreatedUserId");
@@ -1278,6 +1422,11 @@ namespace HedgeLinks.Migrations
                 name: "IX_SalesOrderLine_SalesOrderId",
                 table: "SalesOrderLine",
                 column: "SalesOrderId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_State_country_id",
+                table: "State",
+                column: "country_id");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Submenu_CreatedUserId",
@@ -1368,6 +1517,9 @@ namespace HedgeLinks.Migrations
                 name: "CashBank");
 
             migrationBuilder.DropTable(
+                name: "City");
+
+            migrationBuilder.DropTable(
                 name: "ComercialTips");
 
             migrationBuilder.DropTable(
@@ -1390,6 +1542,9 @@ namespace HedgeLinks.Migrations
 
             migrationBuilder.DropTable(
                 name: "Job");
+
+            migrationBuilder.DropTable(
+                name: "JobSeeker");
 
             migrationBuilder.DropTable(
                 name: "NumberSequence");
@@ -1464,6 +1619,12 @@ namespace HedgeLinks.Migrations
                 name: "JobType");
 
             migrationBuilder.DropTable(
+                name: "JobSeekerDetail");
+
+            migrationBuilder.DropTable(
+                name: "State");
+
+            migrationBuilder.DropTable(
                 name: "PurchaseOrder");
 
             migrationBuilder.DropTable(
@@ -1471,6 +1632,9 @@ namespace HedgeLinks.Migrations
 
             migrationBuilder.DropTable(
                 name: "Menubar");
+
+            migrationBuilder.DropTable(
+                name: "Country");
 
             migrationBuilder.DropTable(
                 name: "MenuPath");

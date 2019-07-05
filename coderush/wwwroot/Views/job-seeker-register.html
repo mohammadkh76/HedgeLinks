@@ -1,61 +1,132 @@
 <link href="/css/job-seeker-register.css" rel="stylesheet"/>
+<link href="/css/select-loading.css" rel="stylesheet"/>
+
+
 <div class="form-container">
     <div class="register-box">
-    <form class="register-form">
-        <p class="register-headline">Jobseeker Register Free</p>
-        <hr/>
-        <p class="register-headline2">Find jobs, create trackable resumes and enrich your applications.</p>
-        
+        <form class="register-form" name="myForm" novalidate>
+            <p class="register-headline">Jobseeker Register Free</p>
+            <hr/>
+            <p class="register-headline2">Find jobs, create trackable resumes and enrich your applications.</p>
+            <div class="form-group">
+                <lable for="fullName" class="register-label">Name</lable>
+                <input type="text"
+                       ng-class="myForm.fullName.$touched && myForm.fullName.$invalid ? 'register-input input-error':'register-input'"
+                       name="fullName" placeholder="Enter Your Full Name: " ng-model="fullName" required/>
+                <div class="error-message" ng-if="myForm.fullName.$touched && myForm.fullName.$invalid">This field is
+                    Required
+                </div>
+            </div>
+            <div class="form-group">
+                <lable for="Email" class="register-label">Email Address</lable>
+                <input name="email" ng-model="email" type="email" required
+                       ng-class="myForm.email.$touched && myForm.email.$invalid ? 'register-input input-error':'register-input'"
+                       placeholder="Enter your Email ID"/>
+                <div class="error-message" ng-if="myForm.email.$touched && myForm.email.$error.required">This field is
+                    Required
+                </div>
+                <div class="error-message" ng-if="myForm.email.$touched && myForm.email.$error.email">Email is Not
+                    Valid
+                </div>
 
-        <div class="form-group">
-            <lable for="FirstName" class="register-label">Name</lable>
-            <input type="text" class="register-input" placeholder="Enter Your Full Name: "/> 
-        </div>
-       
-        <div class="form-group">
-            <lable for="Email" class="register-label">Email Address</lable>
-            <input type="text" class="register-input" placeholder="Enter your Email ID"/>
-        </div>
-        <div class="form-group">
-           <lable for="Country" class="register-label">Country</lable>
-            <select class="register-input register-select">
-                <option class="register-options" value="0">Select Country                    
-                </option>
-            </select>
-        </div>
-        <div class="form-group">
-            <lable for="State" class="register-label">State</lable>
-            <select name="state" class="register-input register-select">
-                <option class="register-options" value="0">Select State
-                </option>
-            </select>
-        </div>
+            </div>
+            <div class="form-group">
+                <lable for="Country" class="register-label">Country</lable>
+                <select ng-change="changeCountry()" class="register-input register-select" ng-model="selectedCountry" ng-disabled="countries.length==1">
+                    <option class="register-options" value="0" >Select Country
 
-        <div class="form-group">
-            <lable for="City" class="register-label">City</lable>
-           <input type="text" class="register-input" name="city"/>
-        </div>
+                    </option>
+                    <option class="register-options" value='{{item.Id}}' ng-repeat="item in countries">
+                        {{item.name}}
+                    </option>
 
-        <div class="form-group">
-            <lable for="JobTitle" class="register-label">Desired Job Title</lable>
-            <input type="text" class="register-input" name="JobTitle"/>
-        </div>
-        <lable for="Resume" class="register-label">Desired Job Title</lable>
+                </select>
+            </div>
+            <div class="form-group">
+                <lable for="State" class="register-label">State</lable>
+                <select name="state" class="register-input register-select" ng-model="selectedState">
+                    <option class="register-options" value="0">Select State
+                    </option>
+                    <option class="register-options" value="{{st.Id}}" ng-repeat="st in states">
+                        {{st.name}}
+                    </option>
+                </select>
+            </div>
 
-        <div class="input-container">
+            <div class="form-group">
+                <lable for="City" class="register-label">City</lable>
+                <input type="text" ng-model="city" required name="city"
+                       ng-class="myForm.city.$touched && myForm.city.$invalid ? 'register-input input-error':'register-input'"/>
+                <div class="error-message" ng-if="myForm.city.$touched && myForm.city.$invalid">This field is Required
+                </div>
+            </div>
+            <div class="form-group">
+                <lable for="JobTitle" class="register-label">Desired Job Title</lable>
+                <input required ng-model="jobTitle" type="text"
+                       ng-class="myForm.jobTitle.$touched && myForm.jobTitle.$invalid ? 'register-input input-error':'register-input'"
+                       name="jobTitle"/>
+                <div class="error-message" ng-if="myForm.jobTitle.$touched && myForm.jobTitle.$invalid">This field is
+                    Required
+                </div>
+            </div>
+            <lable for="Resume" class="register-label">Desired Job Title</lable>
+            <div class="input-container">
+                <input type="file" name="Resume" id="real-input">
+                <button class="browse-btn" ngf-select ng-model="resume">
+                    Browse Files
+                </button>
+                <span class="file-info">{{resume.name ? resume.name :'only pdf, jpg, png, doc is supported.'}}</span>
+            </div>
+            <div class="upload-size-tip">
+                <span class="star-icon text-center">*</span>Must be less than 500 KB size
+            </div>
+            <div class="password-divs">
+                <div class="form-group">
+                    <lable for="Password" class="register-label">Password</lable>
+                    <input type="password" id="password" name="password" ng-model="password"
+                           ng-class="myForm.password.$touched && myForm.password.$invalid ? 'register-input input-error':'register-input'"
+                           required/>
+                    <div class="error-message" ng-if="myForm.password.$touched && myForm.password.$invalid">This field
+                        is Required
+                    </div>
+                </div>
+                <div class="form-group">
+                    <lable for="ConfirmPassword" class="register-label">Confirm Password</lable>
+                    <input pw-check='password' id="confirmPassword" type="password"
+                           ng-class="myForm.confirmPassword.$touched && myForm.confirmPassword.$invalid ? 'register-input input-error':'register-input'"
+                           required ng-model="confirmPassword" name="confirmPassword"/>
+                    <div class="error-message"
+                         ng-if="myForm.confirmPassword.$touched && myForm.confirmPassword.$error.required">This field is
+                        Required
+                    </div>
+                    <div class="error-message"
+                         ng-if="myForm.confirmPassword.$touched && myForm.confirmPassword.$error.pwmatch">Passwords
+                        Won't match
+                    </div>
+                </div>
+                <div class="upload-size-tip">
+                    <span class="register-checkbox-span"><input ng-model="terms" name="terms" type="checkbox" required/></span><span
+                        class="star-icon text-center">*</span>By registering you agree to the <a href="#/Terms">Terms &
+                    Conditions</a> .
+                    <div class="error-message" ng-if="myForm.terms.$touched && myForm.terms.$error.required">You should
+                        accept our term of services.
+                    </div>
 
-            <input type="file" name="Resume" id="real-input">
-            <button class="browse-btn">
-                Browse Files
-            </button>
-            <span class="file-info">only pdf, jpg, png, doc is supported.</span>
-        </div>
-        <div class="upload-size-tip">
-            <span class="star-icon">*</span> Must be less than 500 KB size
-        </div>
+                </div>
+            </div>
+            </hr>
+
+            <div class="form-group">
+
+                <button class="register-btn" ng-disabled="myForm.$invalid" ng-click="submit()">Submit</button>
+            </div>
+            <div class="form-group">
+                <p class="sign-in-message">Have an Account?<a class="sign-in-link-form" href="/account/login/">Sign In
+                    Here!</a></p>
+            </div>
 
 
-    </form>
+        </form>
     </div>
-    
+
 </div>

@@ -11,7 +11,7 @@ using System;
 namespace HedgeLinks.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20190602212020_new")]
+    [Migration("20190705053756_new")]
     partial class @new
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -97,7 +97,7 @@ namespace HedgeLinks.Migrations
 
                     b.Property<string>("Keyword");
 
-                    b.Property<int>("MenuPathId");
+                    b.Property<int?>("MenuPathId");
 
                     b.Property<string>("Title");
 
@@ -228,6 +228,22 @@ namespace HedgeLinks.Migrations
                     b.ToTable("CashBank");
                 });
 
+            modelBuilder.Entity("HedgeLinks.Models.City", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("name");
+
+                    b.Property<int>("state_id");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("state_id");
+
+                    b.ToTable("City");
+                });
+
             modelBuilder.Entity("HedgeLinks.Models.ComercialTips", b =>
                 {
                     b.Property<int>("Id")
@@ -256,6 +272,22 @@ namespace HedgeLinks.Migrations
                     b.HasIndex("EditUserId");
 
                     b.ToTable("ComercialTips");
+                });
+
+            modelBuilder.Entity("HedgeLinks.Models.Country", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("name");
+
+                    b.Property<string>("phoneCode");
+
+                    b.Property<string>("sortname");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Country");
                 });
 
             modelBuilder.Entity("HedgeLinks.Models.Currency", b =>
@@ -473,6 +505,66 @@ namespace HedgeLinks.Migrations
                     b.HasIndex("EditUserId");
 
                     b.ToTable("JobIndustries");
+                });
+
+            modelBuilder.Entity("HedgeLinks.Models.JobSeekerDetail", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Address");
+
+                    b.Property<string>("CurrentJobStatus");
+
+                    b.Property<string>("CurrentJobTitle");
+
+                    b.Property<string>("PhoneNumber");
+
+                    b.Property<string>("WorkSpacePhoneNumber");
+
+                    b.Property<string>("WorkspaceAddress");
+
+                    b.Property<string>("compensation");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("JobSeekerDetail");
+                });
+
+            modelBuilder.Entity("HedgeLinks.Models.JobSeekers", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("ApplicationUserId");
+
+                    b.Property<int>("CountryId");
+
+                    b.Property<string>("DesiredJobTitle");
+
+                    b.Property<string>("Email");
+
+                    b.Property<string>("FullName");
+
+                    b.Property<int>("JobSeekerDetailId");
+
+                    b.Property<string>("ResumeFile");
+
+                    b.Property<int>("StateId");
+
+                    b.Property<string>("city");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ApplicationUserId");
+
+                    b.HasIndex("CountryId");
+
+                    b.HasIndex("JobSeekerDetailId");
+
+                    b.HasIndex("StateId");
+
+                    b.ToTable("JobSeeker");
                 });
 
             modelBuilder.Entity("HedgeLinks.Models.JobType", b =>
@@ -907,6 +999,22 @@ namespace HedgeLinks.Migrations
                     b.ToTable("ShipmentType");
                 });
 
+            modelBuilder.Entity("HedgeLinks.Models.State", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("country_id");
+
+                    b.Property<string>("name");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("country_id");
+
+                    b.ToTable("State");
+                });
+
             modelBuilder.Entity("HedgeLinks.Models.SubMenu", b =>
                 {
                     b.Property<int>("Id")
@@ -1243,8 +1351,7 @@ namespace HedgeLinks.Migrations
 
                     b.HasOne("HedgeLinks.Models.MenuPath", "Menupath")
                         .WithMany()
-                        .HasForeignKey("MenuPathId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("MenuPathId");
                 });
 
             modelBuilder.Entity("HedgeLinks.Models.ArticleTopic", b =>
@@ -1256,6 +1363,14 @@ namespace HedgeLinks.Migrations
                     b.HasOne("HedgeLinks.Models.ApplicationUser", "EditedUser")
                         .WithMany()
                         .HasForeignKey("EditUserId");
+                });
+
+            modelBuilder.Entity("HedgeLinks.Models.City", b =>
+                {
+                    b.HasOne("HedgeLinks.Models.State", "state")
+                        .WithMany()
+                        .HasForeignKey("state_id")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("HedgeLinks.Models.ComercialTips", b =>
@@ -1303,6 +1418,28 @@ namespace HedgeLinks.Migrations
                     b.HasOne("HedgeLinks.Models.ApplicationUser", "EditedUser")
                         .WithMany()
                         .HasForeignKey("EditUserId");
+                });
+
+            modelBuilder.Entity("HedgeLinks.Models.JobSeekers", b =>
+                {
+                    b.HasOne("HedgeLinks.Models.ApplicationUser", "ApplicationUser")
+                        .WithMany()
+                        .HasForeignKey("ApplicationUserId");
+
+                    b.HasOne("HedgeLinks.Models.Country", "Country")
+                        .WithMany()
+                        .HasForeignKey("CountryId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("HedgeLinks.Models.JobSeekerDetail", "JobSeekerDetail")
+                        .WithMany()
+                        .HasForeignKey("JobSeekerDetailId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("HedgeLinks.Models.State", "State")
+                        .WithMany()
+                        .HasForeignKey("StateId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("HedgeLinks.Models.JobType", b =>
@@ -1355,6 +1492,14 @@ namespace HedgeLinks.Migrations
                     b.HasOne("HedgeLinks.Models.SalesOrder", "SalesOrder")
                         .WithMany("SalesOrderLines")
                         .HasForeignKey("SalesOrderId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("HedgeLinks.Models.State", b =>
+                {
+                    b.HasOne("HedgeLinks.Models.Country", "Country")
+                        .WithMany()
+                        .HasForeignKey("country_id")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 

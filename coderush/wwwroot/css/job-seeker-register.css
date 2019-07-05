@@ -45,7 +45,7 @@ body{
     background-color: #EDEDED;
     border: 1px solid #7db323;
     height:55px;
-
+    width: 100%;
 }
 
 #real-input {
@@ -57,6 +57,7 @@ body{
     color:gray;
     position: relative;
     top: calc(50% - 13px);
+    left:10px;
 }
 
 .browse-btn {
@@ -87,4 +88,63 @@ body{
 
 .star-icon{
     color:red;
+}
+.password-divs{
+    margin-top:50px;
+}
+.register-checkbox{
+    display: inline-block;
+    margin-right:6px;
+}
+.register-btn{
+    background-color:#7db323;
+    color:white;
+    height:42px;
+    width:100%;
+    text-align:center;
+    border:none;
+    margin-top:45px;
+   
+    
+}
+.register-btn:disabled{
+    background-color:transparent;
+    border:1px solid #7db323;
+    color:black
+    
+}
+.sign-in-message{
+    font-size:16px;
+    font-weight:600;
+    margin-top:20px;
+    text-align: left;
+    color:black;
+}
+.sign-in-link-form{
+    font-size:16px;
+    text-decoration: underline;
+    margin-left:5px;
+}
+
+.input-error{
+    color:black;
+    width:100%;
+    padding:10px 5px;
+    text-align: left;
+    border-radius:5px;
+    border:1px solid #ee3148;
+
+}
+.input-error:focus{
+    outline-color:#ee3148 !importat;
+    box-shadow: #ee3148 3px 0px 7px !important;
+}
+.error-message{
+    color:#ee3148;
+    font-style: italic;
+}
+.register-select:disabled{
+    background-color:gray;
+    color:#d1d1d1;
+    cursor:not-allowed;
 }

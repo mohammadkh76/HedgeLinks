@@ -8,6 +8,7 @@ namespace HedgeLinks.Models
         public string sortname { get; set; }
         public string name { get; set; }
         public string phoneCode { get; set; }
+        public List<State>states { get; set; }
     }
 
     public class CountryRoot

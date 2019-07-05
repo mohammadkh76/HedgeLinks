@@ -95,6 +95,8 @@ namespace HedgeLinks.Data
         public DbSet<Country> Country{ get; set; }
         public DbSet<State> State{ get; set; }
         public DbSet<City> City{ get; set; }
+        public DbSet<JobSeekers> JobSeeker { get; set; }
+        public DbSet<JobSeekerDetail> JobSeekerDetail{ get; set; }
         public DbSet<HedgeLinks.Models.TopImage> TopImage { get; set; }
     }
 }

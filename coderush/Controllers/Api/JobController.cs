@@ -96,7 +96,7 @@ namespace HedgeLinks.Controllers.Api
             string externalLink= String.IsNullOrEmpty(form["ExternalLink"]) ? "" : form["ExternalLink"].ToString();
             string isEasyApply= String.IsNullOrEmpty(form["IsEasyApply"]) ? "" : form["IsEasyApply"].ToString();
             string isTrend= String.IsNullOrEmpty(form["IsTrend"]) ? "" : form["IsTrend"].ToString();
-            string image = "";
+                string image = "";
             if (form.Files.Count < 1)
             {
                 image = "/upload/blank-person.png";

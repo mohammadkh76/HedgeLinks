@@ -14,11 +14,13 @@
               asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
               asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
         <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
+
     </environment>
 
     <!--Snycfusion-->
     @*<link href="~/content/ejthemes/bootstrap-theme/ej.web.all.min.css" rel="stylesheet" />*@
     <link href="~/content/default.css" rel="stylesheet" />
+
     <link href="~/content/default-responsive.css" rel="stylesheet" />
     <link href="~/content/ejthemes/responsive-css/ej.responsive.css" rel="stylesheet" />
     <link href="~/content/ejthemes/responsive-css/ejgrid.responsive.css" rel="stylesheet" />
@@ -62,62 +64,70 @@
 <script src="~/lib/Angular/angular-animate.min.js"></script>
 
     <script src="~/App/Lib/AngularJS-Toaster-master/toaster.js"></script>
+     
     <script src="~/App/Lib/angular-tinymce.js"></script>
     <script src="~/App/Module/general-module.js"></script>
     <script src="~/App/Module/layout-module.js"></script>
     <script src="~/App/Layout/layout-routes.js"></script>
+     <script src="~/App/Lib/ui-bootstrap-2.5.0.min.js"></script>
+            <script src="~/App/Lib/ui-bootstrap-tpls-2.5.0.js"></script>
         <script src="~/App/Services/convertorService.js"></script>
 
     <script src="~/App/Lib/ng-file-upload-all.js"></script>
 
+
     <script src="~/App/Layout/layout-controller.js"></script>
     <script src="~/App/Index/index-controller.js"></script>
+    <script src="~/App/Register/job-seeker-register-controller.js"></script>
+
     <script src="~/App/Lib/ui-bootstrap-2.5.0.min.js"></script>
     <script src="~/App/Lib/ui-bootstrap-tpls-2.5.0.js"></script>
     <script src="~/App/Services/data-service.js"></script>
     <script src="~/App/Home/homeController.js"></script>
-      <script src="~/App/Services/datePicker/moment.js"></script>
+    <script src="~/App/Services/datePicker/moment.js"></script>
+    <script src="~/App/Directives/confirmPassword/confirm-password-directive.js"></script>
+    
         <script src="~/App/Services/datePicker/date-picker-directive.js"></script>
 
 </head>
-<body ng-app="layoutModule" >
-    <section ng-controller="layoutController" id="large-menubar">
-        <div class="row">
-            <div class="main-menubar-container">
-                <div class="col-md-2 text-center">
-                    <img class="lg-logo" src="~/images/logo.png" alt="HedgeLinks.com" title="HedgeLinks" />
-                </div>
-                <div class="col-md-5 no-padding">
-                    <div class="menu-item-container">
-                        <a href="{{item.Path}}" ng-repeat="item in menubar">
-                            <div class="lg-menu-item">
-                                {{item.Name}}
-                            </div>
-                        </a>
+<body ng-app="layoutModule">
+<section ng-controller="layoutController" id="large-menubar">
+    <div class="row">
+        <div class="main-menubar-container">
+            <div class="col-md-2 text-center">
+                <img class="lg-logo" src="~/images/logo.png" alt="HedgeLinks.com" title="HedgeLinks"/>
+            </div>
+            <div class="col-md-5 no-padding">
+                <div class="menu-item-container">
+                    <a href="{{item.Path}}" ng-repeat="item in menubar">
+                        <div class="lg-menu-item">
+                            {{item.Name}}
+                        </div>
+                    </a>
 
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="lg-menu-right">
+                    <div class="lg-menu-sign-in lg-right-menu-item">
+                        <a class="sign-in-link" title="HedgeLinks Sign In" href="/account/login">Sign In</a>
                     </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="lg-menu-right">
-                        <div class="lg-menu-sign-in lg-right-menu-item">
-                            <a class="sign-in-link" title="HedgeLinks Sign In" href="/account/login">Sign In</a>
-                        </div>
-                        <div class="spacer"></div>
-                        <div class="lg-menu-employer lg-right-menu-item" title="Hedge Links Employer">
-                            <a class="employer-in-link" title="HedgeLinks Employers">Employers</a>
-                        </div>
-                        <div class="spacer"></div>
+                    <div class="spacer"></div>
+                    <div class="lg-menu-employer lg-right-menu-item" title="Hedge Links Employer">
+                        <a class="employer-in-link" title="HedgeLinks Employers">Employers</a>
+                    </div>
+                    <div class="spacer"></div>
 
-                        <div class="lg-menu-post-job-btn lg-right-menu-item theme-color" title="Hedge Links Post Job">
-                            <a class="post-in-link" title="HedgeLinks Post Job For Free">Post Job Free</a>
-                        </div>
+                    <div class="lg-menu-post-job-btn lg-right-menu-item theme-color" title="Hedge Links Post Job">
+                        <a class="post-in-link" title="HedgeLinks Post Job For Free">Post Job Free</a>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    @*<nav class="navbar navbar-inverse navbar-fixed-top">
+@*<nav class="navbar navbar-inverse navbar-fixed-top">
             <div class="container">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -139,66 +149,66 @@
                 </div>
             </div>
         </nav>*@
-    @RenderBody()
-  
-    <hr />
-    <footer ng-controller="layoutController">
-        <div class="footer-line"></div>
-        <section id="site-footer">
-            <div class="main-content-container">
-                <a class="footer-logo" title="hedgelink.com"></a>
+@RenderBody()
 
-                <div class="col-md-2">
-                    <a class="footer-item footer-title" title="hedgelink.com">Related Links</a>
-                    <a class="footer-item footer-bold" title="hedgelink.com">Work At HedgeLinks</a>
-                    <a class="footer-item footer-bold" title="hedgelink.com">Contact Us</a>
-                    <a class="footer-item footer-bold" title="hedgelink.com">News & Advice</a>
-                    <a class="footer-item footer-bold" title="hedgelink.com">Editorial Team</a>
-                    <a class="footer-item footer-bold" title="hedgelink.com">Recruiter Site</a>
-                    <a class="footer-item footer-bold" title="hedgelink.com">Press Coverage</a>
-                    <a class="footer-item" title="hedgelink.com">Privacy</a>
-                    <a class="footer-item" title="hedgelink.com">Terms of Use</a>
-                    <a class="footer-item" title="hedgelink.com">FAQs</a>
-                    <a class="footer-item" title="hedgelink.com">Site Maps</a>
-                </div>
-                <div class="col-md-2">
-                    <a class="footer-item footer-title" title="hedgelink.com">Company Careers</a>
-                    <div class="items" ng-repeat="jc in jobCompany">
-                        <a class="footer-item" title="hedgelink.com">{{jc}} Jobs</a>
-                    </div>
-                </div>
-                <div class="col-md-2">
-                    <a class="footer-item footer-title" title="hedgelink.com">Industry Jobs</a>
-                    <div class="items" ng-repeat="ji in jobIndustry">
-                        <a class="footer-item" title="{{item.Description}}">{{ji.Title}} Jobs</a>
-                    </div>
+<hr/>
+<footer ng-controller="layoutController">
+    <div class="footer-line"></div>
+    <section id="site-footer">
+        <div class="main-content-container">
+            <a class="footer-logo" title="hedgelink.com"></a>
 
+            <div class="col-md-2">
+                <a class="footer-item footer-title" title="hedgelink.com">Related Links</a>
+                <a class="footer-item footer-bold" title="hedgelink.com">Work At HedgeLinks</a>
+                <a class="footer-item footer-bold" title="hedgelink.com">Contact Us</a>
+                <a class="footer-item footer-bold" title="hedgelink.com">News & Advice</a>
+                <a class="footer-item footer-bold" title="hedgelink.com">Editorial Team</a>
+                <a class="footer-item footer-bold" title="hedgelink.com">Recruiter Site</a>
+                <a class="footer-item footer-bold" title="hedgelink.com">Press Coverage</a>
+                <a class="footer-item" title="hedgelink.com">Privacy</a>
+                <a class="footer-item" title="hedgelink.com">Terms of Use</a>
+                <a class="footer-item" title="hedgelink.com">FAQs</a>
+                <a class="footer-item" title="hedgelink.com">Site Maps</a>
+            </div>
+            <div class="col-md-2">
+                <a class="footer-item footer-title" title="hedgelink.com">Company Careers</a>
+                <div class="items" ng-repeat="jc in jobCompany">
+                    <a class="footer-item" title="hedgelink.com">{{jc}} Jobs</a>
                 </div>
-                <div class="col-md-2">
-                    <a class="footer-item footer-title" title="hedgelink.com">Top Cities</a>
-                    <div class="items" ng-repeat="jci in jobCity">
-                        <a class="footer-item" title="hedgelink.com">{{jci}} Jobs</a>
-                    </div>
-                </div>
-                <div class="col-md-2">
-                    <a class="footer-item footer-title" title="hedgelink.com">Top Jobs</a>
-                    <div class="items" ng-repeat="jt in jobTitle">
-                        <a class="footer-item footer-bold" title="hedgelink.com">{{jt}} Jobs</a>
-                    </div>
-
+            </div>
+            <div class="col-md-2">
+                <a class="footer-item footer-title" title="hedgelink.com">Industry Jobs</a>
+                <div class="items" ng-repeat="ji in jobIndustry">
+                    <a class="footer-item" title="{{item.Description}}">{{ji.Title}} Jobs</a>
                 </div>
 
             </div>
-        </section>
-    </footer>
-    <div class="row">
-        <div class="col-md-12 text-center">
-            <p>All right Reserved to&copy;HedgeLinks.com</p>
+            <div class="col-md-2">
+                <a class="footer-item footer-title" title="hedgelink.com">Top Cities</a>
+                <div class="items" ng-repeat="jci in jobCity">
+                    <a class="footer-item" title="hedgelink.com">{{jci}} Jobs</a>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <a class="footer-item footer-title" title="hedgelink.com">Top Jobs</a>
+                <div class="items" ng-repeat="jt in jobTitle">
+                    <a class="footer-item footer-bold" title="hedgelink.com">{{jt}} Jobs</a>
+                </div>
+
+            </div>
+
         </div>
+    </section>
+</footer>
+<div class="row">
+    <div class="col-md-12 text-center">
+        <p>All right Reserved to&copy;HedgeLinks.com</p>
     </div>
+</div>
 
 
-    @RenderSection("Scripts", required: false)
+@RenderSection("Scripts", required: false)
 
 </body>
 </html>

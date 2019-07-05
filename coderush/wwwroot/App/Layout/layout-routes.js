@@ -6,7 +6,10 @@ layoutModule.config(function($routeProvider) {
             
         })
         .when("/job-seeker-register", {
-            templateUrl : "/Views/job-seeker-register.html"
+            templateUrl : "/Views/job-seeker-register.html",
+            controller:"jobSeekerRegisterController"
+
+
         })
         .when("/green", {
             templateUrl : "green.htm"
