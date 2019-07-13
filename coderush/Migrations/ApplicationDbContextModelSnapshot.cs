@@ -545,11 +545,11 @@ namespace HedgeLinks.Migrations
 
                     b.Property<string>("FullName");
 
-                    b.Property<int>("JobSeekerDetailId");
+                    b.Property<int?>("JobSeekerDetailId");
 
                     b.Property<string>("ResumeFile");
 
-                    b.Property<int>("StateId");
+                    b.Property<int?>("StateId");
 
                     b.Property<string>("city");
 
@@ -1432,13 +1432,11 @@ namespace HedgeLinks.Migrations
 
                     b.HasOne("HedgeLinks.Models.JobSeekerDetail", "JobSeekerDetail")
                         .WithMany()
-                        .HasForeignKey("JobSeekerDetailId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("JobSeekerDetailId");
 
                     b.HasOne("HedgeLinks.Models.State", "State")
                         .WithMany()
-                        .HasForeignKey("StateId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("StateId");
                 });
 
             modelBuilder.Entity("HedgeLinks.Models.JobType", b =>
@@ -1497,7 +1495,7 @@ namespace HedgeLinks.Migrations
             modelBuilder.Entity("HedgeLinks.Models.State", b =>
                 {
                     b.HasOne("HedgeLinks.Models.Country", "Country")
-                        .WithMany()
+                        .WithMany("states")
                         .HasForeignKey("country_id")
                         .OnDelete(DeleteBehavior.Cascade);
                 });

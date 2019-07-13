@@ -51,8 +51,8 @@ layoutModule.controller('jobSeekerRegisterController', ['$scope', 'dataService',
                StateId:$scope.selectedState,
                City:$scope.city,
                JobTitle:$scope.jobTitle,
-               Resume:$scope.Resume,
-               Password:$scope.Password,    
+               Resume:$scope.resume,
+               Password:$scope.password,    
            },
        }).then(function (res) {
            console.log(res);

@@ -9,13 +9,13 @@ namespace HedgeLinks.Models
         public string Email { get; set; }
         [ForeignKey("JobSeekerDetailId")] 
         public JobSeekerDetail JobSeekerDetail { get; set; }
-        public int JobSeekerDetailId { get; set; }
+        public int? JobSeekerDetailId { get; set; }
         [ForeignKey("CountryId")]
         public Country Country { get; set; }
         public int CountryId { get; set; }
         [ForeignKey("StateId")]
         public State State { get; set; }
-        public int StateId { get; set; }
+        public int? StateId { get; set; }
         public string city { get; set; }
         public string DesiredJobTitle { get; set; }
         public string ResumeFile { get; set; }

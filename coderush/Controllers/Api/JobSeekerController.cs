@@ -63,13 +63,13 @@ namespace HedgeLinks.Controllers.Api
             {
                 var file = form.Files[0];
                 var rootPath = hostingEnvironment.WebRootPath.ToString();
-                var serverPath = rootPath + "\\Resume\\" + guid + file.FileName;
+                var serverPath = rootPath + "\\Resume\\" + guid + name+ file.FileName;
                 using (var stream = new FileStream(serverPath, FileMode.Create))
                 {
                     await file.CopyToAsync(stream);
                 }
 
-                resumeFile = "/Resume/" + guid + file.FileName;
+                resumeFile = "/Resume/" + guid + name+file.FileName;
             }
 
             return Ok(new {Status = "success"});
