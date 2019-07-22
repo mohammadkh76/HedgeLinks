@@ -93,6 +93,7 @@ namespace HedgeLinks.Controllers.Api
             {
                 var _currentUserId = "";
 
+                
                 if (HttpContext.User.Identity.IsAuthenticated)
                 {
                     var _currentUser = HttpContext.User.Identity.Name;

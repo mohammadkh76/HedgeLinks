@@ -10,8 +10,13 @@ namespace HedgeLinks.Services
     public interface IFunctional
     {
         Task InitAppData();
+        Task CreateDefaultRoles();
 
         Task CreateDefaultSuperAdmin();
+        Task CreateDefaulOperator();
+        Task CreateDefaulJobseeker();
+        Task CreateDefaulEmployer();
+        
 
         Task SendEmailBySendGridAsync(string apiKey, 
             string fromEmail, 

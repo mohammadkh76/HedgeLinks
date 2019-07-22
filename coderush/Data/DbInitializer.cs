@@ -19,8 +19,13 @@ namespace HedgeLinks.Data
             {
                 return; //if user is not empty, DB has been seed
             }
-       
+
+            await functional.CreateDefaultRoles();    
             await functional.CreateDefaultSuperAdmin();
+            await functional.CreateDefaulJobseeker();
+            await functional.CreateDefaulOperator();
+            await functional.CreateDefaulEmployer();
+       
 
             //init app data
             await functional.InitAppData();

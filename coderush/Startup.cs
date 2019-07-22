@@ -82,6 +82,12 @@ namespace HedgeLinks
 
             // Get Super Admin Default options
             services.Configure<SuperAdminDefaultOptions>(Configuration.GetSection("SuperAdminDefaultOptions"));
+            //Get Operator Default options
+            services.Configure<SuperAdminDefaultOptions>(Configuration.GetSection("OperatorDefaultOptions"));
+            //Get Job Seeker Options
+            services.Configure<SuperAdminDefaultOptions>(Configuration.GetSection("JobseekerDefaultOptions"));
+            //Get Employer Default Options
+            services.Configure<SuperAdminDefaultOptions>(Configuration.GetSection("EmployerDefaultOptions"));
 
             // Add email services.
             services.AddTransient<IEmailSender, EmailSender>();
