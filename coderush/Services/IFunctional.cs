@@ -13,9 +13,9 @@ namespace HedgeLinks.Services
         Task CreateDefaultRoles();
 
         Task CreateDefaultSuperAdmin();
-        Task CreateDefaulOperator();
-        Task CreateDefaulJobseeker();
-        Task CreateDefaulEmployer();
+        Task CreateDefaultOperator();
+        Task CreateDefaultJobseeker();
+        Task CreateDefaultEmployer();
         
 
         Task SendEmailBySendGridAsync(string apiKey, 

@@ -28,6 +28,9 @@ namespace HedgeLinks.Services
         private readonly IHostingEnvironment _hostingEnvironment;
 
         private readonly SuperAdminDefaultOptions _superAdminDefaultOptions;
+        private readonly EmployerDefaultOptions _employerDefaultOptionss;
+        private readonly JobseekerDefaultOptions _jobseekerDefaultOptions;
+        private readonly OperatorDefaultOptions _operatorDefaultOptions;
 
 
         public Functional(UserManager<ApplicationUser> userManager, IHostingEnvironment environment,
@@ -35,7 +38,10 @@ namespace HedgeLinks.Services
             ApplicationDbContext context,
             SignInManager<ApplicationUser> signInManager,
             IRoles roles,
-            IOptions<SuperAdminDefaultOptions> superAdminDefaultOptions)
+            IOptions<SuperAdminDefaultOptions> superAdminDefaultOptions,
+            IOptions<EmployerDefaultOptions> employerDefaultOptions,
+            IOptions<OperatorDefaultOptions> operatorDefaultOptions,
+            IOptions<JobseekerDefaultOptions> jobseekerDefaultOptions)
         {
             _userManager = userManager;
             _hostingEnvironment = environment;
@@ -44,6 +50,9 @@ namespace HedgeLinks.Services
             _signInManager = signInManager;
             _roles = roles;
             _superAdminDefaultOptions = superAdminDefaultOptions.Value;
+            _employerDefaultOptionss = employerDefaultOptions.Value;
+            _operatorDefaultOptions = operatorDefaultOptions.Value;
+            _jobseekerDefaultOptions = jobseekerDefaultOptions.Value;
         }
 
 
@@ -200,10 +209,10 @@ namespace HedgeLinks.Services
         {
             try
             {
-                _roleManager.CreateAsync(new IdentityRole("Admin"));
-                _roleManager.CreateAsync(new IdentityRole("Operator"));
-                _roleManager.CreateAsync(new IdentityRole("JobSeeker"));
-                _roleManager.CreateAsync(new IdentityRole("Employer"));
+                await _roleManager.CreateAsync(new IdentityRole("Admin"));
+                await _roleManager.CreateAsync(new IdentityRole("Operator"));
+                await _roleManager.CreateAsync(new IdentityRole("JobSeeker"));
+                await _roleManager.CreateAsync(new IdentityRole("Employer"));
             }
             catch (Exception ex)
             {
@@ -223,7 +232,7 @@ namespace HedgeLinks.Services
                 superAdmin.UserName = superAdmin.Email;
                 superAdmin.EmailConfirmed = true;
 
-                var result = await _userManager.CreateAsync(superAdmin, _superAdminDefaultOptions.Password);
+                var result = await _userManager.CreateAsync(superAdmin,"123456");
 
                 if (result.Succeeded)
                 {
@@ -231,13 +240,11 @@ namespace HedgeLinks.Services
                     UserProfile profile = new UserProfile();
                     profile.FirstName = "Super";
                     profile.LastName = "Admin";
-                    profile.Email = superAdmin.Email;
+                    profile.Email = "admin@hedgelinks.com";
                     profile.ApplicationUserId = superAdmin.Id;
                     await _context.UserProfile.AddAsync(profile);
                     await _context.SaveChangesAsync();
-                    await _userManager.AddToRoleAsync(superAdmin,"Admin");
-                    
-                        
+                    await _userManager.AddToRoleAsync(superAdmin, "Admin");
                 }
             }
             catch (Exception)
@@ -245,7 +252,8 @@ namespace HedgeLinks.Services
                 throw;
             }
         }
-        public async Task CreateDefaulOperator()
+
+        public async Task CreateDefaultOperator()
         {
             try
             {
@@ -256,7 +264,7 @@ namespace HedgeLinks.Services
                 operatorUser.UserName = operatorUser.Email;
                 operatorUser.EmailConfirmed = true;
 
-                var result = await _userManager.CreateAsync(operatorUser, _superAdminDefaultOptions.Password);
+                var result = await _userManager.CreateAsync(operatorUser,"123456");
 
                 if (result.Succeeded)
                 {
@@ -264,13 +272,11 @@ namespace HedgeLinks.Services
                     UserProfile profile = new UserProfile();
                     profile.FirstName = "operator";
                     profile.LastName = "operator";
-                    profile.Email = operatorUser.Email;
+                    profile.Email = "operator@hedgelinks.com";
                     profile.ApplicationUserId = operatorUser.Id;
                     await _context.UserProfile.AddAsync(profile);
                     await _context.SaveChangesAsync();
-                    await _userManager.AddToRoleAsync(operatorUser,"Operator");
-                    
-                        
+                    await _userManager.AddToRoleAsync(operatorUser, "Operator");
                 }
             }
             catch (Exception)
@@ -278,7 +284,8 @@ namespace HedgeLinks.Services
                 throw;
             }
         }
-        public async Task CreateDefaulJobseeker()
+
+        public async Task CreateDefaultJobseeker()
         {
             try
             {
@@ -289,7 +296,7 @@ namespace HedgeLinks.Services
                 jobseekerUser.UserName = jobseekerUser.Email;
                 jobseekerUser.EmailConfirmed = true;
 
-                var result = await _userManager.CreateAsync(jobseekerUser, _superAdminDefaultOptions.Password);
+                var result = await _userManager.CreateAsync(jobseekerUser, "123456");
 
                 if (result.Succeeded)
                 {
@@ -297,11 +304,11 @@ namespace HedgeLinks.Services
                     UserProfile profile = new UserProfile();
                     profile.FirstName = "Jobseeker";
                     profile.LastName = "Jobseeker";
-                    profile.Email = jobseekerUser.Email;
+                    profile.Email = "jobseeker@hedgelinks.com";
                     profile.ApplicationUserId = jobseekerUser.Id;
                     await _context.UserProfile.AddAsync(profile);
                     await _context.SaveChangesAsync();
-                    await _userManager.AddToRoleAsync(jobseekerUser,"Jobseeker");
+                    await _userManager.AddToRoleAsync(jobseekerUser, "JobSeeker");
                 }
             }
             catch (Exception)
@@ -309,7 +316,8 @@ namespace HedgeLinks.Services
                 throw;
             }
         }
-        public async Task CreateDefaulEmployer()
+
+        public async Task CreateDefaultEmployer()
         {
             try
             {
@@ -318,18 +326,18 @@ namespace HedgeLinks.Services
                 employerUser.Email = _superAdminDefaultOptions.Email;
                 employerUser.UserName = employerUser.Email;
                 employerUser.EmailConfirmed = true;
-                var result = await _userManager.CreateAsync(employerUser, _superAdminDefaultOptions.Password);
+                var result = await _userManager.CreateAsync(employerUser, "123456");
                 if (result.Succeeded)
                 {
                     //add to user profile
                     UserProfile profile = new UserProfile();
                     profile.FirstName = "employer";
                     profile.LastName = "employer";
-                    profile.Email = employerUser.Email;
+                    profile.Email = "employer@hedgelinks.com";
                     profile.ApplicationUserId = employerUser.Id;
                     await _context.UserProfile.AddAsync(profile);
                     await _context.SaveChangesAsync();
-                    await _userManager.AddToRoleAsync(employerUser,"Employer");
+                    await _userManager.AddToRoleAsync(employerUser, "Employer");
                 }
             }
             catch (Exception)

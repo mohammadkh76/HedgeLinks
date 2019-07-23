@@ -22,9 +22,9 @@ namespace HedgeLinks.Data
 
             await functional.CreateDefaultRoles();    
             await functional.CreateDefaultSuperAdmin();
-            await functional.CreateDefaulJobseeker();
-            await functional.CreateDefaulOperator();
-            await functional.CreateDefaulEmployer();
+            await functional.CreateDefaultJobseeker();
+            await functional.CreateDefaultOperator();
+            await functional.CreateDefaultEmployer();
        
 
             //init app data
